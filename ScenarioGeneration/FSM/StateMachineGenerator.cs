@@ -1,11 +1,9 @@
-﻿using NMF.Synchronizations.Demo.FSM;
+﻿using NMF.SynchronizationsBenchmark.FiniteStateMachines;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
+namespace NMF.SynchronizationsBenchmark.ScenarioGeneration.FSM
 {
     public static class StateMachineGenerator
     {
@@ -28,8 +26,8 @@ namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
             var transitions = (int)Math.Floor(states * transitionsPerState + 0.5);
             for (int i = 0; i < transitions; i++)
             {
-                State start;
-                State end;
+                IState start;
+                IState end;
                 string input;
                 do
                 {
@@ -67,7 +65,7 @@ namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
                         StateIndex = rand.Next(states)
                     });
                     states--;
-                    transitions = Math.Max(0, transitions - __inputs.Length);
+                    transitions = Math.Max(0, transitions - 2 * __inputs.Length);
                 }
                 else if (dice < 0.40)
                 {

@@ -1,0 +1,25 @@
+#using FiniteStatesToPetriNets.*
+#using AttrCondDefLibrary.*
+
+#rule FsmToPetriNetRule #with FiniteStatesToPetriNets
+
+#source { 
+	++ fsm : FiniteStateMachine {
+	}
+}
+
+#target {
+	++ pn : PetriNet {
+	}
+}
+
+#correspondence {
+	++ fsmToPn : StateMachineToPetriNet {
+		#src->fsm
+		#trg->pn
+	}
+}
+
+#attributeConditions {
+	eq(fsm.id, pn.id)
+}

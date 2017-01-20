@@ -1,16 +1,17 @@
-﻿using System;
-using System.Linq;
-using NMF.Transformations;
+﻿using NMF.Transformations;
 using NMF.Transformations.Core;
 using NMF.Utilities;
+using System.Linq;
+using FSM = NMF.SynchronizationsBenchmark.FiniteStateMachines;
+using PN = NMF.SynchronizationsBenchmark.PetriNets;
 
-namespace NMF.Synchronizations.Demo
+namespace NMF.SynchronizationsBenchmark
 {
     class TransformationsImplementation : ReflectiveTransformation
     {
-        public class AutomataToNet : TransformationRule<FSM.FiniteStateMachine, PN.PetriNet>
+        public class AutomataToNet : TransformationRule<FSM.IFiniteStateMachine, PN.PetriNet>
         {
-            public override void Transform(FSM.FiniteStateMachine input, PN.PetriNet output, ITransformationContext context)
+            public override void Transform(FSM.IFiniteStateMachine input, PN.PetriNet output, ITransformationContext context)
             {
                 output.Id = input.Id;
             }
@@ -31,17 +32,17 @@ namespace NMF.Synchronizations.Demo
             }
         }
 
-        public class State2Place : TransformationRule<FSM.State, PN.Place>
+        public class State2Place : TransformationRule<FSM.IState, PN.Place>
         {
-            public override void Transform(FSM.State input, PN.Place output, ITransformationContext context)
+            public override void Transform(FSM.IState input, PN.Place output, ITransformationContext context)
             {
                 output.Id = input.Name;
             }
         }
 
-        public class Transition2Transition : TransformationRule<FSM.Transition, PN.Transition>
+        public class Transition2Transition : TransformationRule<FSM.ITransition, PN.Transition>
         {
-            public override void Transform(FSM.Transition input, PN.Transition output, ITransformationContext context)
+            public override void Transform(FSM.ITransition input, PN.Transition output, ITransformationContext context)
             {
                 output.Input = input.Input;
             }
@@ -58,9 +59,9 @@ namespace NMF.Synchronizations.Demo
             }
         }
 
-        public class EndStateToTransition : TransformationRule<FSM.State, PN.Transition>
+        public class EndStateToTransition : TransformationRule<FSM.IState, PN.Transition>
         {
-            public override void Transform(FSM.State input, PN.Transition output, ITransformationContext context)
+            public override void Transform(FSM.IState input, PN.Transition output, ITransformationContext context)
             {
                 var place = context.Trace.ResolveIn(Rule<State2Place>(), input);
                 place.Outgoing.Add(output);

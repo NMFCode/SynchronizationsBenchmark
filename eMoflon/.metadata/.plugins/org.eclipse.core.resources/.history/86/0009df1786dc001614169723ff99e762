@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.moflon.tgg.language:TripleGraphGrammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csp="platform:/plugin/org.moflon.tgg.language/model/Language.ecore#//csp" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:expressions="platform:/plugin/SDMLanguage/model/SDMLanguage.ecore#//expressions" xmlns:org.moflon.tgg.language="platform:/plugin/org.moflon.tgg.language/model/Language.ecore" name="FiniteStatesToPetriNets">
+  <domain name="Correspondence" metamodel="//@metamodel.2"/>
+  <domain name="Target" metamodel="//@metamodel.0" type="TARGET"/>
+  <domain name="Source" metamodel="//@metamodel.1" type="SOURCE"/>
+  <tggRule name="StateToPlaceRule" correspondence="//@domain.0" source="//@domain.2" target="//@domain.1">
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="s" incomingLink="//@tggRule.0/@linkVariable.1 //@tggRule.0/@linkVariable.3" bindingOperator="CREATE" domain="//@domain.2">
+      <type xsi:type="ecore:EClass" href="../../../plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State"/>
+      <attributeAssignment>
+        <valueExpression xsi:type="expressions:LiteralExpression" value="false"/>
+        <attribute href="../../../plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/isEndState"/>
+      </attributeAssignment>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="p" incomingLink="//@tggRule.0/@linkVariable.4 //@tggRule.0/@linkVariable.5" bindingOperator="CREATE" domain="//@domain.1">
+      <type xsi:type="ecore:EClass" href="../../../plugin/PetriNets/model/PetriNets.ecore#//Place"/>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="pn" incomingLink="//@tggRule.0/@linkVariable.0" outgoingLink="//@tggRule.0/@linkVariable.5" domain="//@domain.1">
+      <type xsi:type="ecore:EClass" href="../../../plugin/PetriNets/model/PetriNets.ecore#//PetriNet"/>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="fsm2pn" outgoingLink="//@tggRule.0/@linkVariable.0 //@tggRule.0/@linkVariable.2" domain="//@domain.0">
+      <type xsi:type="ecore:EClass" href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet"/>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="fsm" incomingLink="//@tggRule.0/@linkVariable.2" outgoingLink="//@tggRule.0/@linkVariable.1" domain="//@domain.2">
+      <type xsi:type="ecore:EClass" href="../../../plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStateMachine"/>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="s2p" outgoingLink="//@tggRule.0/@linkVariable.3 //@tggRule.0/@linkVariable.4" bindingOperator="CREATE" domain="//@domain.0">
+      <type xsi:type="ecore:EClass" href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateToPlace"/>
+    </objectVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="target" target="//@tggRule.0/@objectVariable.2" source="//@tggRule.0/@objectVariable.3" domain="//@domain.0">
+      <type href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet/target"/>
+    </linkVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="states" target="//@tggRule.0/@objectVariable.0" source="//@tggRule.0/@objectVariable.4" bindingOperator="CREATE" domain="//@domain.2">
+      <type href="../../../plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStateMachine/states"/>
+    </linkVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="source" target="//@tggRule.0/@objectVariable.4" source="//@tggRule.0/@objectVariable.3" domain="//@domain.0">
+      <type href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet/source"/>
+    </linkVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="source" target="//@tggRule.0/@objectVariable.0" source="//@tggRule.0/@objectVariable.5" bindingOperator="CREATE" domain="//@domain.0">
+      <type href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateToPlace/source"/>
+    </linkVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="target" target="//@tggRule.0/@objectVariable.1" source="//@tggRule.0/@objectVariable.5" bindingOperator="CREATE" domain="//@domain.0">
+      <type href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateToPlace/target"/>
+    </linkVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="places" target="//@tggRule.0/@objectVariable.1" source="//@tggRule.0/@objectVariable.2" bindingOperator="CREATE" domain="//@domain.1">
+      <type href="../../../plugin/PetriNets/model/PetriNets.ecore#//PetriNet/places"/>
+    </linkVariable>
+    <csp>
+      <constraints variables="//@tggRule.0/@csp/@variables.1 //@tggRule.0/@csp/@variables.0" name="eq">
+        <signature type=""/>
+        <signature type="" index="1"/>
+        <allowedAdornments value="BB"/>
+        <allowedAdornments value="BF"/>
+        <allowedAdornments value="FB"/>
+        <modelgenAdornments value="BF"/>
+        <modelgenAdornments value="FB"/>
+        <modelgenAdornments value="FF"/>
+        <modelgenAdornments value="BB"/>
+      </constraints>
+      <variables xsi:type="csp:AttributeVariable" type="String" attribute="id" objectVariable="p"/>
+      <variables xsi:type="csp:AttributeVariable" type="String" attribute="name" objectVariable="s"/>
+    </csp>
+  </tggRule>
+  <tggRule name="FsmToPetriNetRule" correspondence="//@domain.0" source="//@domain.2" target="//@domain.1">
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="fsmToPn" outgoingLink="//@tggRule.1/@linkVariable.0 //@tggRule.1/@linkVariable.1" bindingOperator="CREATE" domain="//@domain.0">
+      <type xsi:type="ecore:EClass" href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet"/>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="pn" incomingLink="//@tggRule.1/@linkVariable.0" bindingOperator="CREATE" domain="//@domain.1">
+      <type xsi:type="ecore:EClass" href="../../../plugin/PetriNets/model/PetriNets.ecore#//PetriNet"/>
+    </objectVariable>
+    <objectVariable xsi:type="org.moflon.tgg.language:TGGObjectVariable" name="fsm" incomingLink="//@tggRule.1/@linkVariable.1" bindingOperator="CREATE" domain="//@domain.2">
+      <type xsi:type="ecore:EClass" href="../../../plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStateMachine"/>
+    </objectVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="target" target="//@tggRule.1/@objectVariable.1" source="//@tggRule.1/@objectVariable.0" bindingOperator="CREATE" domain="//@domain.0">
+      <type href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet/target"/>
+    </linkVariable>
+    <linkVariable xsi:type="org.moflon.tgg.language:TGGLinkVariable" name="source" target="//@tggRule.1/@objectVariable.2" source="//@tggRule.1/@objectVariable.0" bindingOperator="CREATE" domain="//@domain.0">
+      <type href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet/source"/>
+    </linkVariable>
+    <csp>
+      <constraints variables="//@tggRule.1/@csp/@variables.1 //@tggRule.1/@csp/@variables.0" name="eq">
+        <signature type=""/>
+        <signature type="" index="1"/>
+        <allowedAdornments value="BB"/>
+        <allowedAdornments value="BF"/>
+        <allowedAdornments value="FB"/>
+        <modelgenAdornments value="BF"/>
+        <modelgenAdornments value="FB"/>
+        <modelgenAdornments value="FF"/>
+        <modelgenAdornments value="BB"/>
+      </constraints>
+      <variables xsi:type="csp:AttributeVariable" type="String" attribute="id" objectVariable="pn"/>
+      <variables xsi:type="csp:AttributeVariable" type="String" attribute="id" objectVariable="fsm"/>
+    </csp>
+  </tggRule>
+  <metamodel name="PetriNets">
+    <outermostPackage href="../../../plugin/PetriNets/model/PetriNets.ecore#/"/>
+  </metamodel>
+  <metamodel name="FiniteStateMachines">
+    <outermostPackage href="../../../plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#/"/>
+  </metamodel>
+  <metamodel name="FiniteStatesToPetriNets">
+    <outermostPackage href="../../../plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#/"/>
+  </metamodel>
+</org.moflon.tgg.language:TripleGraphGrammar>

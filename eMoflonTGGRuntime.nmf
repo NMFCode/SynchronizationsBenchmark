@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore" Prefix="org.moflon.tgg.runtime" Name="runtime" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" Name="AttributeDelta">
+    <References Opposite="#//DeltaSpecification/attributeChanges/" ReferenceType="#//DeltaSpecification/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="delta" />
+    <References ReferenceType="http://nmf.codeplex.com/nmeta/#//Attribute" IsOrdered="True" IsUnique="True" LowerBound="1" Name="affectedAttribute" />
+    <References IsOrdered="True" IsUnique="True" LowerBound="1" Name="affectedNode" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="oldValue" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="newValue" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="TripleMatch">
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="sourceElements" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="contextElements" />
+    <References IsContainment="True" ReferenceType="#//TripleMatchNodeMapping/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="nodeMappings" />
+    <References IsContainment="True" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="containedEdges" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="targetElements" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="correspondenceElements" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="createdElements" />
+    <References ReferenceType="#//TripleMatch/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="children" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="ruleName" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Integer/" Name="number" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="DeltaSpecification">
+    <References IsOrdered="True" IsUnique="True" Name="targetModel" />
+    <References IsContainment="True" ReferenceType="#//EMoflonEdge/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="addedEdges" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="deletedNodes" />
+    <References IsContainment="True" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="addedNodes" />
+    <References IsContainment="True" ReferenceType="#//EMoflonEdge/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="deletedEdges" />
+    <References IsContainment="True" Opposite="#//AttributeDelta/delta/" ReferenceType="#//AttributeDelta/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="attributeChanges" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//RuleResult/" Name="IsApplicableRuleResult">
+    <References IsContainment="True" Opposite="#//IsApplicableMatch/isApplicableRuleResult/" ReferenceType="#//IsApplicableMatch/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="isApplicableMatch" />
+    <References ReferenceType="http://nmf.codeplex.com/nmeta/#//Operation" IsOrdered="True" IsUnique="True" LowerBound="1" Name="performOperation" />
+    <References ReferenceType="#//Match/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="coreMatch" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="TripleMatchNodeMapping">
+    <References IsOrdered="True" IsUnique="True" Name="node" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="nodeName" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//TGGRuleMorphism/" Name="IsApplicableMatch">
+    <References Opposite="#//IsApplicableRuleResult/isApplicableMatch/" ReferenceType="#//IsApplicableRuleResult/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="isApplicableRuleResult" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="attributeInfo" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="allContextElements" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="CorrespondenceModel">
+    <References IsContainment="True" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="correspondences" />
+    <References IsOrdered="True" IsUnique="True" LowerBound="1" Name="source" />
+    <References IsOrdered="True" IsUnique="True" LowerBound="1" Name="target" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Identifier="#//EMoflonEdge/name/" Name="EMoflonEdge">
+    <References IsOrdered="True" IsUnique="True" LowerBound="1" Name="src" />
+    <References IsOrdered="True" IsUnique="True" LowerBound="1" Name="trg" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="name" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//RuleResult/" Name="AttributeConstraintsRuleResult">
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="requiredChange" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="AbstractRule" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//IsApplicableMatch/" Name="CCMatch">
+    <References ReferenceType="#//Match/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="targetMatch" />
+    <References ReferenceType="#//Match/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sourceMatch" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="createCorr" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="eObjects" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//RuleResult/" Name="ModelgeneratorRuleResult">
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="sourceObjects" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="targetObjects" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="corrObjects" />
+    <Attributes DefaultValue="0" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Integer/" Name="performCount" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="RuleResult">
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="success" />
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="rule" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="EObjectContainer">
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="contents" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="PrecedenceStructure">
+    <References IsContainment="True" ReferenceType="#//TripleMatch/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="tripleMatches" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//TGGRuleMorphism/" Name="PerformRuleResult">
+    <References IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="translatedElements" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="createdElements" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="createdLinkElements" />
+    <References ReferenceType="#//EMoflonEdge/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="createdEdges" />
+    <References ReferenceType="#//EMoflonEdge/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="translatedEdges" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="TGGRuleMorphism">
+    <Attributes IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="ruleName" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="AbstractCorrespondence" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//TGGRuleMorphism/" Name="Match">
+    <References ReferenceType="#//Match/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="succeeding" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="toBeTranslatedNodes" />
+    <References IsOrdered="True" IsUnique="True" UpperBound="-1" Name="contextNodes" />
+    <References ReferenceType="http://nmf.codeplex.com/nmeta/#//Operation" IsOrdered="True" IsUnique="True" Name="isApplicableCCOperation" />
+    <References ReferenceType="http://nmf.codeplex.com/nmeta/#//Operation" IsOrdered="True" IsUnique="True" Name="isApplicableOperation" />
+    <References ReferenceType="#//EMoflonEdge/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="contextEdges" />
+    <References ReferenceType="#//EMoflonEdge/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="toBeTranslatedEdges" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Edge">
+    <References IsOrdered="True" IsUnique="True" Name="src" />
+    <References IsOrdered="True" IsUnique="True" Name="trg" />
+    <References ReferenceType="http://nmf.codeplex.com/nmeta/#//Reference" IsOrdered="True" IsUnique="True" Name="ref" />
+  </Types>
+</nmeta:Namespace>

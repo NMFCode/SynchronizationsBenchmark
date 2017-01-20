@@ -1,0 +1,38 @@
+#using FiniteStatesToPetriNets.*
+#using AttrCondDefLibrary.*
+
+#rule StateToPlaceRule #with FiniteStatesToPetriNets
+
+#source { 
+	++ s : State {
+		isEndState := false
+	}
+	
+	fsm : FiniteStateMachine {
+		++ -states->s
+	}
+}
+
+#target {
+	++ p : Place {}
+	
+	pn : PetriNet {
+		++ -places->p
+	}
+}
+
+#correspondence {
+	fsm2pn : StateMachineToPetriNet {
+		#src->fsm
+		#trg->pn
+	}
+	
+	++ s2p : StateToPlace {
+		#src->s
+		#trg->p
+	}
+}
+
+#attributeConditions {
+	eq(s.name, p.id)
+}

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<org.moflon.tgg.runtime:DeltaSpecification xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetModel="fsm.xmi#//" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.moflon.tgg.runtime="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore">
+  <addedEdges name="transitions" src="fsm.xmi#//@states.9" trg="#//@addedNodes.0" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.0" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i1" startState="fsm.xmi#//@states.9" endState="fsm.xmi#//@states.9" />
+</org.moflon.tgg.runtime:DeltaSpecification>

@@ -1,11 +1,9 @@
-﻿using NMF.Synchronizations.Demo.FSM;
-using System;
+﻿using System;
+using NMF.SynchronizationsBenchmark.FiniteStateMachines;
+using NMF.SynchronizationsBenchmark.Runtime;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
+namespace NMF.SynchronizationsBenchmark.ScenarioGeneration.FSM
 {
     class AddNewStateAction : FSMWorkloadAction
     {
@@ -16,6 +14,18 @@ namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
         public override void Perform(FiniteStateMachine fsm)
         {
             fsm.States.Add(new State() { Name = Name, IsEndState = IsEndState });
+        }
+
+        public override void Perform(FiniteStateMachine fsm, DeltaSpecification delta)
+        {
+            var s = new State() { Name = Name, IsEndState = IsEndState };
+            delta.AddedNodes.Add(s);
+            delta.AddedEdges.Add(new EMoflonEdge()
+            {
+                Name = "states",
+                Src = fsm,
+                Trg = s
+            });
         }
 
         public override int Index

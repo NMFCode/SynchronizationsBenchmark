@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: FiniteStatesToPetriNets;singleton:=true
+Export-Package: FiniteStatesToPetriNets.impl,
+ FiniteStatesToPetriNets.Rules,
+ FiniteStatesToPetriNets.Rules.util,
+ FiniteStatesToPetriNets.util,
+ FiniteStatesToPetriNets,
+ FiniteStatesToPetriNets.Rules.impl
+Bundle-Name: FiniteStatesToPetriNets
+Bundle-Version: 1.0
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.moflon.core.utilities,
+ org.apache.log4j;bundle-version="1.2.15",
+ MocaTree,
+ org.eclipse.core.runtime,
+ SDMLanguage,
+ org.moflon.tgg.language,
+ org.moflon.tgg.runtime,
+ FiniteStateMachines,
+ PetriNets
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: FZI Forschungszentrum Informatik

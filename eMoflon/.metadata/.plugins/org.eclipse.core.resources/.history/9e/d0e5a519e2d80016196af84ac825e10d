@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="FiniteStatesToPetriNets.FiniteStatesToPetriNetsPackage" genModel="model/FiniteStatesToPetriNets.genmodel" uri="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package class="FiniteStatesToPetriNets.Rules.RulesPackage" genModel="model/FiniteStatesToPetriNets.genmodel" uri="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules"/>
+  </extension>
+</plugin>

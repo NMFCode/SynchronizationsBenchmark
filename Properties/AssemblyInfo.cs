@@ -1,16 +1,17 @@
-﻿using System.Reflection;
+﻿using NMF.Models;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Expressions Demo")]
+[assembly: AssemblyTitle("Synchronizations Demo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Expressions Demo")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("Synchronizations Demo")]
+[assembly: AssemblyCopyright("Copyright © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -34,3 +35,7 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+[assembly: ModelMetadata("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore", "NMF.SynchronizationsBenchmark.fsm.nmf")]
+[assembly: ModelMetadata("platform:/plugin/PetriNets/model/PetriNets.ecore", "NMF.SynchronizationsBenchmark.pn.nmf")]
+[assembly: ModelMetadata("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore", "NMF.SynchronizationsBenchmark.eMoflonTGGRuntime.nmf")]

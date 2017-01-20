@@ -1,21 +1,33 @@
-ergebnisse = read.csv2("bin\\Release\\results.csv", colClasses = c(rep('integer', 2),rep('numeric',6)))
-size = ergebnisse$Size
-colnames(ergebnisse) = c("Size", "Iteration", "InitTran", "InitBatch", "InitInc", "MainTran", "MainBatch", "MainInc")
-egAvg = aggregate(ergebnisse[,3:8],list(size),mean)
+ergebnisse = read.csv2("bin\\Release\\results.csv", colClasses = c(rep('integer', 2),rep('numeric',8)), sep=';',dec='.',row.names = NULL)
+colnames(ergebnisse) = c("Size", "Iteration", "InitTran", "InitBatch", "InitInc", "MainTran", "MainBatch", "MainInc", "InitTGG", "MainTGG")
+averages = aggregate(ergebnisse, list(ergebnisse$Size), mean)
 
-size = egAvg[,1]
-tran = (egAvg[,5]-egAvg[,2])/1000
-batch = (egAvg[,6]-egAvg[,3])/1000
-inc = (egAvg[,7]-egAvg[,4])/1000
+size = averages$Size
 
-pdf(file="..\\img\\results.pdf", width=6, height=3)
+pdf(file="init.pdf", width=6, height=3)
 par(mar=c(4.3,4.0,0.3,0.3))
-plot(size, batch, type="n", xlab="Number of states", ylab="Runtime for 100 changes [s]")
-lines(size, tran, col="blue")
-points(size, tran, pch=16, col="blue")
-lines(size, batch, col="red")
-points(size, batch, pch=2, col="red")
-lines(size, inc, col="purple")
-points(size, inc, pch=8, col="purple")
-legend(10, 4, c("NMF Transformations", "NMF Synchronizations (Batch)", "NMF Synchronizations (Incremental)"), col=c('blue', 'red', 'purple'), pch=c(16,2, 8), bty='n', lty=1)
+plot(size, averages$InitTGG, type="n", xlab="Number of states", ylab="Initial transformation [ms]", ylim=c(0,max(averages$InitTGG)))
+lines(size, averages$InitTran, col="blue")
+points(size, averages$InitTran, pch=16, col="blue")
+lines(size, averages$InitBatch, col="red")
+points(size, averages$InitBatch, pch=2, col="red")
+lines(size, averages$InitInc, col="purple")
+points(size, averages$InitInc, pch=8, col="purple")
+lines(size, averages$InitTGG, col="orange")
+points(size, averages$InitTGG, pch=5, col="orange")
+legend(10, max(averages$InitTGG), c("NMF Transformations", "NMF Synchronizations (Batch)", "NMF Synchronizations (Incremental)", "eMoflon (Incremental)"), col=c('blue', 'red', 'purple', 'orange'), pch=c(16,2, 8, 5), bty='n', lty=1)
+dev.off()
+
+pdf(file="updates.pdf", width=6, height=3)
+par(mar=c(4.3,4.0,0.3,0.3))
+plot(size, averages$MainTGG, type="n", xlab="Number of states", ylab="Runtime for 100 changes [ms]", ylim=c(0,max(averages$MainBatch)))
+lines(size, averages$MainTran, col="blue")
+points(size, averages$MainTran, pch=16, col="blue")
+lines(size, averages$MainBatch, col="red")
+points(size, averages$MainBatch, pch=2, col="red")
+lines(size, averages$MainInc, col="purple")
+points(size, averages$MainInc, pch=8, col="purple")
+lines(size, averages$MainTGG, col="orange")
+points(size, averages$MainTGG, pch=5, col="orange")
+legend(10, max(averages$MainBatch), c("NMF Transformations", "NMF Synchronizations (Batch)", "NMF Synchronizations (Incremental)", "eMoflon (Incremental)"), col=c('blue', 'red', 'purple', 'orange'), pch=c(16,2, 8, 5), bty='n', lty=1)
 dev.off()

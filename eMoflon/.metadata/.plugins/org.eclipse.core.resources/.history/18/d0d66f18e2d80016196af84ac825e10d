@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdmUtil:CompilerInjection xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sdmUtil="platform:/plugin/SDMLanguage/model/SDMLanguage.ecore#//sdmUtil">
+  <importInjectionEntries content="org.moflon.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="csp.constraints.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.language.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="csp.constraints.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.language.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="csp.constraints.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.language.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="csp.constraints.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.language.csp.*">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.runtime.TripleMatchNodeMapping">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="java.util.Optional">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="org.moflon.tgg.algorithm.delta.attribute.CheckAttributeHelper">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <importInjectionEntries content="SDMLanguage.expressions.ComparingOperator">
+    <eClass href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition"/>
+  </importInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;s&quot;, s);&#xA;match.registerObject(&quot;fsm&quot;, fsm);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkTypes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;t&quot;, t);&#xA;match.registerObject(&quot;pn&quot;, pn);&#xA;match.registerObject(&quot;p&quot;, p);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;t&quot;,t);&#xD;&#xA;isApplicableMatch.registerObject(&quot;pn&quot;,pn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s&quot;,s);&#xD;&#xA;isApplicableMatch.registerObject(&quot;sToP&quot;,sToP);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm&quot;,fsm);&#xD;&#xA;isApplicableMatch.registerObject(&quot;p&quot;,p);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsmToPn&quot;,fsmToPn);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;sToT&quot;, sToT);&#xA;ruleresult.registerObject(&quot;t&quot;, t);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;ruleresult.registerObject(&quot;s&quot;, s);&#xA;ruleresult.registerObject(&quot;sToP&quot;, sToP);&#xA;ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;p&quot;, p);&#xA;ruleresult.registerObject(&quot;fsmToPn&quot;, fsmToPn);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;t&quot;).eClass()).equals(&quot;PetriNets.Transition.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkTypes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;fsm&quot;, fsm);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_fsm_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;fsm.id&quot;, true, csp);&#xD;&#xA;var_fsm_id.setValue(fsm.getId());&#xD;&#xA;var_fsm_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;Variable var_pn_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;pn.id&quot;, csp);&#xD;&#xA;var_pn_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_fsm_id,var_pn_id);&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm&quot;,fsm);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;fsmToPn&quot;, fsmToPn);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;fsm&quot;).eClass()).equals(&quot;FiniteStateMachines.FiniteStateMachine.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkTypes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;pn&quot;, pn);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_pn_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;pn.id&quot;, true, csp);&#xD;&#xA;var_pn_id.setValue(pn.getId());&#xD;&#xA;var_pn_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;Variable var_fsm_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;fsm.id&quot;, csp);&#xD;&#xA;var_fsm_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_fsm_id,var_pn_id);&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;pn&quot;,pn);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;fsmToPn&quot;, fsmToPn);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;pn&quot;).eClass()).equals(&quot;PetriNets.PetriNet.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkTypes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;fsm&quot;, fsm);&#xA;match.registerObject(&quot;s&quot;, s);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_s_name = CSPFactoryHelper.eINSTANCE.createVariable(&quot;s.name&quot;, true, csp);&#xD;&#xA;var_s_name.setValue(s.getName());&#xD;&#xA;var_s_name.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;Variable var_p_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;p.id&quot;, csp);&#xD;&#xA;var_p_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_s_name,var_p_id);&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;pn&quot;,pn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm&quot;,fsm);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm2pn&quot;,fsm2pn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s&quot;,s);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;p&quot;, p);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;s2p&quot;, s2p);&#xA;ruleresult.registerObject(&quot;fsm2pn&quot;, fsm2pn);&#xA;ruleresult.registerObject(&quot;s&quot;, s);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;s&quot;).eClass()).equals(&quot;FiniteStateMachines.State.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkTypes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;p&quot;, p);&#xA;match.registerObject(&quot;pn&quot;, pn);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_p_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;p.id&quot;, true, csp);&#xD;&#xA;var_p_id.setValue(p.getId());&#xD;&#xA;var_p_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;Variable var_s_name = CSPFactoryHelper.eINSTANCE.createVariable(&quot;s.name&quot;, csp);&#xD;&#xA;var_s_name.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_s_name,var_p_id);&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;p&quot;,p);&#xD;&#xA;isApplicableMatch.registerObject(&quot;pn&quot;,pn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm&quot;,fsm);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm2pn&quot;,fsm2pn);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;p&quot;, p);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;s2p&quot;, s2p);&#xA;ruleresult.registerObject(&quot;fsm2pn&quot;, fsm2pn);&#xA;ruleresult.registerObject(&quot;s&quot;, s);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;p&quot;).eClass()).equals(&quot;PetriNets.Place.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkTypes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;fsm&quot;, fsm);&#xA;match.registerObject(&quot;s2&quot;, s2);&#xA;match.registerObject(&quot;tFsm&quot;, tFsm);&#xA;match.registerObject(&quot;s1&quot;, s1);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_tFsm_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tFsm.input&quot;, true, csp);&#xD;&#xA;var_tFsm_input.setValue(tFsm.getInput());&#xD;&#xA;var_tFsm_input.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;Variable var_tPn_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tPn.input&quot;, csp);&#xD;&#xA;var_tPn_input.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_tFsm_input,var_tPn_input);&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm&quot;,fsm);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s2&quot;,s2);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s2ToP2&quot;,s2ToP2);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsmToPn&quot;,fsmToPn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;p1&quot;,p1);&#xD;&#xA;isApplicableMatch.registerObject(&quot;tFsm&quot;,tFsm);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s1&quot;,s1);&#xD;&#xA;isApplicableMatch.registerObject(&quot;pn&quot;,pn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;p2&quot;,p2);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s1Top1&quot;,s1Top1);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;tToT&quot;, tToT);&#xA;ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;s2&quot;, s2);&#xA;ruleresult.registerObject(&quot;s2ToP2&quot;, s2ToP2);&#xA;ruleresult.registerObject(&quot;fsmToPn&quot;, fsmToPn);&#xA;ruleresult.registerObject(&quot;tPn&quot;, tPn);&#xA;ruleresult.registerObject(&quot;p1&quot;, p1);&#xA;ruleresult.registerObject(&quot;tFsm&quot;, tFsm);&#xA;ruleresult.registerObject(&quot;s1&quot;, s1);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;ruleresult.registerObject(&quot;p2&quot;, p2);&#xA;ruleresult.registerObject(&quot;s1Top1&quot;, s1Top1);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;tFsm&quot;).eClass()).equals(&quot;FiniteStateMachines.Transition.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkTypes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="match.registerObject(&quot;tPn&quot;, tPn);&#xA;match.registerObject(&quot;p1&quot;, p1);&#xA;match.registerObject(&quot;pn&quot;, pn);&#xA;match.registerObject(&quot;p2&quot;, p2);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;isApplicableMatch.getAttributeInfo().add(csp);&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_tPn_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tPn.input&quot;, true, csp);&#xD;&#xA;var_tPn_input.setValue(tPn.getInput());&#xD;&#xA;var_tPn_input.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;Variable var_tFsm_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tFsm.input&quot;, csp);&#xD;&#xA;var_tFsm_input.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_tFsm_input,var_tPn_input);&#xD;&#xA;&#xD;&#xA;// Snapshot pattern match on which CSP is solved&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsm&quot;,fsm);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s2&quot;,s2);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s2ToP2&quot;,s2ToP2);&#xD;&#xA;isApplicableMatch.registerObject(&quot;fsmToPn&quot;,fsmToPn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;tPn&quot;,tPn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;p1&quot;,p1);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s1&quot;,s1);&#xD;&#xA;isApplicableMatch.registerObject(&quot;pn&quot;,pn);&#xD;&#xA;isApplicableMatch.registerObject(&quot;p2&quot;,p2);&#xD;&#xA;isApplicableMatch.registerObject(&quot;s1Top1&quot;,s1Top1);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="ruleresult.registerObject(&quot;tToT&quot;, tToT);&#xA;ruleresult.registerObject(&quot;fsm&quot;, fsm);&#xA;ruleresult.registerObject(&quot;s2&quot;, s2);&#xA;ruleresult.registerObject(&quot;s2ToP2&quot;, s2ToP2);&#xA;ruleresult.registerObject(&quot;fsmToPn&quot;, fsmToPn);&#xA;ruleresult.registerObject(&quot;tPn&quot;, tPn);&#xA;ruleresult.registerObject(&quot;p1&quot;, p1);&#xA;ruleresult.registerObject(&quot;tFsm&quot;, tFsm);&#xA;ruleresult.registerObject(&quot;s1&quot;, s1);&#xA;ruleresult.registerObject(&quot;pn&quot;, pn);&#xA;ruleresult.registerObject(&quot;p2&quot;, p2);&#xA;ruleresult.registerObject(&quot;s1Top1&quot;, s1Top1);&#xA;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return true &amp;&amp; org.moflon.util.eMoflonSDMUtil.getFQN(match.getObject(&quot;tPn&quot;).eClass()).equals(&quot;PetriNets.Transition.&quot;);">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkTypes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;EndStateToTransition&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;if(!__helper.hasExpectedValue(&quot;s&quot;, &quot;isEndState&quot;, true, ComparingOperator.EQUAL)) {&#xD;&#xA;&#x9;ruleResult.setSuccess(false); &#xD;&#xA;&#x9;return ruleResult;&#xD;&#xA;}&#xA;&#xA;&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkAttributes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;EndStateToTransition&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;if(!__helper.hasExpectedValue(&quot;s&quot;, &quot;isEndState&quot;, true, ComparingOperator.EQUAL)) {&#xD;&#xA;&#x9;ruleResult.setSuccess(false); &#xD;&#xA;&#x9;return ruleResult;&#xD;&#xA;}&#xA;&#xA;&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkAttributes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;FsmToPetriNetRule&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;&#xA;&#xA;Variable var_fsm_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;fsm&quot;, true, csp);&#xD;&#xA;var_fsm_id.setValue(__helper.getValue(&quot;fsm&quot;, &quot;id&quot;));&#xD;&#xA;var_fsm_id.setType(&quot;String&quot;);&#xA;&#xA;Variable var_pn_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;pn&quot;, true, csp);&#xD;&#xA;var_pn_id.setValue(__helper.getValue(&quot;pn&quot;, &quot;id&quot;));&#xD;&#xA;var_pn_id.setType(&quot;String&quot;);&#xA;&#xA;Eq eq0 = new Eq();&#xD;&#xA;csp.getConstraints().add(eq0);&#xA;&#xA;eq0.setRuleName(&quot;FsmToPetriNetRule&quot;);&#xD;&#xA;eq0.solve(var_fsm_id,var_pn_id);&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;var_pn_id.setBound(false);&#xD;&#xA;&#x9;eq0.solve(var_fsm_id,var_pn_id);&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;&#x9;__helper.setValue(&quot;pn&quot;, &quot;id&quot;, var_pn_id.getValue());&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkAttributes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;FsmToPetriNetRule&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;&#xA;&#xA;Variable var_fsm_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;fsm&quot;, true, csp);&#xD;&#xA;var_fsm_id.setValue(__helper.getValue(&quot;fsm&quot;, &quot;id&quot;));&#xD;&#xA;var_fsm_id.setType(&quot;String&quot;);&#xA;&#xA;Variable var_pn_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;pn&quot;, true, csp);&#xD;&#xA;var_pn_id.setValue(__helper.getValue(&quot;pn&quot;, &quot;id&quot;));&#xD;&#xA;var_pn_id.setType(&quot;String&quot;);&#xA;&#xA;Eq eq0 = new Eq();&#xD;&#xA;csp.getConstraints().add(eq0);&#xA;&#xA;eq0.setRuleName(&quot;FsmToPetriNetRule&quot;);&#xD;&#xA;eq0.solve(var_fsm_id,var_pn_id);&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;var_fsm_id.setBound(false);&#xD;&#xA;&#x9;eq0.solve(var_fsm_id,var_pn_id);&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;&#x9;__helper.setValue(&quot;fsm&quot;, &quot;id&quot;, var_fsm_id.getValue());&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkAttributes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;StateToPlaceRule&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;&#xA;&#xA;Variable var_p_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;p&quot;, true, csp);&#xD;&#xA;var_p_id.setValue(__helper.getValue(&quot;p&quot;, &quot;id&quot;));&#xD;&#xA;var_p_id.setType(&quot;String&quot;);&#xA;&#xA;Variable var_s_name = CSPFactoryHelper.eINSTANCE.createVariable(&quot;s&quot;, true, csp);&#xD;&#xA;var_s_name.setValue(__helper.getValue(&quot;s&quot;, &quot;name&quot;));&#xD;&#xA;var_s_name.setType(&quot;String&quot;);&#xA;&#xA;Eq eq0 = new Eq();&#xD;&#xA;csp.getConstraints().add(eq0);&#xA;&#xA;eq0.setRuleName(&quot;StateToPlaceRule&quot;);&#xD;&#xA;eq0.solve(var_s_name,var_p_id);&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;var_p_id.setBound(false);&#xD;&#xA;&#x9;eq0.solve(var_s_name,var_p_id);&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;&#x9;__helper.setValue(&quot;p&quot;, &quot;id&quot;, var_p_id.getValue());&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkAttributes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;StateToPlaceRule&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;&#xA;&#xA;Variable var_p_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;p&quot;, true, csp);&#xD;&#xA;var_p_id.setValue(__helper.getValue(&quot;p&quot;, &quot;id&quot;));&#xD;&#xA;var_p_id.setType(&quot;String&quot;);&#xA;&#xA;Variable var_s_name = CSPFactoryHelper.eINSTANCE.createVariable(&quot;s&quot;, true, csp);&#xD;&#xA;var_s_name.setValue(__helper.getValue(&quot;s&quot;, &quot;name&quot;));&#xD;&#xA;var_s_name.setType(&quot;String&quot;);&#xA;&#xA;Eq eq0 = new Eq();&#xD;&#xA;csp.getConstraints().add(eq0);&#xA;&#xA;eq0.setRuleName(&quot;StateToPlaceRule&quot;);&#xD;&#xA;eq0.solve(var_s_name,var_p_id);&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;var_s_name.setBound(false);&#xD;&#xA;&#x9;eq0.solve(var_s_name,var_p_id);&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;&#x9;__helper.setValue(&quot;s&quot;, &quot;name&quot;, var_s_name.getValue());&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkAttributes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;TransitionToTransition&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;&#xA;&#xA;Variable var_tFsm_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tFsm&quot;, true, csp);&#xD;&#xA;var_tFsm_input.setValue(__helper.getValue(&quot;tFsm&quot;, &quot;input&quot;));&#xD;&#xA;var_tFsm_input.setType(&quot;String&quot;);&#xA;&#xA;Variable var_tPn_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tPn&quot;, true, csp);&#xD;&#xA;var_tPn_input.setValue(__helper.getValue(&quot;tPn&quot;, &quot;input&quot;));&#xD;&#xA;var_tPn_input.setType(&quot;String&quot;);&#xA;&#xA;Eq eq0 = new Eq();&#xD;&#xA;csp.getConstraints().add(eq0);&#xA;&#xA;eq0.setRuleName(&quot;TransitionToTransition&quot;);&#xD;&#xA;eq0.solve(var_tFsm_input,var_tPn_input);&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;var_tPn_input.setBound(false);&#xD;&#xA;&#x9;eq0.solve(var_tFsm_input,var_tPn_input);&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;&#x9;__helper.setValue(&quot;tPn&quot;, &quot;input&quot;, var_tPn_input.getValue());&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkAttributes_FWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="AttributeConstraintsRuleResult ruleResult = org.moflon.tgg.runtime.RuntimeFactory.eINSTANCE.createAttributeConstraintsRuleResult();&#xD;&#xA;ruleResult.setRule(&quot;TransitionToTransition&quot;);&#x9;&#xD;&#xA;ruleResult.setSuccess(true);&#xD;&#xA;&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;CheckAttributeHelper __helper = new CheckAttributeHelper(__tripleMatch);&#xA;&#xA;&#xA;&#xA;Variable var_tFsm_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tFsm&quot;, true, csp);&#xD;&#xA;var_tFsm_input.setValue(__helper.getValue(&quot;tFsm&quot;, &quot;input&quot;));&#xD;&#xA;var_tFsm_input.setType(&quot;String&quot;);&#xA;&#xA;Variable var_tPn_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tPn&quot;, true, csp);&#xD;&#xA;var_tPn_input.setValue(__helper.getValue(&quot;tPn&quot;, &quot;input&quot;));&#xD;&#xA;var_tPn_input.setType(&quot;String&quot;);&#xA;&#xA;Eq eq0 = new Eq();&#xD;&#xA;csp.getConstraints().add(eq0);&#xA;&#xA;eq0.setRuleName(&quot;TransitionToTransition&quot;);&#xD;&#xA;eq0.solve(var_tFsm_input,var_tPn_input);&#xA;&#xA;if(csp.check()){ &#xD;&#xA;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;} else {&#xD;&#xA;&#x9;var_tFsm_input.setBound(false);&#xD;&#xA;&#x9;eq0.solve(var_tFsm_input,var_tPn_input);&#xD;&#xA;&#x9;if(csp.check()){ &#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(true);&#xD;&#xA;&#x9;&#x9;ruleResult.setRequiredChange(true);&#xD;&#xA;&#x9;&#x9;__helper.setValue(&quot;tFsm&quot;, &quot;input&quot;, var_tFsm_input.getValue());&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;ruleResult.setSuccess(false);&#xD;&#xA;&#x9;&#x9;return ruleResult;&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;}&#x9;&#xA;&#xA;return ruleResult;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkAttributes_BWD"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_checkCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_fsm_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;fsm.id&quot;, true, csp);&#xD;&#xA;var_fsm_id.setValue(fsm.getId());&#xD;&#xA;var_fsm_id.setType(&quot;String&quot;);&#xD;&#xA;Variable var_pn_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;pn.id&quot;, true, csp);&#xD;&#xA;var_pn_id.setValue(pn.getId());&#xD;&#xA;var_pn_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_fsm_id,var_pn_id);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_s_name = CSPFactoryHelper.eINSTANCE.createVariable(&quot;s.name&quot;, true, csp);&#xD;&#xA;var_s_name.setValue(s.getName());&#xD;&#xA;var_s_name.setType(&quot;String&quot;);&#xD;&#xA;Variable var_p_id = CSPFactoryHelper.eINSTANCE.createVariable(&quot;p.id&quot;, true, csp);&#xD;&#xA;var_p_id.setValue(p.getId());&#xD;&#xA;var_p_id.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_s_name,var_p_id);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="// Create CSP&#xD;&#xA;CSP csp = CspFactory.eINSTANCE.createCSP();&#xD;&#xA;&#xD;&#xA;// Create literals&#xD;&#xA;&#xD;&#xA;// Create attribute variables&#xD;&#xA;Variable var_tFsm_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tFsm.input&quot;, true, csp);&#xD;&#xA;var_tFsm_input.setValue(tFsm.getInput());&#xD;&#xA;var_tFsm_input.setType(&quot;String&quot;);&#xD;&#xA;Variable var_tPn_input = CSPFactoryHelper.eINSTANCE.createVariable(&quot;tPn.input&quot;, true, csp);&#xD;&#xA;var_tPn_input.setValue(tPn.getInput());&#xD;&#xA;var_tPn_input.setType(&quot;String&quot;);&#xD;&#xA;&#xD;&#xA;// Create unbound variables&#xD;&#xA;&#xD;&#xA;// Create constraints&#xD;&#xA;Eq eq = new Eq();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;csp.getConstraints().add(eq);&#xD;&#xA;&#xD;&#xA;// Solve CSP&#xD;&#xA;eq.setRuleName(&quot;NoRuleName&quot;);&#xD;&#xA;eq.solve(var_tFsm_input,var_tPn_input);&#xD;&#xA;return csp;">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC"/>
+  </compilerInjectionEntries>
+  <compilerInjectionEntries content="return csp.check();">
+    <eOperation href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_CC"/>
+  </compilerInjectionEntries>
+</sdmUtil:CompilerInjection>

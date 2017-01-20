@@ -1,9 +1,12 @@
 ﻿using NMF.Expressions.Linq;
 using NMF.Transformations;
+using NMF.Synchronizations;
 using System;
 using System.Collections.Generic;
+using FSM = NMF.SynchronizationsBenchmark.FiniteStateMachines;
+using PN = NMF.SynchronizationsBenchmark.PetriNets;
 
-namespace NMF.Synchronizations.Demo
+namespace NMF.SynchronizationsBenchmark
 {
     public class SynchronizationsImplementation : ReflectiveSynchronization
     {
@@ -30,9 +33,9 @@ namespace NMF.Synchronizations.Demo
             }
         }
 
-        public class StateToPlace : SynchronizationRule<FSM.State, PN.Place>
+        public class StateToPlace : SynchronizationRule<FSM.IState, PN.IPlace>
         {
-            public override bool ShouldCorrespond(FSM.State left, PN.Place right, ISynchronizationContext context)
+            public override bool ShouldCorrespond(FSM.IState left, PN.IPlace right, ISynchronizationContext context)
             {
                 return left.Name == right.Id;
             }
@@ -43,7 +46,7 @@ namespace NMF.Synchronizations.Demo
             }
         }
 
-        public class TransitionToTransition : SynchronizationRule<FSM.Transition, PN.Transition>
+        public class TransitionToTransition : SynchronizationRule<FSM.ITransition, PN.ITransition>
         {
 
             public override void DeclareSynchronization()
@@ -59,7 +62,7 @@ namespace NMF.Synchronizations.Demo
                     t => t.To.SingleOrDefault());
             }
 
-            public override bool ShouldCorrespond(FSM.Transition left, PN.Transition right, ISynchronizationContext context)
+            public override bool ShouldCorrespond(FSM.ITransition left, PN.ITransition right, ISynchronizationContext context)
             {
                 var stateToPlace = SyncRule<StateToPlace>().LeftToRight;
                 return left.Input == right.Input
@@ -68,14 +71,14 @@ namespace NMF.Synchronizations.Demo
             }
         }
 
-        public class EndStateToTransition : SynchronizationRule<FSM.State, PN.Transition>
+        public class EndStateToTransition : SynchronizationRule<FSM.IState, PN.ITransition>
         {
-            public override bool ShouldCorrespond(FSM.State left, PN.Transition right, ISynchronizationContext context)
+            public override bool ShouldCorrespond(FSM.IState left, PN.ITransition right, ISynchronizationContext context)
             {
                 return context.Trace.ResolveIn(SyncRule<StateToPlace>().LeftToRight, left) == right.From.FirstOrDefault();
             }
 
-            protected override FSM.State CreateLeftOutput(PN.Transition transition, IEnumerable<FSM.State> candidates, ISynchronizationContext context, out bool existing)
+            protected override FSM.IState CreateLeftOutput(PN.ITransition transition, IEnumerable<FSM.IState> candidates, ISynchronizationContext context, out bool existing)
             {
                 if (transition.From.Count == 0) throw new InvalidOperationException();
                 existing = true;

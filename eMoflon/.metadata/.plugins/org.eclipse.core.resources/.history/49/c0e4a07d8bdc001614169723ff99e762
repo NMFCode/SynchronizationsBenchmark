@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.moflon.tgg.runtime:DeltaSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.moflon.tgg.runtime="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore">
+  <targetModel href="fsm.xmi#Test"/>
+  <attributeChanges oldValue="q0" newValue="q10">
+    <affectedAttribute href="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name"/>
+    <affectedNode href="fsm.xmi#q0"/>
+  </attributeChanges>
+</org.moflon.tgg.runtime:DeltaSpecification>

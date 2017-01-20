@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<org.moflon.tgg.runtime:DeltaSpecification xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetModel="fsm.xmi#//" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.moflon.tgg.runtime="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore">
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.0" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.1" trg="#//@addedNodes.1" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.1" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.2" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.7" trg="#//@addedNodes.3" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.3" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.5" trg="#//@addedNodes.4" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.4" />
+  <addedEdges name="endState" src="$9" trg="fsm.xmi#//@states.1" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.5" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.1" trg="#//@addedNodes.6" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.6" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.0" trg="#//@addedNodes.7" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.7" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.8" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.9" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.10" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.3" trg="#//@addedNodes.11" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.11" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.12" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.13" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.0" trg="#//@addedNodes.14" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.14" />
+  <addedEdges name="endState" src="fsm.xmi#//@transitions.1" trg="fsm.xmi#//@states.11" />
+  <addedEdges name="transitions" src="fsm.xmi#//q16" trg="#//@addedNodes.15" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.15" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.16" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.2" trg="#//@addedNodes.17" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.17" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.18" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.19" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.2" trg="#//@addedNodes.20" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.20" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.21" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.22" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.23" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.5" trg="#//@addedNodes.24" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.24" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.25" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.17" trg="#//@addedNodes.26" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.26" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.27" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.28" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.1" trg="#//@addedNodes.29" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.29" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.1" trg="#//@addedNodes.30" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.30" />
+  <addedEdges name="endState" src="fsm.xmi#//@transitions.3" trg="fsm.xmi#//@states.14" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.31" />
+  <addedEdges name="endState" src="fsm.xmi#//@transitions.1" trg="fsm.xmi#//@states.6" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.1" trg="#//@addedNodes.32" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.32" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.0" trg="#//@addedNodes.33" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.33" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.34" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.35" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.36" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.4" trg="#//@addedNodes.37" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.37" />
+  <addedEdges name="transitions" src="fsm.xmi#//q24" trg="#//@addedNodes.38" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.38" />
+  <addedEdges name="endState" src="$63" trg="fsm.xmi#//@states.22" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.18" trg="#//@addedNodes.39" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.39" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.4" trg="#//@addedNodes.40" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.40" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.7" trg="#//@addedNodes.41" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.41" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.42" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.11" trg="#//@addedNodes.43" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.43" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.10" trg="#//@addedNodes.44" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.44" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.45" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.46" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.18" trg="#//@addedNodes.47" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.47" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.25" trg="#//@addedNodes.48" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.48" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.49" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.14" trg="#//@addedNodes.50" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.50" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.20" trg="#//@addedNodes.51" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.51" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.52" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.53" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.29" trg="#//@addedNodes.54" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.54" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.55" />
+  <addedEdges name="endState" src="fsm.xmi#//@transitions.3" trg="fsm.xmi#//@states.2" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.56" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.29" trg="#//@addedNodes.57" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.57" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.4" trg="#//@addedNodes.58" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.58" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.5" trg="#//@addedNodes.59" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.59" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.30" trg="#//@addedNodes.60" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.60" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.26" trg="#//@addedNodes.61" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.61" />
+  <addedEdges name="transitions" src="fsm.xmi#//@states.17" trg="#//@addedNodes.62" />
+  <addedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.62" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.63" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.64" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.65" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.66" />
+  <addedEdges name="states" src="fsm.xmi#//" trg="#//@addedNodes.67" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q11" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i1" startState="fsm.xmi#//@states.1" endState="fsm.xmi#//q13" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q15" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i2" startState="fsm.xmi#//@states.7" endState="fsm.xmi#//@states.7" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i3" startState="fsm.xmi#//@states.5" endState="fsm.xmi#//q10" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q17" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i4" startState="fsm.xmi#//@states.1" endState="fsm.xmi#//@states.7" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i5" startState="fsm.xmi#//@states.0" endState="fsm.xmi#//@states.5" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q18" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q19" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q20" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i6" startState="fsm.xmi#//@states.3" endState="fsm.xmi#//q44" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q21" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q22" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i7" startState="fsm.xmi#//@states.0" endState="fsm.xmi#//@states.2" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i8" endState="fsm.xmi#//@states.9" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q23" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i9" startState="fsm.xmi#//@states.2" endState="fsm.xmi#//q16" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q24" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q25" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i10" startState="fsm.xmi#//@states.2" endState="fsm.xmi#//@states.2" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q26" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q27" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q28" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i11" startState="fsm.xmi#//@states.5" endState="fsm.xmi#//@states.1" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q29" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i12" startState="fsm.xmi#//@states.17" endState="fsm.xmi#//@states.9" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q31" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q32" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i13" startState="fsm.xmi#//@states.1" endState="fsm.xmi#//@states.5" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i14" startState="fsm.xmi#//@states.1" endState="fsm.xmi#//@states.11" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q34" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i15" startState="fsm.xmi#//@states.1" endState="fsm.xmi#//@states.17" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i16" startState="fsm.xmi#//@states.0" endState="fsm.xmi#//@states.21" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q35" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q37" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q38" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i17" startState="fsm.xmi#//@states.4" endState="fsm.xmi#//@states.17" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i18" endState="fsm.xmi#//@states.6" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i19" startState="fsm.xmi#//@states.18" endState="fsm.xmi#//@states.14" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i20" startState="fsm.xmi#//@states.4" endState="fsm.xmi#//@states.13" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i21" startState="fsm.xmi#//@states.7" endState="fsm.xmi#//@states.16" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q39" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i22" startState="fsm.xmi#//@states.11" endState="fsm.xmi#//@states.24" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i23" startState="fsm.xmi#//@states.10" endState="fsm.xmi#//@states.0" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q40" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q41" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i24" startState="fsm.xmi#//@states.18" endState="fsm.xmi#//@states.6" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i25" startState="fsm.xmi#//@states.25" endState="fsm.xmi#//@states.13" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q42" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i26" startState="fsm.xmi#//@states.14" endState="fsm.xmi#//@states.7" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i27" startState="fsm.xmi#//@states.20" endState="fsm.xmi#//@states.22" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q43" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q46" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i28" startState="fsm.xmi#//@states.29" endState="fsm.xmi#//@states.9" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q47" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q48" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i29" startState="fsm.xmi#//@states.29" endState="fsm.xmi#//@states.9" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i30" startState="fsm.xmi#//@states.4" endState="fsm.xmi#//@states.4" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i31" startState="fsm.xmi#//@states.5" endState="fsm.xmi#//@states.11" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i32" startState="fsm.xmi#//@states.30" endState="fsm.xmi#//@states.12" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i33" startState="fsm.xmi#//@states.26" endState="fsm.xmi#//@states.17" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:Transition" input="i34" startState="fsm.xmi#//@states.17" endState="fsm.xmi#//@states.29" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q49" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" isEndState="True" name="q50" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q51" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q52" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q53" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$179" />
+  <deletedEdges name="startState" src="$179" trg="fsm.xmi#//q10" />
+  <deletedEdges name="endState" src="$179" trg="fsm.xmi#//@states.1" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$179" />
+  <deletedEdges name="endState" src="$9" trg="fsm.xmi#//q16" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.4" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$186" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$188" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$190" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$192" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$194" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$196" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$198" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$200" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$196" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$192" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$204" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q10" trg="$186" />
+  <deletedEdges name="startState" src="$196" trg="fsm.xmi#//q10" />
+  <deletedEdges name="startState" src="$192" trg="fsm.xmi#//q10" />
+  <deletedEdges name="startState" src="$186" trg="fsm.xmi#//q10" />
+  <deletedEdges name="states" src="fsm.xmi#//" trg="fsm.xmi#//q10" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.11" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$212" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$214" />
+  <deletedEdges name="states" src="fsm.xmi#//" trg="fsm.xmi#//q44" />
+  <deletedEdges name="endState" src="fsm.xmi#//@transitions.1" trg="fsm.xmi#//@states.2" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.17" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.15" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$220" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$222" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q16" trg="#//@addedNodes.15" />
+  <deletedEdges name="startState" src="#//@addedNodes.15" trg="fsm.xmi#//q16" />
+  <deletedEdges name="states" src="fsm.xmi#//" trg="fsm.xmi#//q16" />
+  <deletedEdges name="endState" src="fsm.xmi#//@transitions.3" trg="fsm.xmi#//@states.4" />
+  <deletedEdges name="endState" src="fsm.xmi#//@transitions.1" trg="fsm.xmi#//@states.11" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.1" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$230" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$232" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$234" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q13" trg="$232" />
+  <deletedEdges name="startState" src="$232" trg="fsm.xmi#//q13" />
+  <deletedEdges name="states" src="fsm.xmi#//" trg="fsm.xmi#//q13" />
+  <deletedEdges name="endState" src="$63" trg="fsm.xmi#//@states.12" />
+  <deletedEdges name="transitions" src="fsm.xmi#//@states.7" trg="$240" />
+  <deletedEdges name="startState" src="$240" trg="fsm.xmi#//@states.7" />
+  <deletedEdges name="endState" src="$240" trg="fsm.xmi#//@states.0" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$240" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="#//@addedNodes.38" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$246" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$248" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q24" trg="$230" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q24" trg="#//@addedNodes.38" />
+  <deletedEdges name="startState" src="$230" trg="fsm.xmi#//q24" />
+  <deletedEdges name="startState" src="#//@addedNodes.38" trg="fsm.xmi#//q24" />
+  <deletedEdges name="states" src="fsm.xmi#//" trg="fsm.xmi#//q24" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$255" />
+  <deletedEdges name="transitions" src="fsm.xmi#//q46" trg="$255" />
+  <deletedEdges name="startState" src="$255" trg="fsm.xmi#//q46" />
+  <deletedEdges name="states" src="fsm.xmi#//" trg="fsm.xmi#//q46" />
+  <deletedEdges name="endState" src="fsm.xmi#//@transitions.3" trg="fsm.xmi#//@states.14" />
+  <deletedEdges name="transitions" src="fsm.xmi#//@states.12" trg="$9" />
+  <deletedEdges name="startState" src="$9" trg="fsm.xmi#//@states.12" />
+  <deletedEdges name="endState" src="$9" trg="fsm.xmi#//@states.1" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$9" />
+  <deletedEdges name="transitions" src="fsm.xmi#//@states.4" trg="$63" />
+  <deletedEdges name="startState" src="$63" trg="fsm.xmi#//@states.4" />
+  <deletedEdges name="endState" src="$63" trg="fsm.xmi#//@states.22" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$63" />
+  <deletedEdges name="transitions" src="fsm.xmi#//@states.8" trg="$269" />
+  <deletedEdges name="startState" src="$269" trg="fsm.xmi#//@states.8" />
+  <deletedEdges name="endState" src="$269" trg="fsm.xmi#//@states.19" />
+  <deletedEdges name="transitions" src="fsm.xmi#//" trg="$269" />
+  <attributeChanges oldValue="q8" newValue="q10" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.5" />
+  <attributeChanges oldValue="q30" newValue="q12" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.2" />
+  <attributeChanges oldValue="q11" newValue="q13" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//q13" />
+  <attributeChanges oldValue="q17" newValue="q16" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//q16" />
+  <attributeChanges oldValue="q12" newValue="q30" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.2" />
+  <attributeChanges oldValue="False" newValue="True" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/isEndState" affectedNode="fsm.xmi#//@states.20" />
+  <attributeChanges oldValue="q37" newValue="q33" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.19" />
+  <attributeChanges oldValue="False" newValue="True" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/isEndState" affectedNode="fsm.xmi#//@states.8" />
+  <attributeChanges oldValue="q35" newValue="q36" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.18" />
+  <attributeChanges oldValue="q36" newValue="q44" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.13" />
+  <attributeChanges oldValue="q47" newValue="q45" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/name" affectedNode="fsm.xmi#//@states.25" />
+  <attributeChanges oldValue="False" newValue="True" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/isEndState" affectedNode="fsm.xmi#//@states.14" />
+  <attributeChanges oldValue="False" newValue="True" affectedAttribute="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/isEndState" affectedNode="fsm.xmi#//@states.31" />
+</org.moflon.tgg.runtime:DeltaSpecification>

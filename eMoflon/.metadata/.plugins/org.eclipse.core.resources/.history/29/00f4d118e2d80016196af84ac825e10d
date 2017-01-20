@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/FiniteStatesToPetriNets/gen" modelPluginID="FiniteStatesToPetriNets"
+    modelName="FiniteStatesToPetriNets" updateClasspath="false" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.genmodel#//runtime platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.genmodel#//FiniteStateMachines platform:/plugin/PetriNets/model/PetriNets.genmodel#//PetriNets platform:/plugin/org.moflon.tgg.language/model/Language.genmodel#//language platform:/plugin/SDMLanguage/model/SDMLanguage.genmodel#//SDMLanguage platform:/plugin/MocaTree/model/MocaTree.genmodel#//MocaTree"
+    operationReflection="true">
+  <foreignModel>FiniteStatesToPetriNets.ecore</foreignModel>
+  <genPackages prefix="FiniteStatesToPetriNets" disposableProviderFactory="true" ecorePackage="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#/">
+    <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateToPlace">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateToPlace/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateToPlace/target"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//EndStateToTransition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//EndStateToTransition/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//EndStateToTransition/target"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//StateMachineToPetriNet/target"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//TransitionToTransition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//TransitionToTransition/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//TransitionToTransition/target"/>
+    </genClasses>
+    <nestedGenPackages prefix="Rules" disposableProviderFactory="true" ecorePackage="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules">
+      <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule">
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/perform_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/perform_FWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_FWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_FWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_FWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_FWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkTypes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkTypes_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_BWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/perform_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/perform_BWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjectsToMatch_BWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_solveCsp_BWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_BWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_BWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/registerObjects_BWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkTypes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkTypes_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_BWD_PetriNet_2">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_BWD_PetriNet_2/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_FWD_FiniteStateMachine_2">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_FWD_FiniteStateMachine_2/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkAttributes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkAttributes_FWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkAttributes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkAttributes_BWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_CC/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_CC/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_solveCsp_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isApplicable_checkCsp_CC/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkDEC_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkDEC_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkDEC_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkDEC_BWD/pn"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel/ruleEntryContainer"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel_solveCsp_BWD/ruleResult"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/generateModel_checkCsp_BWD/csp"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition">
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/perform_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/perform_FWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkTypes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkTypes_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD/t"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/perform_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/perform_BWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjectsToMatch_BWD/t"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_solveCsp_BWD/t"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/sToP"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_BWD/t"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/sToP"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/t"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/registerObjects_BWD/sToT"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkTypes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkTypes_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD_State_2">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD_State_2/s"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD_EMoflonEdge_6">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD_EMoflonEdge_6/_edge_transitions"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkAttributes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkAttributes_FWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkAttributes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkAttributes_BWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/t"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_solveCsp_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_checkCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isApplicable_checkCsp_CC/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_BWD/t"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel/ruleEntryContainer"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel/sToPParameter"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/sToP"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_solveCsp_BWD/ruleResult"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/generateModel_checkCsp_BWD/csp"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition">
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD/s2"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/perform_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/perform_FWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_FWD/s2"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_FWD/s2"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/p1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/s2ToP2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/s2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_FWD/s1Top1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/p1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/s2ToP2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/tToT"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/s2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_FWD/s1Top1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkTypes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkTypes_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD/p1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/perform_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/perform_BWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjectsToMatch_BWD/p1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_solveCsp_BWD/p1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/p1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/s2ToP2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/s2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_BWD/s1Top1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/p1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/s2ToP2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/tToT"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/s2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/registerObjects_BWD/s1Top1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkTypes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkTypes_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD_EMoflonEdge_7">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD_EMoflonEdge_7/_edge_outgoing"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD_EMoflonEdge_4">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD_EMoflonEdge_4/_edge_endState"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkAttributes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkAttributes_FWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkAttributes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkAttributes_BWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/p1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/s2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_solveCsp_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isApplicable_checkCsp_CC/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_FWD/tFsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_FWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_FWD/s2"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_BWD/tPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_BWD/p1"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel/ruleEntryContainer"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel/s2ToP2Parameter"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/s1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/p2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/p1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/s2ToP2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/fsmToPn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/s2"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/s1Top1"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_solveCsp_BWD/ruleResult"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/generateModel_checkCsp_BWD/csp"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule">
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/perform_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/perform_FWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_FWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD/fsm2pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_FWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/fsm2pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_FWD/s2p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkTypes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkTypes_FWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD/p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/perform_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/perform_BWD/isApplicableMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjectsToMatch_BWD/p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_BWD/match"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_solveCsp_BWD/p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD/fsm2pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_BWD/p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_BWD/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/ruleresult"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/fsm2pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/registerObjects_BWD/s2p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkTypes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkTypes_BWD/match"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD_EMoflonEdge_8">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD_EMoflonEdge_8/_edge_places"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD_EMoflonEdge_5">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD_EMoflonEdge_5/_edge_states"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkAttributes_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkAttributes_FWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkAttributes_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkAttributes_BWD/__tripleMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC/p"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC/sourceMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_solveCsp_CC/targetMatch"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_CC">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isApplicable_checkCsp_CC/csp"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_FWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_FWD/s"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_FWD/fsm"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_BWD/p"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel/ruleEntryContainer"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel/fsm2pnParameter"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_solveCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_solveCsp_BWD/isApplicableMatch"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_solveCsp_BWD/pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_solveCsp_BWD/fsm2pn"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_solveCsp_BWD/fsm"/>
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_solveCsp_BWD/ruleResult"/>
+        </genOperations>
+        <genOperations ecoreOperation="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_checkCsp_BWD">
+          <genParameters ecoreParameter="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/generateModel_checkCsp_BWD/csp"/>
+        </genOperations>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

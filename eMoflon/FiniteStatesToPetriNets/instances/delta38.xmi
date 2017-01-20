@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<org.moflon.tgg.runtime:DeltaSpecification xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetModel="fsm.xmi#Test2" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.moflon.tgg.runtime="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore">
+  <addedEdges name="states" src="fsm.xmi#Test2" trg="q1014" />
+  <addedNodes xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" xsi:type="fsm:State" name="q1014" />
+</org.moflon.tgg.runtime:DeltaSpecification>

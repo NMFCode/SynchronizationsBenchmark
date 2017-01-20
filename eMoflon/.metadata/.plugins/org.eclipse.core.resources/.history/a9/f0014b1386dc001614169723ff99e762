@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="FiniteStatesToPetriNets" nsURI="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore"
+    nsPrefix="FiniteStatesToPetriNets">
+  <eClassifiers xsi:type="ecore:EClass" name="StateToPlace" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractCorrespondence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/PetriNets/model/PetriNets.ecore#//Place"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndStateToTransition" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractCorrespondence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitionToTransition" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractCorrespondence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//Transition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateMachineToPetriNet" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractCorrespondence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStateMachine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet"/>
+  </eClassifiers>
+  <eSubpackages name="Rules" nsURI="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules"
+      nsPrefix="Rules">
+    <eClassifiers xsi:type="ecore:EClass" name="EndStateToTransition" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractRule"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FsmToPetriNetRule" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractRule"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StateToPlaceRule" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractRule"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TransitionToTransition" eSuperTypes="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AbstractRule"/>
+  </eSubpackages>
+</ecore:EPackage>

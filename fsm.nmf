@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore" Prefix="fsm" Name="FiniteStateMachines" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" Identifier="#//FiniteStateMachine/id/" IdentifierScope="Global" Name="FiniteStateMachine">
+    <References IsContainment="True" ReferenceType="#//State/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="states" />
+    <References IsContainment="True" ReferenceType="#//Transition/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="transitions" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="id" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Identifier="#//State/name/" IdentifierScope="Global" Name="State">
+    <References Opposite="#//Transition/startState/" ReferenceType="#//Transition/" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="transitions" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="isEndState" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="isStartState" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="name" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Transition">
+    <References Opposite="#//State/transitions/" ReferenceType="#//State/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="startState" />
+    <References ReferenceType="#//State/" IsOrdered="True" IsUnique="True" LowerBound="1" Name="endState" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="input" />
+  </Types>
+</nmeta:Namespace>

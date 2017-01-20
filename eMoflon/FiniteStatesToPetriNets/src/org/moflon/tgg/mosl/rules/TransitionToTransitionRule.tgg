@@ -1,0 +1,57 @@
+	#using FiniteStatesToPetriNets.*
+#using AttrCondDefLibrary.*
+
+#rule TransitionToTransitionRule #with FiniteStatesToPetriNets
+
+#source { 
+	fsm : FiniteStateMachine {
+		-states->s1
+		-states->s2
+		++ -transitions->tFsm
+	}
+	s1 : State
+	s2 : State
+	
+	++ tFsm : Transition {
+		++ -startState->s1
+		++ -endState->s2
+	}
+}
+
+#target {
+	pn : PetriNet {
+		-places->p1
+		-places->p2
+		++ -transitions->tPn
+	}
+	p1 : Place
+	p2 : Place
+	
+	++ tPn : Transition{
+		++ -from->p1
+		++ -to->p2
+	}
+}
+
+#correspondence {
+	fsmToPn : StateMachineToPetriNet {
+		#src->fsm
+		#trg->pn
+	}
+	s1Top1 : StateToPlace {
+		#src->s1
+		#trg->p1
+	}
+	s2ToP2 : StateToPlace {
+		#src->s2
+		#trg->p2
+	}
+	++ tToT : TransitionToTransition {
+		#src->tFsm
+		#trg->tPn
+	}
+}
+
+#attributeConditions {
+	eq(tFsm.input,tPn.input)
+}

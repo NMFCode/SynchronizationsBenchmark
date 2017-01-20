@@ -1,11 +1,9 @@
-﻿using NMF.Synchronizations.Demo.FSM;
+﻿using NMF.SynchronizationsBenchmark.FiniteStateMachines;
 using System;
+using NMF.SynchronizationsBenchmark.Runtime;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
+namespace NMF.SynchronizationsBenchmark.ScenarioGeneration.FSM
 {
     class RemoveTransitionAction : FSMWorkloadAction
     {
@@ -18,6 +16,21 @@ namespace NMF.Synchronizations.Demo.ScenarioGeneration.FSM
             t.StartState = null;
             t.EndState = null;
             fsm.Transitions.RemoveAt(TransitionIndex);
+        }
+
+        public override void Perform(FiniteStateMachine fsm, DeltaSpecification delta)
+        {
+            TransitionIndex = Math.Min(TransitionIndex, fsm.Transitions.Count - 1);
+            var t = fsm.Transitions[TransitionIndex];
+            t.StartState = null;
+            t.EndState = null;
+            delta.DeletedNodes.Add(t);
+            delta.DeletedEdges.Add(new EMoflonEdge()
+            {
+                Src = fsm,
+                Trg = t,
+                Name = "transitions"
+            });
         }
 
         public override int Index

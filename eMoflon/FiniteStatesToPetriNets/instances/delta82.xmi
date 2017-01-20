@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<org.moflon.tgg.runtime:DeltaSpecification xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetModel="fsm.xmi#Test2" deletedNodes="fsm.xmi#//@transitions.1996 fsm.xmi#//@transitions.1927 fsm.xmi#//@transitions.1392 fsm.xmi#//@transitions.523 fsm.xmi#//@transitions.303 fsm.xmi#q529" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.moflon.tgg.runtime="platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore">
+  <deletedEdges name="transitions" src="fsm.xmi#Test2" trg="fsm.xmi#//@transitions.1996" />
+  <deletedEdges name="transitions" src="fsm.xmi#Test2" trg="fsm.xmi#//@transitions.1927" />
+  <deletedEdges name="transitions" src="fsm.xmi#Test2" trg="fsm.xmi#//@transitions.1392" />
+  <deletedEdges name="transitions" src="fsm.xmi#Test2" trg="fsm.xmi#//@transitions.523" />
+  <deletedEdges name="transitions" src="fsm.xmi#Test2" trg="fsm.xmi#//@transitions.303" />
+  <deletedEdges name="states" src="fsm.xmi#Test2" trg="fsm.xmi#q529" />
+</org.moflon.tgg.runtime:DeltaSpecification>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ASCII"?>
+<analysis:StaticAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:analysis="platform:/plugin/org.moflon.tgg.language/model/Language.ecore#//analysis">
+  <sourceRules>
+    <rules ruleName="FsmToPetriNetRule">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_FWD_FiniteStateMachine_2"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkDEC_FWD"/>
+    </rules>
+    <rules ruleName="EndStateToTransition" ignore="true">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_FWD_State_2"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_FWD"/>
+    </rules>
+    <rules ruleName="TransitionToTransition">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_FWD_EMoflonEdge_4"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_FWD"/>
+    </rules>
+    <rules ruleName="StateToPlaceRule">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_FWD_EMoflonEdge_5"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_FWD"/>
+    </rules>
+  </sourceRules>
+  <targetRules>
+    <rules ruleName="FsmToPetriNetRule">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/isAppropriate_BWD_PetriNet_2"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/FsmToPetriNetRule/checkDEC_BWD"/>
+    </rules>
+    <rules ruleName="EndStateToTransition">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/isAppropriate_BWD_EMoflonEdge_6"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/EndStateToTransition/checkDEC_BWD"/>
+    </rules>
+    <rules ruleName="TransitionToTransition">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/isAppropriate_BWD_EMoflonEdge_7"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/TransitionToTransition/checkDEC_BWD"/>
+    </rules>
+    <rules ruleName="StateToPlaceRule">
+      <isAppropriateMethods href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/isAppropriate_BWD_EMoflonEdge_8"/>
+      <checkDECMethod href="platform:/plugin/FiniteStatesToPetriNets/model/FiniteStatesToPetriNets.ecore#//Rules/StateToPlaceRule/checkDEC_BWD"/>
+    </rules>
+  </targetRules>
+</analysis:StaticAnalysis>

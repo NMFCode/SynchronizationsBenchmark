@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fsm:FiniteStateMachine xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Test" xmlns:xmi="http://www.omg.org/XMI" xmlns:fsm="platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore">
+  <states name="q0" transitions="#//@transitions.7 #//@transitions.13 #//@transitions.19" />
+  <states name="q1" transitions="#//@transitions.4 #//@transitions.12" />
+  <states isEndState="True" name="q2" transitions="#//@transitions.0 #//@transitions.18" />
+  <states name="q3" transitions="#//@transitions.8" />
+  <states name="q4" transitions="#//@transitions.6 #//@transitions.14" />
+  <states name="q5" transitions="#//@transitions.2" />
+  <states isEndState="True" name="q6" transitions="#//@transitions.10 #//@transitions.11 #//@transitions.16" />
+  <states name="q7" transitions="#//@transitions.1 #//@transitions.5" />
+  <states name="q8" transitions="#//@transitions.3 #//@transitions.15" />
+  <states name="q9" transitions="#//@transitions.9 #//@transitions.17" />
+  <transitions input="d" startState="#//@states.2" endState="#//@states.1" />
+  <transitions input="f" startState="#//@states.7" endState="#//@states.2" />
+  <transitions input="c" startState="#//@states.5" endState="#//@states.0" />
+  <transitions input="c" startState="#//@states.8" endState="#//@states.6" />
+  <transitions input="c" startState="#//@states.1" endState="#//@states.9" />
+  <transitions input="a" startState="#//@states.7" endState="#//@states.7" />
+  <transitions input="d" startState="#//@states.4" endState="#//@states.0" />
+  <transitions input="f" startState="#//@states.0" endState="#//@states.6" />
+  <transitions input="a" startState="#//@states.3" endState="#//@states.8" />
+  <transitions input="a" startState="#//@states.9" endState="#//@states.3" />
+  <transitions input="e" startState="#//@states.6" endState="#//@states.0" />
+  <transitions input="c" startState="#//@states.6" endState="#//@states.7" />
+  <transitions input="e" startState="#//@states.1" endState="#//@states.0" />
+  <transitions input="a" startState="#//@states.0" endState="#//@states.2" />
+  <transitions input="f" startState="#//@states.4" endState="#//@states.6" />
+  <transitions input="e" startState="#//@states.8" endState="#//@states.9" />
+  <transitions input="d" startState="#//@states.6" endState="#//@states.1" />
+  <transitions input="b" startState="#//@states.9" endState="#//@states.2" />
+  <transitions input="b" startState="#//@states.2" endState="#//@states.8" />
+  <transitions input="e" startState="#//@states.0" endState="#//@states.0" />
+</fsm:FiniteStateMachine>
