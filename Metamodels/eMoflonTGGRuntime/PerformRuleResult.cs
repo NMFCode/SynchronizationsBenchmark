@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,46 +37,56 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PerformRuleResult/")]
-    public class PerformRuleResult : TGGRuleMorphism, IPerformRuleResult, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PerformRuleResult")]
+    public partial class PerformRuleResult : TGGRuleMorphism, IPerformRuleResult, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _translatedElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTranslatedElementsReference);
         
         /// <summary>
         /// The backing field for the TranslatedElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _translatedElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _translatedElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _createdElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCreatedElementsReference);
         
         /// <summary>
         /// The backing field for the CreatedElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _createdElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _createdElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _createdLinkElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCreatedLinkElementsReference);
         
         /// <summary>
         /// The backing field for the CreatedLinkElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _createdLinkElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _createdLinkElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _createdEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCreatedEdgesReference);
         
         /// <summary>
         /// The backing field for the CreatedEdges property
         /// </summary>
         private ObservableAssociationOrderedSet<IEMoflonEdge> _createdEdges;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _translatedEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTranslatedEdgesReference);
+        
         /// <summary>
         /// The backing field for the TranslatedEdges property
         /// </summary>
         private ObservableAssociationOrderedSet<IEMoflonEdge> _translatedEdges;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public PerformRuleResult()
         {
-            this._translatedElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._translatedElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._translatedElements.CollectionChanging += this.TranslatedElementsCollectionChanging;
             this._translatedElements.CollectionChanged += this.TranslatedElementsCollectionChanged;
-            this._createdElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._createdElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._createdElements.CollectionChanging += this.CreatedElementsCollectionChanging;
             this._createdElements.CollectionChanged += this.CreatedElementsCollectionChanged;
-            this._createdLinkElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._createdLinkElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._createdLinkElements.CollectionChanging += this.CreatedLinkElementsCollectionChanging;
             this._createdLinkElements.CollectionChanged += this.CreatedLinkElementsCollectionChanged;
             this._createdEdges = new ObservableAssociationOrderedSet<IEMoflonEdge>();
@@ -94,7 +105,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("translatedElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> TranslatedElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> TranslatedElements
         {
             get
             {
@@ -109,7 +120,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("createdElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> CreatedElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> CreatedElements
         {
             get
             {
@@ -124,7 +135,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("createdLinkElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> CreatedLinkElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> CreatedLinkElements
         {
             get
             {
@@ -139,7 +150,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("createdEdges")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IEMoflonEdge> CreatedEdges
+        public IOrderedSetExpression<IEMoflonEdge> CreatedEdges
         {
             get
             {
@@ -154,7 +165,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("translatedEdges")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IEMoflonEdge> TranslatedEdges
+        public IOrderedSetExpression<IEMoflonEdge> TranslatedEdges
         {
             get
             {
@@ -165,7 +176,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -176,16 +187,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PerformRuleResult/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PerformRuleResult")));
                 }
                 return _classInstance;
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTranslatedElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.PerformRuleResult.ClassInstance)).Resolve("translatedElements")));
         }
         
         /// <summary>
@@ -193,9 +209,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TranslatedElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TranslatedElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TranslatedElements", e);
+            this.OnCollectionChanging("TranslatedElements", e, _translatedElementsReference);
         }
         
         /// <summary>
@@ -203,9 +219,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TranslatedElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TranslatedElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TranslatedElements", e);
+            this.OnCollectionChanged("TranslatedElements", e, _translatedElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveCreatedElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.PerformRuleResult.ClassInstance)).Resolve("createdElements")));
         }
         
         /// <summary>
@@ -213,9 +234,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CreatedElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CreatedElements", e);
+            this.OnCollectionChanging("CreatedElements", e, _createdElementsReference);
         }
         
         /// <summary>
@@ -223,9 +244,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CreatedElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CreatedElements", e);
+            this.OnCollectionChanged("CreatedElements", e, _createdElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveCreatedLinkElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.PerformRuleResult.ClassInstance)).Resolve("createdLinkElements")));
         }
         
         /// <summary>
@@ -233,9 +259,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedLinkElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CreatedLinkElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CreatedLinkElements", e);
+            this.OnCollectionChanging("CreatedLinkElements", e, _createdLinkElementsReference);
         }
         
         /// <summary>
@@ -243,9 +269,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedLinkElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CreatedLinkElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CreatedLinkElements", e);
+            this.OnCollectionChanged("CreatedLinkElements", e, _createdLinkElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveCreatedEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.PerformRuleResult.ClassInstance)).Resolve("createdEdges")));
         }
         
         /// <summary>
@@ -253,9 +284,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CreatedEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CreatedEdges", e);
+            this.OnCollectionChanging("CreatedEdges", e, _createdEdgesReference);
         }
         
         /// <summary>
@@ -263,9 +294,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CreatedEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CreatedEdges", e);
+            this.OnCollectionChanged("CreatedEdges", e, _createdEdgesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTranslatedEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.PerformRuleResult.ClassInstance)).Resolve("translatedEdges")));
         }
         
         /// <summary>
@@ -273,9 +309,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TranslatedEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TranslatedEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TranslatedEdges", e);
+            this.OnCollectionChanging("TranslatedEdges", e, _translatedEdgesReference);
         }
         
         /// <summary>
@@ -283,9 +319,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TranslatedEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TranslatedEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TranslatedEdges", e);
+            this.OnCollectionChanged("TranslatedEdges", e, _translatedEdgesReference);
         }
         
         /// <summary>
@@ -321,11 +357,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PerformRuleResult/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PerformRuleResult")));
             }
             return _classInstance;
         }
@@ -333,7 +369,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the PerformRuleResult class
         /// </summary>
-        public class PerformRuleResultReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class PerformRuleResultReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private PerformRuleResult _parent;
@@ -385,7 +421,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 this._parent.TranslatedElements.Add(item);
             }
@@ -407,7 +443,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.TranslatedElements.Contains(item))
                 {
@@ -437,7 +473,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 this._parent.TranslatedElements.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.TranslatedElements.Count);
@@ -445,7 +481,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 arrayIndex = (arrayIndex + this._parent.CreatedElements.Count);
                 this._parent.CreatedLinkElements.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.CreatedLinkElements.Count);
-                IEnumerator<IModelElement> createdEdgesEnumerator = this._parent.CreatedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> createdEdgesEnumerator = this._parent.CreatedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -460,7 +496,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     createdEdgesEnumerator.Dispose();
                 }
-                IEnumerator<IModelElement> translatedEdgesEnumerator = this._parent.TranslatedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> translatedEdgesEnumerator = this._parent.TranslatedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -482,7 +518,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if (this._parent.TranslatedElements.Remove(item))
                 {
@@ -514,9 +550,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.TranslatedElements).Concat(this._parent.CreatedElements).Concat(this._parent.CreatedLinkElements).Concat(this._parent.CreatedEdges).Concat(this._parent.TranslatedEdges).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.TranslatedElements).Concat(this._parent.CreatedElements).Concat(this._parent.CreatedLinkElements).Concat(this._parent.CreatedEdges).Concat(this._parent.TranslatedEdges).GetEnumerator();
             }
         }
     }

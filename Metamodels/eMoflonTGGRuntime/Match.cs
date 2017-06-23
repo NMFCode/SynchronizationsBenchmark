@@ -12,7 +12,6 @@ using NMF.Collections.Generic;
 using NMF.Collections.ObjectModel;
 using NMF.Expressions;
 using NMF.Expressions.Linq;
-using NMF.Interop.Ecore;
 using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
@@ -24,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,56 +37,70 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//Match/")]
-    public class Match : TGGRuleMorphism, IMatch, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//Match")]
+    public partial class Match : TGGRuleMorphism, IMatch, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _succeedingReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSucceedingReference);
         
         /// <summary>
         /// The backing field for the Succeeding property
         /// </summary>
         private ObservableAssociationOrderedSet<IMatch> _succeeding;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _toBeTranslatedNodesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveToBeTranslatedNodesReference);
+        
         /// <summary>
         /// The backing field for the ToBeTranslatedNodes property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _toBeTranslatedNodes;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _toBeTranslatedNodes;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _contextNodesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveContextNodesReference);
         
         /// <summary>
         /// The backing field for the ContextNodes property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _contextNodes;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _contextNodes;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _isApplicableCCOperationReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveIsApplicableCCOperationReference);
         
         /// <summary>
         /// The backing field for the IsApplicableCCOperation property
         /// </summary>
-        private IEOperation _isApplicableCCOperation;
+        private NMF.Models.Meta.IOperation _isApplicableCCOperation;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _isApplicableOperationReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveIsApplicableOperationReference);
         
         /// <summary>
         /// The backing field for the IsApplicableOperation property
         /// </summary>
-        private IEOperation _isApplicableOperation;
+        private NMF.Models.Meta.IOperation _isApplicableOperation;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _contextEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveContextEdgesReference);
         
         /// <summary>
         /// The backing field for the ContextEdges property
         /// </summary>
         private ObservableAssociationOrderedSet<IEMoflonEdge> _contextEdges;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _toBeTranslatedEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveToBeTranslatedEdgesReference);
+        
         /// <summary>
         /// The backing field for the ToBeTranslatedEdges property
         /// </summary>
         private ObservableAssociationOrderedSet<IEMoflonEdge> _toBeTranslatedEdges;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public Match()
         {
             this._succeeding = new ObservableAssociationOrderedSet<IMatch>();
             this._succeeding.CollectionChanging += this.SucceedingCollectionChanging;
             this._succeeding.CollectionChanged += this.SucceedingCollectionChanged;
-            this._toBeTranslatedNodes = new ObservableAssociationOrderedSet<IModelElement>();
+            this._toBeTranslatedNodes = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._toBeTranslatedNodes.CollectionChanging += this.ToBeTranslatedNodesCollectionChanging;
             this._toBeTranslatedNodes.CollectionChanged += this.ToBeTranslatedNodesCollectionChanged;
-            this._contextNodes = new ObservableAssociationOrderedSet<IModelElement>();
+            this._contextNodes = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._contextNodes.CollectionChanging += this.ContextNodesCollectionChanging;
             this._contextNodes.CollectionChanged += this.ContextNodesCollectionChanged;
             this._contextEdges = new ObservableAssociationOrderedSet<IEMoflonEdge>();
@@ -104,7 +118,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("succeeding")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IMatch> Succeeding
+        public IOrderedSetExpression<IMatch> Succeeding
         {
             get
             {
@@ -119,7 +133,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("toBeTranslatedNodes")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> ToBeTranslatedNodes
+        public IOrderedSetExpression<NMF.Models.IModelElement> ToBeTranslatedNodes
         {
             get
             {
@@ -134,7 +148,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("contextNodes")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> ContextNodes
+        public IOrderedSetExpression<NMF.Models.IModelElement> ContextNodes
         {
             get
             {
@@ -147,7 +161,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("isApplicableCCOperation")]
         [XmlAttributeAttribute(true)]
-        public virtual IEOperation IsApplicableCCOperation
+        public NMF.Models.Meta.IOperation IsApplicableCCOperation
         {
             get
             {
@@ -157,10 +171,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._isApplicableCCOperation != value))
                 {
-                    IEOperation old = this._isApplicableCCOperation;
+                    NMF.Models.Meta.IOperation old = this._isApplicableCCOperation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsApplicableCCOperationChanging(e);
-                    this.OnPropertyChanging("IsApplicableCCOperation", e);
+                    this.OnPropertyChanging("IsApplicableCCOperation", e, _isApplicableCCOperationReference);
                     this._isApplicableCCOperation = value;
                     if ((old != null))
                     {
@@ -171,7 +185,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                         value.Deleted += this.OnResetIsApplicableCCOperation;
                     }
                     this.OnIsApplicableCCOperationChanged(e);
-                    this.OnPropertyChanged("IsApplicableCCOperation", e);
+                    this.OnPropertyChanged("IsApplicableCCOperation", e, _isApplicableCCOperationReference);
                 }
             }
         }
@@ -181,7 +195,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("isApplicableOperation")]
         [XmlAttributeAttribute(true)]
-        public virtual IEOperation IsApplicableOperation
+        public NMF.Models.Meta.IOperation IsApplicableOperation
         {
             get
             {
@@ -191,10 +205,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._isApplicableOperation != value))
                 {
-                    IEOperation old = this._isApplicableOperation;
+                    NMF.Models.Meta.IOperation old = this._isApplicableOperation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsApplicableOperationChanging(e);
-                    this.OnPropertyChanging("IsApplicableOperation", e);
+                    this.OnPropertyChanging("IsApplicableOperation", e, _isApplicableOperationReference);
                     this._isApplicableOperation = value;
                     if ((old != null))
                     {
@@ -205,7 +219,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                         value.Deleted += this.OnResetIsApplicableOperation;
                     }
                     this.OnIsApplicableOperationChanged(e);
-                    this.OnPropertyChanged("IsApplicableOperation", e);
+                    this.OnPropertyChanged("IsApplicableOperation", e, _isApplicableOperationReference);
                 }
             }
         }
@@ -217,7 +231,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("contextEdges")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IEMoflonEdge> ContextEdges
+        public IOrderedSetExpression<IEMoflonEdge> ContextEdges
         {
             get
             {
@@ -232,7 +246,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("toBeTranslatedEdges")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IEMoflonEdge> ToBeTranslatedEdges
+        public IOrderedSetExpression<IEMoflonEdge> ToBeTranslatedEdges
         {
             get
             {
@@ -243,7 +257,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -254,13 +268,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//Match/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//Match")));
                 }
                 return _classInstance;
             }
@@ -286,14 +300,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IsApplicableOperationChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveSucceedingReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("succeeding")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Succeeding property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SucceedingCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void SucceedingCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Succeeding", e);
+            this.OnCollectionChanging("Succeeding", e, _succeedingReference);
         }
         
         /// <summary>
@@ -301,9 +320,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SucceedingCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void SucceedingCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Succeeding", e);
+            this.OnCollectionChanged("Succeeding", e, _succeedingReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveToBeTranslatedNodesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("toBeTranslatedNodes")));
         }
         
         /// <summary>
@@ -311,9 +335,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ToBeTranslatedNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ToBeTranslatedNodesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ToBeTranslatedNodes", e);
+            this.OnCollectionChanging("ToBeTranslatedNodes", e, _toBeTranslatedNodesReference);
         }
         
         /// <summary>
@@ -321,9 +345,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ToBeTranslatedNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ToBeTranslatedNodesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ToBeTranslatedNodes", e);
+            this.OnCollectionChanged("ToBeTranslatedNodes", e, _toBeTranslatedNodesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveContextNodesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("contextNodes")));
         }
         
         /// <summary>
@@ -331,9 +360,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContextNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ContextNodesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContextNodes", e);
+            this.OnCollectionChanging("ContextNodes", e, _contextNodesReference);
         }
         
         /// <summary>
@@ -341,9 +370,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContextNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ContextNodesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContextNodes", e);
+            this.OnCollectionChanged("ContextNodes", e, _contextNodesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveIsApplicableCCOperationReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("isApplicableCCOperation")));
         }
         
         /// <summary>
@@ -382,6 +416,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             this.IsApplicableCCOperation = null;
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveIsApplicableOperationReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("isApplicableOperation")));
+        }
+        
         /// <summary>
         /// Raises the IsApplicableOperationChanging event
         /// </summary>
@@ -418,14 +457,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             this.IsApplicableOperation = null;
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveContextEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("contextEdges")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ContextEdges property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContextEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ContextEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContextEdges", e);
+            this.OnCollectionChanging("ContextEdges", e, _contextEdgesReference);
         }
         
         /// <summary>
@@ -433,9 +477,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContextEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ContextEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContextEdges", e);
+            this.OnCollectionChanged("ContextEdges", e, _contextEdgesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveToBeTranslatedEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.Match.ClassInstance)).Resolve("toBeTranslatedEdges")));
         }
         
         /// <summary>
@@ -443,9 +492,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ToBeTranslatedEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ToBeTranslatedEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ToBeTranslatedEdges", e);
+            this.OnCollectionChanging("ToBeTranslatedEdges", e, _toBeTranslatedEdgesReference);
         }
         
         /// <summary>
@@ -453,9 +502,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ToBeTranslatedEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ToBeTranslatedEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ToBeTranslatedEdges", e);
+            this.OnCollectionChanged("ToBeTranslatedEdges", e, _toBeTranslatedEdgesReference);
         }
         
         /// <summary>
@@ -497,12 +546,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         {
             if ((feature == "ISAPPLICABLECCOPERATION"))
             {
-                this.IsApplicableCCOperation = ((IEOperation)(value));
+                this.IsApplicableCCOperation = ((NMF.Models.Meta.IOperation)(value));
                 return;
             }
             if ((feature == "ISAPPLICABLEOPERATION"))
             {
-                this.IsApplicableOperation = ((IEOperation)(value));
+                this.IsApplicableOperation = ((NMF.Models.Meta.IOperation)(value));
                 return;
             }
             base.SetFeature(feature, value);
@@ -547,11 +596,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//Match/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//Match")));
             }
             return _classInstance;
         }
@@ -559,7 +608,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the Match class
         /// </summary>
-        public class MatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class MatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private Match _parent;
@@ -623,7 +672,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 IMatch succeedingCasted = item.As<IMatch>();
                 if ((succeedingCasted != null))
@@ -652,7 +701,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.Succeeding.Contains(item))
                 {
@@ -690,9 +739,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
-                IEnumerator<IModelElement> succeedingEnumerator = this._parent.Succeeding.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> succeedingEnumerator = this._parent.Succeeding.GetEnumerator();
                 try
                 {
                     for (
@@ -721,7 +770,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     array[arrayIndex] = this._parent.IsApplicableOperation;
                     arrayIndex = (arrayIndex + 1);
                 }
-                IEnumerator<IModelElement> contextEdgesEnumerator = this._parent.ContextEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> contextEdgesEnumerator = this._parent.ContextEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -736,7 +785,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     contextEdgesEnumerator.Dispose();
                 }
-                IEnumerator<IModelElement> toBeTranslatedEdgesEnumerator = this._parent.ToBeTranslatedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> toBeTranslatedEdgesEnumerator = this._parent.ToBeTranslatedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -758,7 +807,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 IMatch matchItem = item.As<IMatch>();
                 if (((matchItem != null) 
@@ -802,16 +851,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.Succeeding).Concat(this._parent.ToBeTranslatedNodes).Concat(this._parent.ContextNodes).Concat(this._parent.IsApplicableCCOperation).Concat(this._parent.IsApplicableOperation).Concat(this._parent.ContextEdges).Concat(this._parent.ToBeTranslatedEdges).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.Succeeding).Concat(this._parent.ToBeTranslatedNodes).Concat(this._parent.ContextNodes).Concat(this._parent.IsApplicableCCOperation).Concat(this._parent.IsApplicableOperation).Concat(this._parent.ContextEdges).Concat(this._parent.ToBeTranslatedEdges).GetEnumerator();
             }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the isApplicableCCOperation property
         /// </summary>
-        private sealed class IsApplicableCCOperationProxy : ModelPropertyChange<IMatch, IEOperation>
+        private sealed class IsApplicableCCOperationProxy : ModelPropertyChange<IMatch, NMF.Models.Meta.IOperation>
         {
             
             /// <summary>
@@ -819,14 +868,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsApplicableCCOperationProxy(IMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isApplicableCCOperation")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IEOperation Value
+            public override NMF.Models.Meta.IOperation Value
             {
                 get
                 {
@@ -837,30 +886,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.IsApplicableCCOperation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsApplicableCCOperationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsApplicableCCOperationChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the isApplicableOperation property
         /// </summary>
-        private sealed class IsApplicableOperationProxy : ModelPropertyChange<IMatch, IEOperation>
+        private sealed class IsApplicableOperationProxy : ModelPropertyChange<IMatch, NMF.Models.Meta.IOperation>
         {
             
             /// <summary>
@@ -868,14 +899,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsApplicableOperationProxy(IMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isApplicableOperation")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IEOperation Value
+            public override NMF.Models.Meta.IOperation Value
             {
                 get
                 {
@@ -885,24 +916,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.IsApplicableOperation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsApplicableOperationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsApplicableOperationChanged -= handler;
             }
         }
     }

@@ -31,45 +31,53 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NMF.Collections, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.63\lib\net40\NMF.Collections.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Collections, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Repository.1.0.84\lib\net45\NMF.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.EcoreInterop, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.EcoreInterop.dll</HintPath>
+    <Reference Include="NMF.Expressions, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Expressions.1.0.84\lib\net45\NMF.Expressions.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.63\lib\net40\NMF.Expressions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Expressions.Linq, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Expressions.1.0.84\lib\net45\NMF.Expressions.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions.Linq, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.63\lib\net40\NMF.Expressions.Linq.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Models, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Repository.1.0.84\lib\net45\NMF.Models.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Models, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.63\lib\net40\NMF.Models.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Serialization, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Repository.1.0.84\lib\net45\NMF.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Serialization, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.63\lib\net40\NMF.Serialization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Synchronizations, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Synchronizations.1.0.84\lib\net45\NMF.Synchronizations.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Synchronizations, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Synchronizations.1.0.63\lib\net40\NMF.Synchronizations.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Transformations, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Transformations.1.0.84\lib\net45\NMF.Transformations.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Transformations, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Transformations.1.0.63\lib\net40\NMF.Transformations.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Transformations.Core, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Transformations.1.0.84\lib\net45\NMF.Transformations.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Transformations.Core, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Transformations.1.0.63\lib\net40\NMF.Transformations.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NMF.Utilities, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Utilities.1.0.63\lib\net40\NMF.Utilities.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Utilities, Version=1.0.84.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Utilities.1.0.84\lib\net45\NMF.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -157,8 +165,10 @@
     <EmbeddedResource Include="fsm.nmf" />
     <Compile Include="Metamodels\FiniteStateMachines\FiniteStateMachine.Manual.cs" />
     <EmbeddedResource Include="eMoflonTGGRuntime.nmf" />
-    <None Include="packages.config" />
     <EmbeddedResource Include="pn.nmf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

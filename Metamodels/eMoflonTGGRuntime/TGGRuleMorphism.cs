@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TGGRuleMorphism/")]
-    public class TGGRuleMorphism : ModelElement, ITGGRuleMorphism, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TGGRuleMorphism")]
+    public partial class TGGRuleMorphism : NMF.Models.ModelElement, ITGGRuleMorphism, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -45,14 +46,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private string _ruleName;
         
-        private static IClass _classInstance;
+        private static Lazy<NMF.Models.Meta.ITypedElement> _ruleNameAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveRuleNameAttribute);
+        
+        private static NMF.Models.Meta.IClass _classInstance;
         
         /// <summary>
         /// The ruleName property
         /// </summary>
         [XmlElementNameAttribute("ruleName")]
         [XmlAttributeAttribute(true)]
-        public virtual string RuleName
+        public string RuleName
         {
             get
             {
@@ -65,10 +68,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._ruleName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRuleNameChanging(e);
-                    this.OnPropertyChanging("RuleName", e);
+                    this.OnPropertyChanging("RuleName", e, _ruleNameAttribute);
                     this._ruleName = value;
                     this.OnRuleNameChanged(e);
-                    this.OnPropertyChanged("RuleName", e);
+                    this.OnPropertyChanged("RuleName", e, _ruleNameAttribute);
                 }
             }
         }
@@ -76,13 +79,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TGGRuleMorphism/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TGGRuleMorphism")));
                 }
                 return _classInstance;
             }
@@ -97,6 +100,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// Gets fired when the RuleName property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RuleNameChanged;
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveRuleNameAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TGGRuleMorphism.ClassInstance)).Resolve("ruleName")));
+        }
         
         /// <summary>
         /// Raises the RuleNameChanging event
@@ -157,11 +165,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TGGRuleMorphism/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TGGRuleMorphism")));
             }
             return _classInstance;
         }
@@ -177,7 +185,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RuleNameProxy(ITGGRuleMorphism modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ruleName")
             {
             }
             
@@ -194,24 +202,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.RuleName = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RuleNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RuleNameChanged -= handler;
             }
         }
     }

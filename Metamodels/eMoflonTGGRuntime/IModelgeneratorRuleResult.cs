@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(ModelgeneratorRuleResult))]
     [XmlDefaultImplementationTypeAttribute(typeof(ModelgeneratorRuleResult))]
-    public interface IModelgeneratorRuleResult : IModelElement, IRuleResult
+    public interface IModelgeneratorRuleResult : NMF.Models.IModelElement, IRuleResult
     {
         
         /// <summary>
@@ -51,7 +52,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The sourceObjects property
         /// </summary>
-        IOrderedSetExpression<IModelElement> SourceObjects
+        IOrderedSetExpression<NMF.Models.IModelElement> SourceObjects
         {
             get;
         }
@@ -59,7 +60,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The targetObjects property
         /// </summary>
-        IOrderedSetExpression<IModelElement> TargetObjects
+        IOrderedSetExpression<NMF.Models.IModelElement> TargetObjects
         {
             get;
         }
@@ -67,7 +68,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The corrObjects property
         /// </summary>
-        IOrderedSetExpression<IModelElement> CorrObjects
+        IOrderedSetExpression<NMF.Models.IModelElement> CorrObjects
         {
             get;
         }

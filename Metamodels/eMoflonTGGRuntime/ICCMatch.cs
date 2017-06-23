@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(CCMatch))]
     [XmlDefaultImplementationTypeAttribute(typeof(CCMatch))]
-    public interface ICCMatch : IModelElement, IIsApplicableMatch
+    public interface ICCMatch : NMF.Models.IModelElement, IIsApplicableMatch
     {
         
         /// <summary>
@@ -60,7 +61,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The createCorr property
         /// </summary>
-        IOrderedSetExpression<IModelElement> CreateCorr
+        IOrderedSetExpression<NMF.Models.IModelElement> CreateCorr
         {
             get;
         }
@@ -68,7 +69,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The eObjects property
         /// </summary>
-        IOrderedSetExpression<IModelElement> EObjects
+        IOrderedSetExpression<NMF.Models.IModelElement> EObjects
         {
             get;
         }

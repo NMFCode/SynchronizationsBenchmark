@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,52 +37,63 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//DeltaSpecification/" +
-        "")]
-    public class DeltaSpecification : ModelElement, IDeltaSpecification, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//DeltaSpecification")]
+    public partial class DeltaSpecification : NMF.Models.ModelElement, IDeltaSpecification, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _targetModelReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTargetModelReference);
         
         /// <summary>
         /// The backing field for the TargetModel property
         /// </summary>
-        private IModelElement _targetModel;
+        private NMF.Models.IModelElement _targetModel;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _addedEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAddedEdgesReference);
         
         /// <summary>
         /// The backing field for the AddedEdges property
         /// </summary>
         private ObservableCompositionOrderedSet<IEMoflonEdge> _addedEdges;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _deletedNodesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveDeletedNodesReference);
+        
         /// <summary>
         /// The backing field for the DeletedNodes property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _deletedNodes;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _deletedNodes;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _addedNodesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAddedNodesReference);
         
         /// <summary>
         /// The backing field for the AddedNodes property
         /// </summary>
-        private ObservableCompositionOrderedSet<IModelElement> _addedNodes;
+        private ObservableCompositionOrderedSet<NMF.Models.IModelElement> _addedNodes;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _deletedEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveDeletedEdgesReference);
         
         /// <summary>
         /// The backing field for the DeletedEdges property
         /// </summary>
         private ObservableCompositionOrderedSet<IEMoflonEdge> _deletedEdges;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _attributeChangesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAttributeChangesReference);
+        
         /// <summary>
         /// The backing field for the AttributeChanges property
         /// </summary>
         private DeltaSpecificationAttributeChangesCollection _attributeChanges;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public DeltaSpecification()
         {
             this._addedEdges = new ObservableCompositionOrderedSet<IEMoflonEdge>(this);
             this._addedEdges.CollectionChanging += this.AddedEdgesCollectionChanging;
             this._addedEdges.CollectionChanged += this.AddedEdgesCollectionChanged;
-            this._deletedNodes = new ObservableAssociationOrderedSet<IModelElement>();
+            this._deletedNodes = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._deletedNodes.CollectionChanging += this.DeletedNodesCollectionChanging;
             this._deletedNodes.CollectionChanged += this.DeletedNodesCollectionChanged;
-            this._addedNodes = new ObservableCompositionOrderedSet<IModelElement>(this);
+            this._addedNodes = new ObservableCompositionOrderedSet<NMF.Models.IModelElement>(this);
             this._addedNodes.CollectionChanging += this.AddedNodesCollectionChanging;
             this._addedNodes.CollectionChanged += this.AddedNodesCollectionChanged;
             this._deletedEdges = new ObservableCompositionOrderedSet<IEMoflonEdge>(this);
@@ -97,7 +109,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("targetModel")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement TargetModel
+        public NMF.Models.IModelElement TargetModel
         {
             get
             {
@@ -107,13 +119,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._targetModel != value))
                 {
-                    IModelElement old = this._targetModel;
+                    NMF.Models.IModelElement old = this._targetModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetModelChanging(e);
-                    this.OnPropertyChanging("TargetModel", e);
+                    this.OnPropertyChanging("TargetModel", e, _targetModelReference);
                     this._targetModel = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetTargetModel;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetTargetModel;
+                    }
                     this.OnTargetModelChanged(e);
-                    this.OnPropertyChanged("TargetModel", e);
+                    this.OnPropertyChanged("TargetModel", e, _targetModelReference);
                 }
             }
         }
@@ -126,7 +146,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IEMoflonEdge> AddedEdges
+        public IOrderedSetExpression<IEMoflonEdge> AddedEdges
         {
             get
             {
@@ -141,7 +161,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("deletedNodes")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> DeletedNodes
+        public IOrderedSetExpression<NMF.Models.IModelElement> DeletedNodes
         {
             get
             {
@@ -157,7 +177,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> AddedNodes
+        public IOrderedSetExpression<NMF.Models.IModelElement> AddedNodes
         {
             get
             {
@@ -173,7 +193,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IEMoflonEdge> DeletedEdges
+        public IOrderedSetExpression<IEMoflonEdge> DeletedEdges
         {
             get
             {
@@ -190,7 +210,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [ContainmentAttribute()]
         [XmlOppositeAttribute("delta")]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IAttributeDelta> AttributeChanges
+        public IOrderedSetExpression<IAttributeDelta> AttributeChanges
         {
             get
             {
@@ -201,7 +221,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the child model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> Children
+        public override IEnumerableExpression<NMF.Models.IModelElement> Children
         {
             get
             {
@@ -212,7 +232,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -223,14 +243,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//DeltaSpecification/" +
-                            "")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//DeltaSpecification")));
                 }
                 return _classInstance;
             }
@@ -245,6 +264,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// Gets fired when the TargetModel property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TargetModelChanged;
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTargetModelReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.DeltaSpecification.ClassInstance)).Resolve("targetModel")));
+        }
         
         /// <summary>
         /// Raises the TargetModelChanging event
@@ -282,14 +306,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             this.TargetModel = null;
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveAddedEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.DeltaSpecification.ClassInstance)).Resolve("addedEdges")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AddedEdges property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AddedEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void AddedEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AddedEdges", e);
+            this.OnCollectionChanging("AddedEdges", e, _addedEdgesReference);
         }
         
         /// <summary>
@@ -297,9 +326,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AddedEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void AddedEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AddedEdges", e);
+            this.OnCollectionChanged("AddedEdges", e, _addedEdgesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveDeletedNodesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.DeltaSpecification.ClassInstance)).Resolve("deletedNodes")));
         }
         
         /// <summary>
@@ -307,9 +341,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void DeletedNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void DeletedNodesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DeletedNodes", e);
+            this.OnCollectionChanging("DeletedNodes", e, _deletedNodesReference);
         }
         
         /// <summary>
@@ -317,9 +351,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void DeletedNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void DeletedNodesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DeletedNodes", e);
+            this.OnCollectionChanged("DeletedNodes", e, _deletedNodesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveAddedNodesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.DeltaSpecification.ClassInstance)).Resolve("addedNodes")));
         }
         
         /// <summary>
@@ -327,9 +366,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AddedNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void AddedNodesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AddedNodes", e);
+            this.OnCollectionChanging("AddedNodes", e, _addedNodesReference);
         }
         
         /// <summary>
@@ -337,9 +376,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AddedNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void AddedNodesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AddedNodes", e);
+            this.OnCollectionChanged("AddedNodes", e, _addedNodesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveDeletedEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.DeltaSpecification.ClassInstance)).Resolve("deletedEdges")));
         }
         
         /// <summary>
@@ -347,9 +391,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void DeletedEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void DeletedEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DeletedEdges", e);
+            this.OnCollectionChanging("DeletedEdges", e, _deletedEdgesReference);
         }
         
         /// <summary>
@@ -357,9 +401,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void DeletedEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void DeletedEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DeletedEdges", e);
+            this.OnCollectionChanged("DeletedEdges", e, _deletedEdgesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveAttributeChangesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.DeltaSpecification.ClassInstance)).Resolve("attributeChanges")));
         }
         
         /// <summary>
@@ -367,9 +416,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AttributeChangesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void AttributeChangesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AttributeChanges", e);
+            this.OnCollectionChanging("AttributeChanges", e, _attributeChangesReference);
         }
         
         /// <summary>
@@ -377,9 +426,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AttributeChangesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void AttributeChangesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AttributeChanges", e);
+            this.OnCollectionChanged("AttributeChanges", e, _attributeChangesReference);
         }
         
         /// <summary>
@@ -387,7 +436,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <returns>A fragment of the relative URI</returns>
         /// <param name="element">The element that should be looked for</param>
-        protected override string GetRelativePathForNonIdentifiedChild(IModelElement element)
+        protected override string GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement element)
         {
             int addedEdgesIndex = ModelHelper.IndexOfReference(this.AddedEdges, element);
             if ((addedEdgesIndex != -1))
@@ -418,7 +467,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <returns>The model element or null if it could not be found</returns>
         /// <param name="reference">The requested reference name</param>
         /// <param name="index">The index of this reference</param>
-        protected override IModelElement GetModelElementForReference(string reference, int index)
+        protected override NMF.Models.IModelElement GetModelElementForReference(string reference, int index)
         {
             if ((reference == "ADDEDEDGES"))
             {
@@ -506,7 +555,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         {
             if ((feature == "TARGETMODEL"))
             {
-                this.TargetModel = ((IModelElement)(value));
+                this.TargetModel = ((NMF.Models.IModelElement)(value));
                 return;
             }
             base.SetFeature(feature, value);
@@ -541,14 +590,39 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         }
         
         /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._addedEdges))
+            {
+                return "addedEdges";
+            }
+            if ((container == this._addedNodes))
+            {
+                return "addedNodes";
+            }
+            if ((container == this._deletedEdges))
+            {
+                return "deletedEdges";
+            }
+            if ((container == this._attributeChanges))
+            {
+                return "attributeChanges";
+            }
+            return base.GetCompositionName(container);
+        }
+        
+        /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//DeltaSpecification/" +
-                        "")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//DeltaSpecification")));
             }
             return _classInstance;
         }
@@ -556,7 +630,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the DeltaSpecification class
         /// </summary>
-        public class DeltaSpecificationChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class DeltaSpecificationChildrenCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private DeltaSpecification _parent;
@@ -605,7 +679,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 IEMoflonEdge addedEdgesCasted = item.As<IEMoflonEdge>();
                 if ((addedEdgesCasted != null))
@@ -631,7 +705,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.AddedEdges.Contains(item))
                 {
@@ -657,9 +731,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
-                IEnumerator<IModelElement> addedEdgesEnumerator = this._parent.AddedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> addedEdgesEnumerator = this._parent.AddedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -676,7 +750,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 }
                 this._parent.AddedNodes.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.AddedNodes.Count);
-                IEnumerator<IModelElement> deletedEdgesEnumerator = this._parent.DeletedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> deletedEdgesEnumerator = this._parent.DeletedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -691,7 +765,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     deletedEdgesEnumerator.Dispose();
                 }
-                IEnumerator<IModelElement> attributeChangesEnumerator = this._parent.AttributeChanges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> attributeChangesEnumerator = this._parent.AttributeChanges.GetEnumerator();
                 try
                 {
                     for (
@@ -713,7 +787,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 IEMoflonEdge eMoflonEdgeItem = item.As<IEMoflonEdge>();
                 if (((eMoflonEdgeItem != null) 
@@ -743,16 +817,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.AddedEdges).Concat(this._parent.AddedNodes).Concat(this._parent.DeletedEdges).Concat(this._parent.AttributeChanges).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.AddedEdges).Concat(this._parent.AddedNodes).Concat(this._parent.DeletedEdges).Concat(this._parent.AttributeChanges).GetEnumerator();
             }
         }
         
         /// <summary>
         /// The collection class to to represent the children of the DeltaSpecification class
         /// </summary>
-        public class DeltaSpecificationReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class DeltaSpecificationReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private DeltaSpecification _parent;
@@ -810,7 +884,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 if ((this._parent.TargetModel == null))
                 {
@@ -843,7 +917,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if ((item == this._parent.TargetModel))
                 {
@@ -877,14 +951,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 if ((this._parent.TargetModel != null))
                 {
                     array[arrayIndex] = this._parent.TargetModel;
                     arrayIndex = (arrayIndex + 1);
                 }
-                IEnumerator<IModelElement> addedEdgesEnumerator = this._parent.AddedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> addedEdgesEnumerator = this._parent.AddedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -903,7 +977,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 arrayIndex = (arrayIndex + this._parent.DeletedNodes.Count);
                 this._parent.AddedNodes.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.AddedNodes.Count);
-                IEnumerator<IModelElement> deletedEdgesEnumerator = this._parent.DeletedEdges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> deletedEdgesEnumerator = this._parent.DeletedEdges.GetEnumerator();
                 try
                 {
                     for (
@@ -918,7 +992,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     deletedEdgesEnumerator.Dispose();
                 }
-                IEnumerator<IModelElement> attributeChangesEnumerator = this._parent.AttributeChanges.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> attributeChangesEnumerator = this._parent.AttributeChanges.GetEnumerator();
                 try
                 {
                     for (
@@ -940,7 +1014,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if ((this._parent.TargetModel == item))
                 {
@@ -979,16 +1053,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.TargetModel).Concat(this._parent.AddedEdges).Concat(this._parent.DeletedNodes).Concat(this._parent.AddedNodes).Concat(this._parent.DeletedEdges).Concat(this._parent.AttributeChanges).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.TargetModel).Concat(this._parent.AddedEdges).Concat(this._parent.DeletedNodes).Concat(this._parent.AddedNodes).Concat(this._parent.DeletedEdges).Concat(this._parent.AttributeChanges).GetEnumerator();
             }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the targetModel property
         /// </summary>
-        private sealed class TargetModelProxy : ModelPropertyChange<IDeltaSpecification, IModelElement>
+        private sealed class TargetModelProxy : ModelPropertyChange<IDeltaSpecification, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -996,14 +1070,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TargetModelProxy(IDeltaSpecification modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "targetModel")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -1013,24 +1087,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.TargetModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetModelChanged -= handler;
             }
         }
     }

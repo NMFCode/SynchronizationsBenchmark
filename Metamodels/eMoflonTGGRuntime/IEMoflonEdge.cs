@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(EMoflonEdge))]
     [XmlDefaultImplementationTypeAttribute(typeof(EMoflonEdge))]
-    public interface IEMoflonEdge : IModelElement
+    public interface IEMoflonEdge : NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -51,7 +52,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The src property
         /// </summary>
-        IModelElement Src
+        NMF.Models.IModelElement Src
         {
             get;
             set;
@@ -60,7 +61,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The trg property
         /// </summary>
-        IModelElement Trg
+        NMF.Models.IModelElement Trg
         {
             get;
             set;

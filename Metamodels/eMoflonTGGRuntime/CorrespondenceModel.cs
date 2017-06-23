@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,30 +38,36 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
     [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CorrespondenceModel" +
-        "/")]
-    public class CorrespondenceModel : ModelElement, ICorrespondenceModel, IModelElement
+        "")]
+    public partial class CorrespondenceModel : NMF.Models.ModelElement, ICorrespondenceModel, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _correspondencesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCorrespondencesReference);
         
         /// <summary>
         /// The backing field for the Correspondences property
         /// </summary>
-        private ObservableCompositionOrderedSet<IModelElement> _correspondences;
+        private ObservableCompositionOrderedSet<NMF.Models.IModelElement> _correspondences;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _sourceReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSourceReference);
         
         /// <summary>
         /// The backing field for the Source property
         /// </summary>
-        private IModelElement _source;
+        private NMF.Models.IModelElement _source;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _targetReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTargetReference);
         
         /// <summary>
         /// The backing field for the Target property
         /// </summary>
-        private IModelElement _target;
+        private NMF.Models.IModelElement _target;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public CorrespondenceModel()
         {
-            this._correspondences = new ObservableCompositionOrderedSet<IModelElement>(this);
+            this._correspondences = new ObservableCompositionOrderedSet<NMF.Models.IModelElement>(this);
             this._correspondences.CollectionChanging += this.CorrespondencesCollectionChanging;
             this._correspondences.CollectionChanged += this.CorrespondencesCollectionChanged;
         }
@@ -73,7 +80,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> Correspondences
+        public IOrderedSetExpression<NMF.Models.IModelElement> Correspondences
         {
             get
             {
@@ -86,7 +93,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("source")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement Source
+        public NMF.Models.IModelElement Source
         {
             get
             {
@@ -96,13 +103,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._source != value))
                 {
-                    IModelElement old = this._source;
+                    NMF.Models.IModelElement old = this._source;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSourceChanging(e);
-                    this.OnPropertyChanging("Source", e);
+                    this.OnPropertyChanging("Source", e, _sourceReference);
                     this._source = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetSource;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetSource;
+                    }
                     this.OnSourceChanged(e);
-                    this.OnPropertyChanged("Source", e);
+                    this.OnPropertyChanged("Source", e, _sourceReference);
                 }
             }
         }
@@ -112,7 +127,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("target")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement Target
+        public NMF.Models.IModelElement Target
         {
             get
             {
@@ -122,13 +137,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._target != value))
                 {
-                    IModelElement old = this._target;
+                    NMF.Models.IModelElement old = this._target;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetChanging(e);
-                    this.OnPropertyChanging("Target", e);
+                    this.OnPropertyChanging("Target", e, _targetReference);
                     this._target = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetTarget;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetTarget;
+                    }
                     this.OnTargetChanged(e);
-                    this.OnPropertyChanged("Target", e);
+                    this.OnPropertyChanged("Target", e, _targetReference);
                 }
             }
         }
@@ -136,7 +159,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the child model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> Children
+        public override IEnumerableExpression<NMF.Models.IModelElement> Children
         {
             get
             {
@@ -147,7 +170,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -158,14 +181,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CorrespondenceModel" +
-                            "/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CorrespondenceModel" +
+                            "")));
                 }
                 return _classInstance;
             }
@@ -191,14 +214,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TargetChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveCorrespondencesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CorrespondenceModel.ClassInstance)).Resolve("correspondences")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Correspondences property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CorrespondencesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CorrespondencesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Correspondences", e);
+            this.OnCollectionChanging("Correspondences", e, _correspondencesReference);
         }
         
         /// <summary>
@@ -206,9 +234,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CorrespondencesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CorrespondencesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Correspondences", e);
+            this.OnCollectionChanged("Correspondences", e, _correspondencesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveSourceReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CorrespondenceModel.ClassInstance)).Resolve("source")));
         }
         
         /// <summary>
@@ -245,6 +278,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         private void OnResetSource(object sender, System.EventArgs eventArgs)
         {
             this.Source = null;
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTargetReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CorrespondenceModel.ClassInstance)).Resolve("target")));
         }
         
         /// <summary>
@@ -288,7 +326,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <returns>A fragment of the relative URI</returns>
         /// <param name="element">The element that should be looked for</param>
-        protected override string GetRelativePathForNonIdentifiedChild(IModelElement element)
+        protected override string GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement element)
         {
             int correspondencesIndex = ModelHelper.IndexOfReference(this.Correspondences, element);
             if ((correspondencesIndex != -1))
@@ -304,7 +342,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <returns>The model element or null if it could not be found</returns>
         /// <param name="reference">The requested reference name</param>
         /// <param name="index">The index of this reference</param>
-        protected override IModelElement GetModelElementForReference(string reference, int index)
+        protected override NMF.Models.IModelElement GetModelElementForReference(string reference, int index)
         {
             if ((reference == "CORRESPONDENCES"))
             {
@@ -343,12 +381,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         {
             if ((feature == "SOURCE"))
             {
-                this.Source = ((IModelElement)(value));
+                this.Source = ((NMF.Models.IModelElement)(value));
                 return;
             }
             if ((feature == "TARGET"))
             {
-                this.Target = ((IModelElement)(value));
+                this.Target = ((NMF.Models.IModelElement)(value));
                 return;
             }
             base.SetFeature(feature, value);
@@ -391,14 +429,28 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         }
         
         /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._correspondences))
+            {
+                return "correspondences";
+            }
+            return base.GetCompositionName(container);
+        }
+        
+        /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CorrespondenceModel" +
-                        "/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CorrespondenceModel" +
+                        "")));
             }
             return _classInstance;
         }
@@ -406,7 +458,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the CorrespondenceModel class
         /// </summary>
-        public class CorrespondenceModelChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class CorrespondenceModelChildrenCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private CorrespondenceModel _parent;
@@ -446,7 +498,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 this._parent.Correspondences.Add(item);
             }
@@ -464,7 +516,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.Correspondences.Contains(item))
                 {
@@ -478,7 +530,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 this._parent.Correspondences.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.Correspondences.Count);
@@ -489,7 +541,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if (this._parent.Correspondences.Remove(item))
                 {
@@ -502,16 +554,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.Correspondences).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.Correspondences).GetEnumerator();
             }
         }
         
         /// <summary>
         /// The collection class to to represent the children of the CorrespondenceModel class
         /// </summary>
-        public class CorrespondenceModelReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class CorrespondenceModelReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private CorrespondenceModel _parent;
@@ -563,7 +615,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 this._parent.Correspondences.Add(item);
             }
@@ -583,7 +635,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.Correspondences.Contains(item))
                 {
@@ -605,7 +657,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 this._parent.Correspondences.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.Correspondences.Count);
@@ -626,7 +678,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if (this._parent.Correspondences.Remove(item))
                 {
@@ -649,16 +701,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.Correspondences).Concat(this._parent.Source).Concat(this._parent.Target).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.Correspondences).Concat(this._parent.Source).Concat(this._parent.Target).GetEnumerator();
             }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the source property
         /// </summary>
-        private sealed class SourceProxy : ModelPropertyChange<ICorrespondenceModel, IModelElement>
+        private sealed class SourceProxy : ModelPropertyChange<ICorrespondenceModel, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -666,14 +718,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SourceProxy(ICorrespondenceModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "source")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -684,30 +736,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.Source = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the target property
         /// </summary>
-        private sealed class TargetProxy : ModelPropertyChange<ICorrespondenceModel, IModelElement>
+        private sealed class TargetProxy : ModelPropertyChange<ICorrespondenceModel, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -715,14 +749,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TargetProxy(ICorrespondenceModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "target")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -732,24 +766,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.Target = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetChanged -= handler;
             }
         }
     }

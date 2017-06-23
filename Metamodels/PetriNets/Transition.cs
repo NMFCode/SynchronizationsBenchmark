@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/PetriNets/model/PetriNets.ecore")]
     [XmlNamespacePrefixAttribute("pn")]
-    [ModelRepresentationClassAttribute("platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition/")]
-    public class Transition : ModelElement, ITransition, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition")]
+    public partial class Transition : ModelElement, ITransition, IModelElement
     {
         
         /// <summary>
@@ -45,10 +46,16 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         private string _input;
         
+        private static Lazy<ITypedElement> _inputAttribute = new Lazy<ITypedElement>(RetrieveInputAttribute);
+        
+        private static Lazy<ITypedElement> _fromReference = new Lazy<ITypedElement>(RetrieveFromReference);
+        
         /// <summary>
         /// The backing field for the From property
         /// </summary>
         private TransitionFromCollection _from;
+        
+        private static Lazy<ITypedElement> _toReference = new Lazy<ITypedElement>(RetrieveToReference);
         
         /// <summary>
         /// The backing field for the To property
@@ -72,7 +79,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         [XmlElementNameAttribute("input")]
         [XmlAttributeAttribute(true)]
-        public virtual string Input
+        public string Input
         {
             get
             {
@@ -85,10 +92,10 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
                     string old = this._input;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInputChanging(e);
-                    this.OnPropertyChanging("Input", e);
+                    this.OnPropertyChanging("Input", e, _inputAttribute);
                     this._input = value;
                     this.OnInputChanged(e);
-                    this.OnPropertyChanged("Input", e);
+                    this.OnPropertyChanged("Input", e, _inputAttribute);
                 }
             }
         }
@@ -101,7 +108,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         [XmlAttributeAttribute(true)]
         [XmlOppositeAttribute("outgoing")]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IPlace> From
+        public IOrderedSetExpression<IPlace> From
         {
             get
             {
@@ -117,7 +124,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         [XmlAttributeAttribute(true)]
         [XmlOppositeAttribute("incoming")]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IPlace> To
+        public IOrderedSetExpression<IPlace> To
         {
             get
             {
@@ -145,7 +152,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition/")));
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition")));
                 }
                 return _classInstance;
             }
@@ -160,6 +167,11 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// Gets fired when the Input property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InputChanged;
+        
+        private static ITypedElement RetrieveInputAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.PetriNets.Transition.ClassInstance)).Resolve("input")));
+        }
         
         /// <summary>
         /// Raises the InputChanging event
@@ -187,14 +199,19 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
             }
         }
         
+        private static ITypedElement RetrieveFromReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.PetriNets.Transition.ClassInstance)).Resolve("from")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the From property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void FromCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void FromCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("From", e);
+            this.OnCollectionChanging("From", e, _fromReference);
         }
         
         /// <summary>
@@ -202,9 +219,14 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void FromCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void FromCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("From", e);
+            this.OnCollectionChanged("From", e, _fromReference);
+        }
+        
+        private static ITypedElement RetrieveToReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.PetriNets.Transition.ClassInstance)).Resolve("to")));
         }
         
         /// <summary>
@@ -212,9 +234,9 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ToCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ToCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("To", e);
+            this.OnCollectionChanging("To", e, _toReference);
         }
         
         /// <summary>
@@ -222,9 +244,9 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ToCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ToCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("To", e);
+            this.OnCollectionChanged("To", e, _toReference);
         }
         
         /// <summary>
@@ -282,7 +304,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition/")));
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//Transition")));
             }
             return _classInstance;
         }
@@ -455,7 +477,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InputProxy(ITransition modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "input")
             {
             }
             
@@ -472,24 +494,6 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
                 {
                     this.ModelElement.Input = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InputChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InputChanged -= handler;
             }
         }
     }

@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,8 +38,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
     [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//ModelgeneratorRuleR" +
-        "esult/")]
-    public class ModelgeneratorRuleResult : RuleResult, IModelgeneratorRuleResult, IModelElement
+        "esult")]
+    public partial class ModelgeneratorRuleResult : RuleResult, IModelgeneratorRuleResult, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -46,32 +47,40 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private int _performCount = 0;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _performCountAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrievePerformCountAttribute);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _sourceObjectsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSourceObjectsReference);
+        
         /// <summary>
         /// The backing field for the SourceObjects property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _sourceObjects;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _sourceObjects;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _targetObjectsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTargetObjectsReference);
         
         /// <summary>
         /// The backing field for the TargetObjects property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _targetObjects;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _targetObjects;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _corrObjectsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCorrObjectsReference);
         
         /// <summary>
         /// The backing field for the CorrObjects property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _corrObjects;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _corrObjects;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public ModelgeneratorRuleResult()
         {
-            this._sourceObjects = new ObservableAssociationOrderedSet<IModelElement>();
+            this._sourceObjects = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._sourceObjects.CollectionChanging += this.SourceObjectsCollectionChanging;
             this._sourceObjects.CollectionChanged += this.SourceObjectsCollectionChanged;
-            this._targetObjects = new ObservableAssociationOrderedSet<IModelElement>();
+            this._targetObjects = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._targetObjects.CollectionChanging += this.TargetObjectsCollectionChanging;
             this._targetObjects.CollectionChanged += this.TargetObjectsCollectionChanged;
-            this._corrObjects = new ObservableAssociationOrderedSet<IModelElement>();
+            this._corrObjects = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._corrObjects.CollectionChanging += this.CorrObjectsCollectionChanging;
             this._corrObjects.CollectionChanged += this.CorrObjectsCollectionChanged;
         }
@@ -82,7 +91,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [DefaultValueAttribute(0)]
         [XmlElementNameAttribute("performCount")]
         [XmlAttributeAttribute(true)]
-        public virtual int PerformCount
+        public int PerformCount
         {
             get
             {
@@ -95,10 +104,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     int old = this._performCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPerformCountChanging(e);
-                    this.OnPropertyChanging("PerformCount", e);
+                    this.OnPropertyChanging("PerformCount", e, _performCountAttribute);
                     this._performCount = value;
                     this.OnPerformCountChanged(e);
-                    this.OnPropertyChanged("PerformCount", e);
+                    this.OnPropertyChanged("PerformCount", e, _performCountAttribute);
                 }
             }
         }
@@ -110,7 +119,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("sourceObjects")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> SourceObjects
+        public IOrderedSetExpression<NMF.Models.IModelElement> SourceObjects
         {
             get
             {
@@ -125,7 +134,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("targetObjects")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> TargetObjects
+        public IOrderedSetExpression<NMF.Models.IModelElement> TargetObjects
         {
             get
             {
@@ -140,7 +149,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("corrObjects")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> CorrObjects
+        public IOrderedSetExpression<NMF.Models.IModelElement> CorrObjects
         {
             get
             {
@@ -151,7 +160,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -162,14 +171,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//ModelgeneratorRuleR" +
-                            "esult/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//ModelgeneratorRuleR" +
+                            "esult")));
                 }
                 return _classInstance;
             }
@@ -184,6 +193,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// Gets fired when the PerformCount property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PerformCountChanged;
+        
+        private static NMF.Models.Meta.ITypedElement RetrievePerformCountAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.ModelgeneratorRuleResult.ClassInstance)).Resolve("performCount")));
+        }
         
         /// <summary>
         /// Raises the PerformCountChanging event
@@ -211,14 +225,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             }
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveSourceObjectsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.ModelgeneratorRuleResult.ClassInstance)).Resolve("sourceObjects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SourceObjects property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SourceObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void SourceObjectsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SourceObjects", e);
+            this.OnCollectionChanging("SourceObjects", e, _sourceObjectsReference);
         }
         
         /// <summary>
@@ -226,9 +245,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SourceObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void SourceObjectsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SourceObjects", e);
+            this.OnCollectionChanged("SourceObjects", e, _sourceObjectsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTargetObjectsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.ModelgeneratorRuleResult.ClassInstance)).Resolve("targetObjects")));
         }
         
         /// <summary>
@@ -236,9 +260,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TargetObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TargetObjectsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TargetObjects", e);
+            this.OnCollectionChanging("TargetObjects", e, _targetObjectsReference);
         }
         
         /// <summary>
@@ -246,9 +270,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TargetObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TargetObjectsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TargetObjects", e);
+            this.OnCollectionChanged("TargetObjects", e, _targetObjectsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveCorrObjectsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.ModelgeneratorRuleResult.ClassInstance)).Resolve("corrObjects")));
         }
         
         /// <summary>
@@ -256,9 +285,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CorrObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CorrObjectsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CorrObjects", e);
+            this.OnCollectionChanging("CorrObjects", e, _corrObjectsReference);
         }
         
         /// <summary>
@@ -266,9 +295,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CorrObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CorrObjectsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CorrObjects", e);
+            this.OnCollectionChanged("CorrObjects", e, _corrObjectsReference);
         }
         
         /// <summary>
@@ -326,12 +355,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//ModelgeneratorRuleR" +
-                        "esult/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//ModelgeneratorRuleR" +
+                        "esult")));
             }
             return _classInstance;
         }
@@ -339,7 +368,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the ModelgeneratorRuleResult class
         /// </summary>
-        public class ModelgeneratorRuleResultReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class ModelgeneratorRuleResultReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private ModelgeneratorRuleResult _parent;
@@ -385,7 +414,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 this._parent.SourceObjects.Add(item);
             }
@@ -405,7 +434,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.SourceObjects.Contains(item))
                 {
@@ -427,7 +456,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 this._parent.SourceObjects.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.SourceObjects.Count);
@@ -442,7 +471,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if (this._parent.SourceObjects.Remove(item))
                 {
@@ -463,9 +492,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.SourceObjects).Concat(this._parent.TargetObjects).Concat(this._parent.CorrObjects).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.SourceObjects).Concat(this._parent.TargetObjects).Concat(this._parent.CorrObjects).GetEnumerator();
             }
         }
         
@@ -480,7 +509,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PerformCountProxy(IModelgeneratorRuleResult modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "performCount")
             {
             }
             
@@ -497,24 +526,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.PerformCount = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PerformCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PerformCountChanged -= handler;
             }
         }
     }

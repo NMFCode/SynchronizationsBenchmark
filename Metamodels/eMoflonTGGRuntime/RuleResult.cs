@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//RuleResult/")]
-    public class RuleResult : ModelElement, IRuleResult, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//RuleResult")]
+    public partial class RuleResult : NMF.Models.ModelElement, IRuleResult, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -45,19 +46,23 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private bool _success;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _successAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSuccessAttribute);
+        
         /// <summary>
         /// The backing field for the Rule property
         /// </summary>
         private string _rule;
         
-        private static IClass _classInstance;
+        private static Lazy<NMF.Models.Meta.ITypedElement> _ruleAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveRuleAttribute);
+        
+        private static NMF.Models.Meta.IClass _classInstance;
         
         /// <summary>
         /// The success property
         /// </summary>
         [XmlElementNameAttribute("success")]
         [XmlAttributeAttribute(true)]
-        public virtual bool Success
+        public bool Success
         {
             get
             {
@@ -70,10 +75,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     bool old = this._success;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSuccessChanging(e);
-                    this.OnPropertyChanging("Success", e);
+                    this.OnPropertyChanging("Success", e, _successAttribute);
                     this._success = value;
                     this.OnSuccessChanged(e);
-                    this.OnPropertyChanged("Success", e);
+                    this.OnPropertyChanged("Success", e, _successAttribute);
                 }
             }
         }
@@ -83,7 +88,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("rule")]
         [XmlAttributeAttribute(true)]
-        public virtual string Rule
+        public string Rule
         {
             get
             {
@@ -96,10 +101,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._rule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRuleChanging(e);
-                    this.OnPropertyChanging("Rule", e);
+                    this.OnPropertyChanging("Rule", e, _ruleAttribute);
                     this._rule = value;
                     this.OnRuleChanged(e);
-                    this.OnPropertyChanged("Rule", e);
+                    this.OnPropertyChanged("Rule", e, _ruleAttribute);
                 }
             }
         }
@@ -107,13 +112,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//RuleResult/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//RuleResult")));
                 }
                 return _classInstance;
             }
@@ -139,6 +144,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RuleChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveSuccessAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.RuleResult.ClassInstance)).Resolve("success")));
+        }
+        
         /// <summary>
         /// Raises the SuccessChanging event
         /// </summary>
@@ -163,6 +173,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveRuleAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.RuleResult.ClassInstance)).Resolve("rule")));
         }
         
         /// <summary>
@@ -233,11 +248,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//RuleResult/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//RuleResult")));
             }
             return _classInstance;
         }
@@ -253,7 +268,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SuccessProxy(IRuleResult modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "success")
             {
             }
             
@@ -271,24 +286,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.Success = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuccessChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuccessChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -302,7 +299,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RuleProxy(IRuleResult modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rule")
             {
             }
             
@@ -319,24 +316,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.Rule = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RuleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RuleChanged -= handler;
             }
         }
     }

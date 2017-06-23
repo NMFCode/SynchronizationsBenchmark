@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(TripleMatch))]
     [XmlDefaultImplementationTypeAttribute(typeof(TripleMatch))]
-    public interface ITripleMatch : IModelElement
+    public interface ITripleMatch : NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -60,7 +61,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The sourceElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> SourceElements
+        IOrderedSetExpression<NMF.Models.IModelElement> SourceElements
         {
             get;
         }
@@ -68,7 +69,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The contextElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> ContextElements
+        IOrderedSetExpression<NMF.Models.IModelElement> ContextElements
         {
             get;
         }
@@ -84,7 +85,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The containedEdges property
         /// </summary>
-        IOrderedSetExpression<IModelElement> ContainedEdges
+        IOrderedSetExpression<NMF.Models.IModelElement> ContainedEdges
         {
             get;
         }
@@ -92,7 +93,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The targetElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> TargetElements
+        IOrderedSetExpression<NMF.Models.IModelElement> TargetElements
         {
             get;
         }
@@ -100,7 +101,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The correspondenceElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> CorrespondenceElements
+        IOrderedSetExpression<NMF.Models.IModelElement> CorrespondenceElements
         {
             get;
         }
@@ -108,7 +109,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The createdElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> CreatedElements
+        IOrderedSetExpression<NMF.Models.IModelElement> CreatedElements
         {
             get;
         }

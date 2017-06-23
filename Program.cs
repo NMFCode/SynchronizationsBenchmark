@@ -25,7 +25,7 @@ namespace NMF.SynchronizationsBenchmark
         {
             Console.WriteLine("Stopwatch accuracy on this machine is {0}hz, i.e. 1 tick = {1}ns", Stopwatch.Frequency, (1.0e9 / Stopwatch.Frequency));
             // Measure(sizes: new [] { 10 }, iterations: 5, workloadSize: 100);
-            Measure(sizes: new [] { 10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }, iterations: 50, workloadSize: 100);
+            Measure(sizes: new [] { 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000 }, iterations: 20, workloadSize: 20);
         }
 
         /// <summary>
@@ -37,6 +37,8 @@ namespace NMF.SynchronizationsBenchmark
         private static void Measure(int[] sizes, int iterations, int workloadSize)
         {
             var times = new long[sizes.Length, iterations, 8];
+
+            WriteResultHeader();
 
             for (int sizeIdx = 0; sizeIdx < sizes.Length; sizeIdx++)
             {
@@ -55,16 +57,16 @@ namespace NMF.SynchronizationsBenchmark
                 }
 
                 Console.WriteLine("Average speedup for n={0}: {1:0.###}", n, ((double)sumPoll) / sumInc);
-            }
 
-            WriteResultsToCsv(sizes, iterations, times);
+                WriteResultsToCsv(sizes, iterations, times, sizeIdx);
+            }
         }
 
         private static void RunIteration(long[, ,] times, int n, int sizeIdx, int iteration, int workloadSize, ref long sumPoll, ref long sumInc)
         {
             var repository = new ModelRepository();
             var fsm = StateMachineGenerator.GenerateStateMachine("Test", n, 2, 0.1);
-            repository.Save(fsm, @"..\..\eMoflon\FiniteStatesToPetriNets\instances\fsm.xmi");
+            repository.Save(fsm, @"..\..\..\eMoflon\FiniteStatesToPetriNets\instances\fsm.xmi");
             var startRule = fsm2pnSynchronization.SynchronizationRule<SynchronizationsImplementation.AutomataToNet>();
 
             var watch = new Stopwatch();
@@ -92,11 +94,11 @@ namespace NMF.SynchronizationsBenchmark
             fsm2pnSynchronization.Synchronize(startRule, ref incMachine, ref incNet, SynchronizationDirection.LeftToRightForced, ChangePropagationMode.OneWay);
             watch.Stop();
             times[sizeIdx, iteration, 2] = watch.Elapsed.Ticks;
-            if (!transformationsPN.Match(incNet))
-            {
-                Console.WriteLine("Incremental synchronization result is wrong.");
-                Debugger.Break();
-            }
+            //if (!transformationsPN.Match(incNet))
+            //{
+            //    Console.WriteLine("Incremental synchronization result is wrong.");
+            //    Debugger.Break();
+            //}
 
             var ntlMachine = fsm.Copy();
             var workload = StateMachineGenerator.GenerateChangeWorkload(fsm, workloadSize);
@@ -108,19 +110,19 @@ namespace NMF.SynchronizationsBenchmark
             PlayIncremental(times, sizeIdx, iteration, watch, incMachine, workload);
             sumInc += watch.ElapsedTicks;
 
-            WorkloadConverter.ConvertAndSave(fsm, workload, @"..\..\eMoflon\FiniteStatesToPetriNets\instances\delta{0}.xmi");
+            WorkloadConverter.ConvertAndSave(fsm, workload, @"..\..\..\eMoflon\FiniteStatesToPetriNets\instances\delta{0}.xmi");
             CallEMoflon(times, sizeIdx, iteration);
 
-            if (!transformationsPN.Match(batchNet))
-            {
-                Console.WriteLine("Batch synchronization result is wrong.");
-                return;
-            }
-            if (!transformationsPN.Match(incNet))
-            {
-                Console.WriteLine("Incremental synchronization result is wrong.");
-                return;
-            }
+            //if (!transformationsPN.Match(batchNet))
+            //{
+            //    Console.WriteLine("Batch synchronization result is wrong.");
+            //    return;
+            //}
+            //if (!transformationsPN.Match(incNet))
+            //{
+            //    Console.WriteLine("Incremental synchronization result is wrong.");
+            //    return;
+            //}
         }
 
         private static void CallEMoflon(long[,,] times, int sizeIdx, int iteration)
@@ -132,7 +134,7 @@ namespace NMF.SynchronizationsBenchmark
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
-                WorkingDirectory = Path.GetFullPath(@"..\..\eMoflon\FiniteStatesToPetriNets"),
+                WorkingDirectory = Path.GetFullPath(@"..\..\..\eMoflon\FiniteStatesToPetriNets"),
                 UseShellExecute = false
             };
             var process = Process.Start(processInfo);
@@ -199,28 +201,32 @@ namespace NMF.SynchronizationsBenchmark
             return TransformationEngine.Transform<FSM.IFiniteStateMachine, PN.PetriNet>(fsm, fsm2pnTransformation);
         }
 
-        /// <summary>
-        /// Writes the results to a file
-        /// </summary>
-        private static void WriteResultsToCsv(int[] sizes, int iterations, long[, ,] times)
+        private static void WriteResultHeader()
         {
-            using (var sw = new StreamWriter("results.csv"))
+            using (var sw = new StreamWriter("results.csv", false))
             {
                 sw.Write("Size;Iteration;");
                 sw.WriteLine(@"""Init Transformation"";""Init Batch Synchronization"";""Init Incremental Synchronization"";""Main Transformation"";""Main Batch Synchronization"";""Main Incremental Synchronization"";""Init eMoflon"";""Main eMoflon""");
-                for (int sizeIdx = 0; sizeIdx < sizes.Length; sizeIdx++)
+            }
+        }
+
+        /// <summary>
+        /// Writes the results to a file
+        /// </summary>
+        private static void WriteResultsToCsv(int[] sizes, int iterations, long[, ,] times, int sizeIdx)
+        {
+            using (var sw = new StreamWriter("results.csv", true))
+            {
+                var n = sizes[sizeIdx];
+                for (int iteration = 0; iteration < iterations; iteration++)
                 {
-                    var n = sizes[sizeIdx];
-                    for (int iteration = 0; iteration < iterations; iteration++)
+                    sw.Write("{0};{1}", n, iteration);
+                    for (int i = 0; i <= 7; i++)
                     {
-                        sw.Write("{0};{1}", n, iteration);
-                        for (int i = 0; i <= 7; i++)
-                        {
-                            sw.Write(";");
-                            sw.Write((times[sizeIdx, iteration, i] / 10000.0).ToString("0.000", CultureInfo.InvariantCulture));
-                        }
-                        sw.WriteLine();
+                        sw.Write(";");
+                        sw.Write((times[sizeIdx, iteration, i] / 10000.0).ToString("0.000", CultureInfo.InvariantCulture));
                     }
+                    sw.WriteLine();
                 }
             }
         }

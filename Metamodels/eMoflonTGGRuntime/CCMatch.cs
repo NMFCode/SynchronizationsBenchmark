@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,38 +37,46 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CCMatch/")]
-    public class CCMatch : IsApplicableMatch, ICCMatch, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CCMatch")]
+    public partial class CCMatch : IsApplicableMatch, ICCMatch, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _targetMatchReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTargetMatchReference);
         
         /// <summary>
         /// The backing field for the TargetMatch property
         /// </summary>
         private IMatch _targetMatch;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _sourceMatchReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSourceMatchReference);
+        
         /// <summary>
         /// The backing field for the SourceMatch property
         /// </summary>
         private IMatch _sourceMatch;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _createCorrReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCreateCorrReference);
+        
         /// <summary>
         /// The backing field for the CreateCorr property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _createCorr;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _createCorr;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _eObjectsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveEObjectsReference);
         
         /// <summary>
         /// The backing field for the EObjects property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _eObjects;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _eObjects;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public CCMatch()
         {
-            this._createCorr = new ObservableAssociationOrderedSet<IModelElement>();
+            this._createCorr = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._createCorr.CollectionChanging += this.CreateCorrCollectionChanging;
             this._createCorr.CollectionChanged += this.CreateCorrCollectionChanged;
-            this._eObjects = new ObservableAssociationOrderedSet<IModelElement>();
+            this._eObjects = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._eObjects.CollectionChanging += this.EObjectsCollectionChanging;
             this._eObjects.CollectionChanged += this.EObjectsCollectionChanged;
         }
@@ -77,7 +86,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("targetMatch")]
         [XmlAttributeAttribute(true)]
-        public virtual IMatch TargetMatch
+        public IMatch TargetMatch
         {
             get
             {
@@ -90,7 +99,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     IMatch old = this._targetMatch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetMatchChanging(e);
-                    this.OnPropertyChanging("TargetMatch", e);
+                    this.OnPropertyChanging("TargetMatch", e, _targetMatchReference);
                     this._targetMatch = value;
                     if ((old != null))
                     {
@@ -101,7 +110,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                         value.Deleted += this.OnResetTargetMatch;
                     }
                     this.OnTargetMatchChanged(e);
-                    this.OnPropertyChanged("TargetMatch", e);
+                    this.OnPropertyChanged("TargetMatch", e, _targetMatchReference);
                 }
             }
         }
@@ -111,7 +120,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("sourceMatch")]
         [XmlAttributeAttribute(true)]
-        public virtual IMatch SourceMatch
+        public IMatch SourceMatch
         {
             get
             {
@@ -124,7 +133,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     IMatch old = this._sourceMatch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSourceMatchChanging(e);
-                    this.OnPropertyChanging("SourceMatch", e);
+                    this.OnPropertyChanging("SourceMatch", e, _sourceMatchReference);
                     this._sourceMatch = value;
                     if ((old != null))
                     {
@@ -135,7 +144,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                         value.Deleted += this.OnResetSourceMatch;
                     }
                     this.OnSourceMatchChanged(e);
-                    this.OnPropertyChanged("SourceMatch", e);
+                    this.OnPropertyChanged("SourceMatch", e, _sourceMatchReference);
                 }
             }
         }
@@ -147,7 +156,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("createCorr")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> CreateCorr
+        public IOrderedSetExpression<NMF.Models.IModelElement> CreateCorr
         {
             get
             {
@@ -162,7 +171,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("eObjects")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> EObjects
+        public IOrderedSetExpression<NMF.Models.IModelElement> EObjects
         {
             get
             {
@@ -173,7 +182,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -184,13 +193,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CCMatch/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CCMatch")));
                 }
                 return _classInstance;
             }
@@ -215,6 +224,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// Gets fired when the SourceMatch property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SourceMatchChanged;
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTargetMatchReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CCMatch.ClassInstance)).Resolve("targetMatch")));
+        }
         
         /// <summary>
         /// Raises the TargetMatchChanging event
@@ -250,6 +264,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         private void OnResetTargetMatch(object sender, System.EventArgs eventArgs)
         {
             this.TargetMatch = null;
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveSourceMatchReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CCMatch.ClassInstance)).Resolve("sourceMatch")));
         }
         
         /// <summary>
@@ -288,14 +307,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             this.SourceMatch = null;
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveCreateCorrReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CCMatch.ClassInstance)).Resolve("createCorr")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CreateCorr property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreateCorrCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CreateCorrCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CreateCorr", e);
+            this.OnCollectionChanging("CreateCorr", e, _createCorrReference);
         }
         
         /// <summary>
@@ -303,9 +327,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreateCorrCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CreateCorrCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CreateCorr", e);
+            this.OnCollectionChanged("CreateCorr", e, _createCorrReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveEObjectsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.CCMatch.ClassInstance)).Resolve("eObjects")));
         }
         
         /// <summary>
@@ -313,9 +342,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void EObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void EObjectsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EObjects", e);
+            this.OnCollectionChanging("EObjects", e, _eObjectsReference);
         }
         
         /// <summary>
@@ -323,9 +352,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void EObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void EObjectsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EObjects", e);
+            this.OnCollectionChanged("EObjects", e, _eObjectsReference);
         }
         
         /// <summary>
@@ -405,11 +434,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CCMatch/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//CCMatch")));
             }
             return _classInstance;
         }
@@ -417,7 +446,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the CCMatch class
         /// </summary>
-        public class CCMatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class CCMatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private CCMatch _parent;
@@ -472,7 +501,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 if ((this._parent.TargetMatch == null))
                 {
@@ -511,7 +540,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if ((item == this._parent.TargetMatch))
                 {
@@ -537,7 +566,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 if ((this._parent.TargetMatch != null))
                 {
@@ -560,7 +589,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if ((this._parent.TargetMatch == item))
                 {
@@ -587,9 +616,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.TargetMatch).Concat(this._parent.SourceMatch).Concat(this._parent.CreateCorr).Concat(this._parent.EObjects).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.TargetMatch).Concat(this._parent.SourceMatch).Concat(this._parent.CreateCorr).Concat(this._parent.EObjects).GetEnumerator();
             }
         }
         
@@ -604,7 +633,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TargetMatchProxy(ICCMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "targetMatch")
             {
             }
             
@@ -622,24 +651,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.TargetMatch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetMatchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetMatchChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -653,7 +664,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SourceMatchProxy(ICCMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sourceMatch")
             {
             }
             
@@ -670,24 +681,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.SourceMatch = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceMatchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceMatchChanged -= handler;
             }
         }
     }

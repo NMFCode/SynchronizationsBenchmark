@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using NMF.SynchronizationsBenchmark.FiniteStateMachines;
 using NMF.SynchronizationsBenchmark.Runtime;
-using NMF.Interop.Ecore;
 using NMF.Models.Meta;
 using NMF.Models.Repository;
 

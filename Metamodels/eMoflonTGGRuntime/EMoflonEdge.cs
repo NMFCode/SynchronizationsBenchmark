@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,9 +38,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     [XmlIdentifierAttribute("name")]
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//EMoflonEdge/")]
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//EMoflonEdge")]
     [DebuggerDisplayAttribute("EMoflonEdge {Name}")]
-    public class EMoflonEdge : ModelElement, IEMoflonEdge, IModelElement
+    public partial class EMoflonEdge : NMF.Models.ModelElement, IEMoflonEdge, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -47,17 +48,23 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private string _name;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _nameAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveNameAttribute);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _srcReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSrcReference);
+        
         /// <summary>
         /// The backing field for the Src property
         /// </summary>
-        private IModelElement _src;
+        private NMF.Models.IModelElement _src;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _trgReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTrgReference);
         
         /// <summary>
         /// The backing field for the Trg property
         /// </summary>
-        private IModelElement _trg;
+        private NMF.Models.IModelElement _trg;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         /// <summary>
         /// The name property
@@ -65,7 +72,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("name")]
         [IdAttribute()]
         [XmlAttributeAttribute(true)]
-        public virtual string Name
+        public string Name
         {
             get
             {
@@ -78,10 +85,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameAttribute);
                     this._name = value;
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameAttribute);
                 }
             }
         }
@@ -91,7 +98,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("src")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement Src
+        public NMF.Models.IModelElement Src
         {
             get
             {
@@ -101,13 +108,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._src != value))
                 {
-                    IModelElement old = this._src;
+                    NMF.Models.IModelElement old = this._src;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSrcChanging(e);
-                    this.OnPropertyChanging("Src", e);
+                    this.OnPropertyChanging("Src", e, _srcReference);
                     this._src = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetSrc;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetSrc;
+                    }
                     this.OnSrcChanged(e);
-                    this.OnPropertyChanged("Src", e);
+                    this.OnPropertyChanged("Src", e, _srcReference);
                 }
             }
         }
@@ -117,7 +132,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("trg")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement Trg
+        public NMF.Models.IModelElement Trg
         {
             get
             {
@@ -127,13 +142,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._trg != value))
                 {
-                    IModelElement old = this._trg;
+                    NMF.Models.IModelElement old = this._trg;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTrgChanging(e);
-                    this.OnPropertyChanging("Trg", e);
+                    this.OnPropertyChanging("Trg", e, _trgReference);
                     this._trg = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetTrg;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetTrg;
+                    }
                     this.OnTrgChanged(e);
-                    this.OnPropertyChanged("Trg", e);
+                    this.OnPropertyChanged("Trg", e, _trgReference);
                 }
             }
         }
@@ -141,7 +164,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -152,13 +175,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//EMoflonEdge/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//EMoflonEdge")));
                 }
                 return _classInstance;
             }
@@ -205,6 +228,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TrgChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveNameAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.EMoflonEdge.ClassInstance)).Resolve("name")));
+        }
+        
         /// <summary>
         /// Raises the NameChanging event
         /// </summary>
@@ -229,6 +257,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveSrcReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.EMoflonEdge.ClassInstance)).Resolve("src")));
         }
         
         /// <summary>
@@ -265,6 +298,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         private void OnResetSrc(object sender, System.EventArgs eventArgs)
         {
             this.Src = null;
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTrgReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.EMoflonEdge.ClassInstance)).Resolve("trg")));
         }
         
         /// <summary>
@@ -327,12 +365,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         {
             if ((feature == "SRC"))
             {
-                this.Src = ((IModelElement)(value));
+                this.Src = ((NMF.Models.IModelElement)(value));
                 return;
             }
             if ((feature == "TRG"))
             {
-                this.Trg = ((IModelElement)(value));
+                this.Trg = ((NMF.Models.IModelElement)(value));
                 return;
             }
             if ((feature == "NAME"))
@@ -382,11 +420,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//EMoflonEdge/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//EMoflonEdge")));
             }
             return _classInstance;
         }
@@ -407,7 +445,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the EMoflonEdge class
         /// </summary>
-        public class EMoflonEdgeReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class EMoflonEdgeReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private EMoflonEdge _parent;
@@ -456,7 +494,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 if ((this._parent.Src == null))
                 {
@@ -484,7 +522,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if ((item == this._parent.Src))
                 {
@@ -502,7 +540,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 if ((this._parent.Src != null))
                 {
@@ -521,7 +559,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if ((this._parent.Src == item))
                 {
@@ -540,9 +578,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.Src).Concat(this._parent.Trg).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.Src).Concat(this._parent.Trg).GetEnumerator();
             }
         }
         
@@ -557,7 +595,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(IEMoflonEdge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -575,30 +613,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.Name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the src property
         /// </summary>
-        private sealed class SrcProxy : ModelPropertyChange<IEMoflonEdge, IModelElement>
+        private sealed class SrcProxy : ModelPropertyChange<IEMoflonEdge, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -606,14 +626,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SrcProxy(IEMoflonEdge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "src")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -624,30 +644,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.Src = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SrcChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SrcChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the trg property
         /// </summary>
-        private sealed class TrgProxy : ModelPropertyChange<IEMoflonEdge, IModelElement>
+        private sealed class TrgProxy : ModelPropertyChange<IEMoflonEdge, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -655,14 +657,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TrgProxy(IEMoflonEdge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "trg")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -672,24 +674,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.Trg = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TrgChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TrgChanged -= handler;
             }
         }
     }

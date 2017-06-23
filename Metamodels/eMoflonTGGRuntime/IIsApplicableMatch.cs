@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(IsApplicableMatch))]
     [XmlDefaultImplementationTypeAttribute(typeof(IsApplicableMatch))]
-    public interface IIsApplicableMatch : IModelElement, ITGGRuleMorphism
+    public interface IIsApplicableMatch : NMF.Models.IModelElement, ITGGRuleMorphism
     {
         
         /// <summary>
@@ -51,7 +52,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The attributeInfo property
         /// </summary>
-        IOrderedSetExpression<IModelElement> AttributeInfo
+        IOrderedSetExpression<NMF.Models.IModelElement> AttributeInfo
         {
             get;
         }
@@ -59,7 +60,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The allContextElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> AllContextElements
+        IOrderedSetExpression<NMF.Models.IModelElement> AllContextElements
         {
             get;
         }

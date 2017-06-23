@@ -17,9 +17,11 @@ namespace NMF.SynchronizationsBenchmark.ScenarioGeneration.FSM
 
             for (int i = 0; i < states; i++)
             {
-                var state = new State();
-                state.Name = "q" + i.ToString();
-                state.IsEndState = rand.NextDouble() < endStateProbability;
+                var state = new State()
+                {
+                    Name = "q" + i.ToString(),
+                    IsEndState = rand.NextDouble() < endStateProbability
+                };
                 fsm.States.Add(state);
             }
 
@@ -35,10 +37,12 @@ namespace NMF.SynchronizationsBenchmark.ScenarioGeneration.FSM
                     end = fsm.States[rand.Next(fsm.States.Count)];
                     input = __inputs[rand.Next(__inputs.Length)];
                 } while (start.Transitions.Any(t => t.Input == input));
-                var transition = new Transition();
-                transition.StartState = start;
-                transition.EndState = end;
-                transition.Input = input;
+                var transition = new Transition()
+                {
+                    StartState = start,
+                    EndState = end,
+                    Input = input
+                };
                 fsm.Transitions.Add(transition);
             }
 

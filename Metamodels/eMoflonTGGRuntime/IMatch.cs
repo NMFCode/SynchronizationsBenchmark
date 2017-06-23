@@ -12,7 +12,6 @@ using NMF.Collections.Generic;
 using NMF.Collections.ObjectModel;
 using NMF.Expressions;
 using NMF.Expressions.Linq;
-using NMF.Interop.Ecore;
 using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
@@ -24,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(Match))]
     [XmlDefaultImplementationTypeAttribute(typeof(Match))]
-    public interface IMatch : IModelElement, ITGGRuleMorphism
+    public interface IMatch : NMF.Models.IModelElement, ITGGRuleMorphism
     {
         
         /// <summary>
@@ -51,7 +51,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The toBeTranslatedNodes property
         /// </summary>
-        IOrderedSetExpression<IModelElement> ToBeTranslatedNodes
+        IOrderedSetExpression<NMF.Models.IModelElement> ToBeTranslatedNodes
         {
             get;
         }
@@ -59,7 +59,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The contextNodes property
         /// </summary>
-        IOrderedSetExpression<IModelElement> ContextNodes
+        IOrderedSetExpression<NMF.Models.IModelElement> ContextNodes
         {
             get;
         }
@@ -67,7 +67,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The isApplicableCCOperation property
         /// </summary>
-        IEOperation IsApplicableCCOperation
+        NMF.Models.Meta.IOperation IsApplicableCCOperation
         {
             get;
             set;
@@ -76,7 +76,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The isApplicableOperation property
         /// </summary>
-        IEOperation IsApplicableOperation
+        NMF.Models.Meta.IOperation IsApplicableOperation
         {
             get;
             set;

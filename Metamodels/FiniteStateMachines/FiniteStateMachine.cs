@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
     [XmlNamespaceAttribute("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore")]
     [XmlNamespacePrefixAttribute("fsm")]
     [ModelRepresentationClassAttribute("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStat" +
-        "eMachine/")]
+        "eMachine")]
     [DebuggerDisplayAttribute("FiniteStateMachine {Id}")]
     public partial class FiniteStateMachine : ModelElement, IFiniteStateMachine, IModelElement
     {
@@ -48,10 +49,16 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         private string _id;
         
+        private static Lazy<ITypedElement> _idAttribute = new Lazy<ITypedElement>(RetrieveIdAttribute);
+        
+        private static Lazy<ITypedElement> _statesReference = new Lazy<ITypedElement>(RetrieveStatesReference);
+        
         /// <summary>
         /// The backing field for the States property
         /// </summary>
         private ObservableCompositionOrderedSet<IState> _states;
+        
+        private static Lazy<ITypedElement> _transitionsReference = new Lazy<ITypedElement>(RetrieveTransitionsReference);
         
         /// <summary>
         /// The backing field for the Transitions property
@@ -76,7 +83,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         [XmlElementNameAttribute("id")]
         [IdAttribute()]
         [XmlAttributeAttribute(true)]
-        public virtual string Id
+        public string Id
         {
             get
             {
@@ -89,10 +96,10 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                     string old = this._id;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIdChanging(e);
-                    this.OnPropertyChanging("Id", e);
+                    this.OnPropertyChanging("Id", e, _idAttribute);
                     this._id = value;
                     this.OnIdChanged(e);
-                    this.OnPropertyChanged("Id", e);
+                    this.OnPropertyChanged("Id", e, _idAttribute);
                 }
             }
         }
@@ -105,7 +112,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IState> States
+        public IOrderedSetExpression<IState> States
         {
             get
             {
@@ -121,7 +128,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<ITransition> Transitions
+        public IOrderedSetExpression<ITransition> Transitions
         {
             get
             {
@@ -161,7 +168,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                 if ((_classInstance == null))
                 {
                     _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStat" +
-                            "eMachine/")));
+                            "eMachine")));
                 }
                 return _classInstance;
             }
@@ -177,12 +184,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                 return true;
             }
         }
-
-        protected override Uri CreateUriWithFragment(string fragment, bool absolute)
-        {
-            return this.CreateUriFromGlobalIdentifier(fragment, absolute);
-        }
-
+        
         /// <summary>
         /// Gets fired before the Id property changes its value
         /// </summary>
@@ -192,6 +194,11 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// Gets fired when the Id property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IdChanged;
+        
+        private static ITypedElement RetrieveIdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.FiniteStateMachine.ClassInstance)).Resolve("id")));
+        }
         
         /// <summary>
         /// Raises the IdChanging event
@@ -219,14 +226,19 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             }
         }
         
+        private static ITypedElement RetrieveStatesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.FiniteStateMachine.ClassInstance)).Resolve("states")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the States property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void StatesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void StatesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("States", e);
+            this.OnCollectionChanging("States", e, _statesReference);
         }
         
         /// <summary>
@@ -234,9 +246,14 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void StatesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void StatesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("States", e);
+            this.OnCollectionChanged("States", e, _statesReference);
+        }
+        
+        private static ITypedElement RetrieveTransitionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.FiniteStateMachine.ClassInstance)).Resolve("transitions")));
         }
         
         /// <summary>
@@ -244,9 +261,9 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TransitionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TransitionsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transitions", e);
+            this.OnCollectionChanging("Transitions", e, _transitionsReference);
         }
         
         /// <summary>
@@ -254,9 +271,9 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TransitionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TransitionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transitions", e);
+            this.OnCollectionChanged("Transitions", e, _transitionsReference);
         }
         
         /// <summary>
@@ -361,6 +378,24 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         }
         
         /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._states))
+            {
+                return "states";
+            }
+            if ((container == this._transitions))
+            {
+                return "transitions";
+            }
+            return base.GetCompositionName(container);
+        }
+        
+        /// <summary>
         /// Gets the Class for this model element
         /// </summary>
         public override IClass GetClass()
@@ -368,7 +403,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             if ((_classInstance == null))
             {
                 _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//FiniteStat" +
-                        "eMachine/")));
+                        "eMachine")));
             }
             return _classInstance;
         }
@@ -713,7 +748,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IdProxy(IFiniteStateMachine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "id")
             {
             }
             
@@ -730,24 +765,6 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                 {
                     this.ModelElement.Id = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IdChanged -= handler;
             }
         }
     }

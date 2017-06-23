@@ -12,7 +12,6 @@ using NMF.Collections.Generic;
 using NMF.Collections.ObjectModel;
 using NMF.Expressions;
 using NMF.Expressions.Linq;
-using NMF.Interop.Ecore;
 using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
@@ -24,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,13 +37,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(Edge))]
     [XmlDefaultImplementationTypeAttribute(typeof(Edge))]
-    public interface IEdge : IModelElement
+    public interface IEdge : NMF.Models.IModelElement
     {
         
         /// <summary>
         /// The src property
         /// </summary>
-        IModelElement Src
+        NMF.Models.IModelElement Src
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The trg property
         /// </summary>
-        IModelElement Trg
+        NMF.Models.IModelElement Trg
         {
             get;
             set;
@@ -61,7 +61,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The ref property
         /// </summary>
-        IEReference Ref
+        NMF.Models.Meta.IReference Ref
         {
             get;
             set;

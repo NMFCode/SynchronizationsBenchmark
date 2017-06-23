@@ -1,7 +1,6 @@
 ﻿using NMF.Collections.ObjectModel;
 using NMF.Expressions;
 using NMF.Models;
-using NMF.Models.Evolution;
 using NMF.Models.Meta;
 using NMF.Models.Repository;
 using NMF.SynchronizationsBenchmark.FiniteStateMachines;
@@ -25,10 +24,10 @@ namespace NMF.SynchronizationsBenchmark.ScenarioGeneration
             var i = 0;
             foreach (var action in actions)
             {
-                var spec = new DeltaSpecification();
-
-                spec.TargetModel = fsm;
-                
+                var spec = new DeltaSpecification()
+                {
+                    TargetModel = fsm
+                };
                 action.Perform(fsm, spec);
 
                 // we have to persist the delta spec exactly here

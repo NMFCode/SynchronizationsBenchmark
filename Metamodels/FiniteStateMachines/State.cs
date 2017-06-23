@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,9 +38,9 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
     [XmlIdentifierAttribute("name")]
     [XmlNamespaceAttribute("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore")]
     [XmlNamespacePrefixAttribute("fsm")]
-    [ModelRepresentationClassAttribute("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/")]
+    [ModelRepresentationClassAttribute("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State")]
     [DebuggerDisplayAttribute("State {Name}")]
-    public class State : ModelElement, IState, IModelElement
+    public partial class State : ModelElement, IState, IModelElement
     {
         
         /// <summary>
@@ -47,15 +48,23 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         private bool _isEndState;
         
+        private static Lazy<ITypedElement> _isEndStateAttribute = new Lazy<ITypedElement>(RetrieveIsEndStateAttribute);
+        
         /// <summary>
         /// The backing field for the IsStartState property
         /// </summary>
         private bool _isStartState;
         
+        private static Lazy<ITypedElement> _isStartStateAttribute = new Lazy<ITypedElement>(RetrieveIsStartStateAttribute);
+        
         /// <summary>
         /// The backing field for the Name property
         /// </summary>
         private string _name;
+        
+        private static Lazy<ITypedElement> _nameAttribute = new Lazy<ITypedElement>(RetrieveNameAttribute);
+        
+        private static Lazy<ITypedElement> _transitionsReference = new Lazy<ITypedElement>(RetrieveTransitionsReference);
         
         /// <summary>
         /// The backing field for the Transitions property
@@ -76,7 +85,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         [XmlElementNameAttribute("isEndState")]
         [XmlAttributeAttribute(true)]
-        public virtual bool IsEndState
+        public bool IsEndState
         {
             get
             {
@@ -89,10 +98,10 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                     bool old = this._isEndState;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsEndStateChanging(e);
-                    this.OnPropertyChanging("IsEndState", e);
+                    this.OnPropertyChanging("IsEndState", e, _isEndStateAttribute);
                     this._isEndState = value;
                     this.OnIsEndStateChanged(e);
-                    this.OnPropertyChanged("IsEndState", e);
+                    this.OnPropertyChanged("IsEndState", e, _isEndStateAttribute);
                 }
             }
         }
@@ -102,7 +111,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         [XmlElementNameAttribute("isStartState")]
         [XmlAttributeAttribute(true)]
-        public virtual bool IsStartState
+        public bool IsStartState
         {
             get
             {
@@ -115,10 +124,10 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                     bool old = this._isStartState;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsStartStateChanging(e);
-                    this.OnPropertyChanging("IsStartState", e);
+                    this.OnPropertyChanging("IsStartState", e, _isStartStateAttribute);
                     this._isStartState = value;
                     this.OnIsStartStateChanged(e);
-                    this.OnPropertyChanged("IsStartState", e);
+                    this.OnPropertyChanged("IsStartState", e, _isStartStateAttribute);
                 }
             }
         }
@@ -129,7 +138,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         [XmlElementNameAttribute("name")]
         [IdAttribute()]
         [XmlAttributeAttribute(true)]
-        public virtual string Name
+        public string Name
         {
             get
             {
@@ -142,10 +151,10 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                     string old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameAttribute);
                     this._name = value;
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameAttribute);
                 }
             }
         }
@@ -158,7 +167,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         [XmlAttributeAttribute(true)]
         [XmlOppositeAttribute("startState")]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<ITransition> Transitions
+        public IOrderedSetExpression<ITransition> Transitions
         {
             get
             {
@@ -186,7 +195,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/")));
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State")));
                 }
                 return _classInstance;
             }
@@ -202,12 +211,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                 return true;
             }
         }
-
-        protected override Uri CreateUriWithFragment(string fragment, bool absolute)
-        {
-            return this.CreateUriFromGlobalIdentifier(fragment, absolute);
-        }
-
+        
         /// <summary>
         /// Gets fired before the IsEndState property changes its value
         /// </summary>
@@ -238,6 +242,11 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NameChanged;
         
+        private static ITypedElement RetrieveIsEndStateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.State.ClassInstance)).Resolve("isEndState")));
+        }
+        
         /// <summary>
         /// Raises the IsEndStateChanging event
         /// </summary>
@@ -262,6 +271,11 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsStartStateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.State.ClassInstance)).Resolve("isStartState")));
         }
         
         /// <summary>
@@ -290,6 +304,11 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             }
         }
         
+        private static ITypedElement RetrieveNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.State.ClassInstance)).Resolve("name")));
+        }
+        
         /// <summary>
         /// Raises the NameChanging event
         /// </summary>
@@ -316,14 +335,19 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             }
         }
         
+        private static ITypedElement RetrieveTransitionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.FiniteStateMachines.State.ClassInstance)).Resolve("transitions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Transitions property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TransitionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TransitionsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transitions", e);
+            this.OnCollectionChanging("Transitions", e, _transitionsReference);
         }
         
         /// <summary>
@@ -331,9 +355,9 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TransitionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TransitionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transitions", e);
+            this.OnCollectionChanged("Transitions", e, _transitionsReference);
         }
         
         /// <summary>
@@ -405,7 +429,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State/")));
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/FiniteStateMachines/model/FiniteStateMachines.ecore#//State")));
             }
             return _classInstance;
         }
@@ -421,6 +445,25 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                 return null;
             }
             return this.Name.ToString();
+        }
+        
+        protected override Uri CreateUriWithFragment(string fragment, bool absolute, IModelElement baseElement)
+        {
+            return this.CreateUriFromGlobalIdentifier(fragment, absolute);
+        }
+        
+        protected override void PropagateNewModel(Model newModel, Model oldModel, IModelElement subtreeRoot)
+        {
+            string id = this.ToIdentifierString();
+            if ((oldModel != null))
+            {
+                oldModel.UnregisterId(id);
+            }
+            if ((newModel != null))
+            {
+                newModel.RegisterId(id, this);
+            }
+            base.PropagateNewModel(newModel, oldModel, subtreeRoot);
         }
         
         /// <summary>
@@ -558,7 +601,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsEndStateProxy(IState modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isEndState")
             {
             }
             
@@ -576,24 +619,6 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                     this.ModelElement.IsEndState = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsEndStateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsEndStateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -607,7 +632,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsStartStateProxy(IState modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isStartState")
             {
             }
             
@@ -625,24 +650,6 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                     this.ModelElement.IsStartState = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsStartStateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsStartStateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -656,7 +663,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(IState modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -673,24 +680,6 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
                 {
                     this.ModelElement.Name = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
             }
         }
     }

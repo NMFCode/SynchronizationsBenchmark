@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,13 +37,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(EObjectContainer))]
     [XmlDefaultImplementationTypeAttribute(typeof(EObjectContainer))]
-    public interface IEObjectContainer : IModelElement
+    public interface IEObjectContainer : NMF.Models.IModelElement
     {
         
         /// <summary>
         /// The contents property
         /// </summary>
-        IOrderedSetExpression<IModelElement> Contents
+        IOrderedSetExpression<NMF.Models.IModelElement> Contents
         {
             get;
         }

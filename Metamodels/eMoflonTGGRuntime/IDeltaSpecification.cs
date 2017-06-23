@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,13 +37,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(DeltaSpecification))]
     [XmlDefaultImplementationTypeAttribute(typeof(DeltaSpecification))]
-    public interface IDeltaSpecification : IModelElement
+    public interface IDeltaSpecification : NMF.Models.IModelElement
     {
         
         /// <summary>
         /// The targetModel property
         /// </summary>
-        IModelElement TargetModel
+        NMF.Models.IModelElement TargetModel
         {
             get;
             set;
@@ -59,7 +60,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The deletedNodes property
         /// </summary>
-        IOrderedSetExpression<IModelElement> DeletedNodes
+        IOrderedSetExpression<NMF.Models.IModelElement> DeletedNodes
         {
             get;
         }
@@ -67,7 +68,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The addedNodes property
         /// </summary>
-        IOrderedSetExpression<IModelElement> AddedNodes
+        IOrderedSetExpression<NMF.Models.IModelElement> AddedNodes
         {
             get;
         }

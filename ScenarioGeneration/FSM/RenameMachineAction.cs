@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NMF.SynchronizationsBenchmark.FiniteStateMachines;
 using NMF.SynchronizationsBenchmark.Runtime;
 using NMF.Models.Repository;
-using NMF.Interop.Ecore;
 using NMF.Models.Meta;
 
 namespace NMF.SynchronizationsBenchmark.ScenarioGeneration.FSM

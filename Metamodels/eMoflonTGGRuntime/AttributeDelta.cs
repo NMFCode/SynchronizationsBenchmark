@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeDelta/")]
-    public class AttributeDelta : ModelElement, IAttributeDelta, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeDelta")]
+    public partial class AttributeDelta : NMF.Models.ModelElement, IAttributeDelta, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -45,29 +46,39 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private string _oldValue;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _oldValueAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveOldValueAttribute);
+        
         /// <summary>
         /// The backing field for the NewValue property
         /// </summary>
         private string _newValue;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _newValueAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveNewValueAttribute);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _deltaReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveDeltaReference);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _affectedAttributeReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAffectedAttributeReference);
+        
         /// <summary>
         /// The backing field for the AffectedAttribute property
         /// </summary>
-        private IAttribute _affectedAttribute;
+        private NMF.Models.Meta.IAttribute _affectedAttribute;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _affectedNodeReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAffectedNodeReference);
         
         /// <summary>
         /// The backing field for the AffectedNode property
         /// </summary>
-        private IModelElement _affectedNode;
+        private NMF.Models.IModelElement _affectedNode;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         /// <summary>
         /// The oldValue property
         /// </summary>
         [XmlElementNameAttribute("oldValue")]
         [XmlAttributeAttribute(true)]
-        public virtual string OldValue
+        public string OldValue
         {
             get
             {
@@ -80,10 +91,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._oldValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOldValueChanging(e);
-                    this.OnPropertyChanging("OldValue", e);
+                    this.OnPropertyChanging("OldValue", e, _oldValueAttribute);
                     this._oldValue = value;
                     this.OnOldValueChanged(e);
-                    this.OnPropertyChanged("OldValue", e);
+                    this.OnPropertyChanged("OldValue", e, _oldValueAttribute);
                 }
             }
         }
@@ -93,7 +104,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("newValue")]
         [XmlAttributeAttribute(true)]
-        public virtual string NewValue
+        public string NewValue
         {
             get
             {
@@ -106,10 +117,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._newValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNewValueChanging(e);
-                    this.OnPropertyChanging("NewValue", e);
+                    this.OnPropertyChanging("NewValue", e, _newValueAttribute);
                     this._newValue = value;
                     this.OnNewValueChanged(e);
-                    this.OnPropertyChanged("NewValue", e);
+                    this.OnPropertyChanged("NewValue", e, _newValueAttribute);
                 }
             }
         }
@@ -121,7 +132,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Hidden)]
         [XmlAttributeAttribute(true)]
         [XmlOppositeAttribute("attributeChanges")]
-        public virtual IDeltaSpecification Delta
+        public IDeltaSpecification Delta
         {
             get
             {
@@ -138,7 +149,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("affectedAttribute")]
         [XmlAttributeAttribute(true)]
-        public virtual IAttribute AffectedAttribute
+        public NMF.Models.Meta.IAttribute AffectedAttribute
         {
             get
             {
@@ -148,10 +159,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._affectedAttribute != value))
                 {
-                    IAttribute old = this._affectedAttribute;
+                    NMF.Models.Meta.IAttribute old = this._affectedAttribute;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAffectedAttributeChanging(e);
-                    this.OnPropertyChanging("AffectedAttribute", e);
+                    this.OnPropertyChanging("AffectedAttribute", e, _affectedAttributeReference);
                     this._affectedAttribute = value;
                     if ((old != null))
                     {
@@ -162,7 +173,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                         value.Deleted += this.OnResetAffectedAttribute;
                     }
                     this.OnAffectedAttributeChanged(e);
-                    this.OnPropertyChanged("AffectedAttribute", e);
+                    this.OnPropertyChanged("AffectedAttribute", e, _affectedAttributeReference);
                 }
             }
         }
@@ -172,7 +183,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("affectedNode")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement AffectedNode
+        public NMF.Models.IModelElement AffectedNode
         {
             get
             {
@@ -182,13 +193,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._affectedNode != value))
                 {
-                    IModelElement old = this._affectedNode;
+                    NMF.Models.IModelElement old = this._affectedNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAffectedNodeChanging(e);
-                    this.OnPropertyChanging("AffectedNode", e);
+                    this.OnPropertyChanging("AffectedNode", e, _affectedNodeReference);
                     this._affectedNode = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetAffectedNode;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetAffectedNode;
+                    }
                     this.OnAffectedNodeChanged(e);
-                    this.OnPropertyChanged("AffectedNode", e);
+                    this.OnPropertyChanged("AffectedNode", e, _affectedNodeReference);
                 }
             }
         }
@@ -196,7 +215,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -207,13 +226,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeDelta/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeDelta")));
                 }
                 return _classInstance;
             }
@@ -269,6 +288,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AffectedNodeChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveOldValueAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.AttributeDelta.ClassInstance)).Resolve("oldValue")));
+        }
+        
         /// <summary>
         /// Raises the OldValueChanging event
         /// </summary>
@@ -293,6 +317,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveNewValueAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.AttributeDelta.ClassInstance)).Resolve("newValue")));
         }
         
         /// <summary>
@@ -321,6 +350,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             }
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveDeltaReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.AttributeDelta.ClassInstance)).Resolve("delta")));
+        }
+        
         /// <summary>
         /// Raises the DeltaChanging event
         /// </summary>
@@ -339,13 +373,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="oldParent">The old parent model element</param>
         /// <param name="newParent">The new parent model element</param>
-        protected override void OnParentChanging(IModelElement newParent, IModelElement oldParent)
+        protected override void OnParentChanging(NMF.Models.IModelElement newParent, NMF.Models.IModelElement oldParent)
         {
             IDeltaSpecification oldDelta = ModelHelper.CastAs<IDeltaSpecification>(oldParent);
             IDeltaSpecification newDelta = ModelHelper.CastAs<IDeltaSpecification>(newParent);
             ValueChangedEventArgs e = new ValueChangedEventArgs(oldDelta, newDelta);
             this.OnDeltaChanging(e);
-            this.OnPropertyChanging("Delta");
+            this.OnPropertyChanging("Delta", e, _deltaReference);
         }
         
         /// <summary>
@@ -366,7 +400,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="oldParent">The old parent model element</param>
         /// <param name="newParent">The new parent model element</param>
-        protected override void OnParentChanged(IModelElement newParent, IModelElement oldParent)
+        protected override void OnParentChanged(NMF.Models.IModelElement newParent, NMF.Models.IModelElement oldParent)
         {
             IDeltaSpecification oldDelta = ModelHelper.CastAs<IDeltaSpecification>(oldParent);
             IDeltaSpecification newDelta = ModelHelper.CastAs<IDeltaSpecification>(newParent);
@@ -380,8 +414,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             }
             ValueChangedEventArgs e = new ValueChangedEventArgs(oldDelta, newDelta);
             this.OnDeltaChanged(e);
-            this.OnPropertyChanged("Delta", e);
+            this.OnPropertyChanged("Delta", e, _deltaReference);
             base.OnParentChanged(newParent, oldParent);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveAffectedAttributeReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.AttributeDelta.ClassInstance)).Resolve("affectedAttribute")));
         }
         
         /// <summary>
@@ -418,6 +457,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         private void OnResetAffectedAttribute(object sender, System.EventArgs eventArgs)
         {
             this.AffectedAttribute = null;
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveAffectedNodeReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.AttributeDelta.ClassInstance)).Resolve("affectedNode")));
         }
         
         /// <summary>
@@ -489,12 +533,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             }
             if ((feature == "AFFECTEDATTRIBUTE"))
             {
-                this.AffectedAttribute = ((IAttribute)(value));
+                this.AffectedAttribute = ((NMF.Models.Meta.IAttribute)(value));
                 return;
             }
             if ((feature == "AFFECTEDNODE"))
             {
-                this.AffectedNode = ((IModelElement)(value));
+                this.AffectedNode = ((NMF.Models.IModelElement)(value));
                 return;
             }
             if ((feature == "OLDVALUE"))
@@ -557,11 +601,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeDelta/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeDelta")));
             }
             return _classInstance;
         }
@@ -569,7 +613,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the AttributeDelta class
         /// </summary>
-        public class AttributeDeltaReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class AttributeDeltaReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private AttributeDelta _parent;
@@ -624,7 +668,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 if ((this._parent.Delta == null))
                 {
@@ -637,7 +681,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 }
                 if ((this._parent.AffectedAttribute == null))
                 {
-                    IAttribute affectedAttributeCasted = item.As<IAttribute>();
+                    NMF.Models.Meta.IAttribute affectedAttributeCasted = item.As<NMF.Models.Meta.IAttribute>();
                     if ((affectedAttributeCasted != null))
                     {
                         this._parent.AffectedAttribute = affectedAttributeCasted;
@@ -666,7 +710,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if ((item == this._parent.Delta))
                 {
@@ -688,7 +732,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 if ((this._parent.Delta != null))
                 {
@@ -712,7 +756,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if ((this._parent.Delta == item))
                 {
@@ -736,9 +780,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.Delta).Concat(this._parent.AffectedAttribute).Concat(this._parent.AffectedNode).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.Delta).Concat(this._parent.AffectedAttribute).Concat(this._parent.AffectedNode).GetEnumerator();
             }
         }
         
@@ -753,7 +797,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OldValueProxy(IAttributeDelta modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oldValue")
             {
             }
             
@@ -771,24 +815,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.OldValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -802,7 +828,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NewValueProxy(IAttributeDelta modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "newValue")
             {
             }
             
@@ -820,24 +846,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.NewValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NewValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NewValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -851,7 +859,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeltaProxy(IAttributeDelta modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "delta")
             {
             }
             
@@ -869,30 +877,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.Delta = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeltaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeltaChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the affectedAttribute property
         /// </summary>
-        private sealed class AffectedAttributeProxy : ModelPropertyChange<IAttributeDelta, IAttribute>
+        private sealed class AffectedAttributeProxy : ModelPropertyChange<IAttributeDelta, NMF.Models.Meta.IAttribute>
         {
             
             /// <summary>
@@ -900,14 +890,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AffectedAttributeProxy(IAttributeDelta modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "affectedAttribute")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IAttribute Value
+            public override NMF.Models.Meta.IAttribute Value
             {
                 get
                 {
@@ -918,30 +908,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.AffectedAttribute = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AffectedAttributeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AffectedAttributeChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the affectedNode property
         /// </summary>
-        private sealed class AffectedNodeProxy : ModelPropertyChange<IAttributeDelta, IModelElement>
+        private sealed class AffectedNodeProxy : ModelPropertyChange<IAttributeDelta, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -949,14 +921,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AffectedNodeProxy(IAttributeDelta modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "affectedNode")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -966,24 +938,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.AffectedNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AffectedNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AffectedNodeChanged -= handler;
             }
         }
     }

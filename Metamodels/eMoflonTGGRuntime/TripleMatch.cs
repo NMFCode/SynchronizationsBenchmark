@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatch/")]
-    public class TripleMatch : ModelElement, ITripleMatch, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatch")]
+    public partial class TripleMatch : NMF.Models.ModelElement, ITripleMatch, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -45,74 +46,94 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private string _ruleName;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _ruleNameAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveRuleNameAttribute);
+        
         /// <summary>
         /// The backing field for the Number property
         /// </summary>
         private int _number;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _numberAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveNumberAttribute);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _sourceElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveSourceElementsReference);
+        
         /// <summary>
         /// The backing field for the SourceElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _sourceElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _sourceElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _contextElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveContextElementsReference);
         
         /// <summary>
         /// The backing field for the ContextElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _contextElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _contextElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _nodeMappingsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveNodeMappingsReference);
         
         /// <summary>
         /// The backing field for the NodeMappings property
         /// </summary>
         private ObservableCompositionOrderedSet<ITripleMatchNodeMapping> _nodeMappings;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _containedEdgesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveContainedEdgesReference);
+        
         /// <summary>
         /// The backing field for the ContainedEdges property
         /// </summary>
-        private ObservableCompositionOrderedSet<IModelElement> _containedEdges;
+        private ObservableCompositionOrderedSet<NMF.Models.IModelElement> _containedEdges;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _targetElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTargetElementsReference);
         
         /// <summary>
         /// The backing field for the TargetElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _targetElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _targetElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _correspondenceElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCorrespondenceElementsReference);
         
         /// <summary>
         /// The backing field for the CorrespondenceElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _correspondenceElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _correspondenceElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _createdElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveCreatedElementsReference);
         
         /// <summary>
         /// The backing field for the CreatedElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _createdElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _createdElements;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _childrenReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveChildrenReference);
         
         /// <summary>
         /// The backing field for the Children property
         /// </summary>
         private ObservableAssociationOrderedSet<ITripleMatch> _children;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public TripleMatch()
         {
-            this._sourceElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._sourceElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._sourceElements.CollectionChanging += this.SourceElementsCollectionChanging;
             this._sourceElements.CollectionChanged += this.SourceElementsCollectionChanged;
-            this._contextElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._contextElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._contextElements.CollectionChanging += this.ContextElementsCollectionChanging;
             this._contextElements.CollectionChanged += this.ContextElementsCollectionChanged;
             this._nodeMappings = new ObservableCompositionOrderedSet<ITripleMatchNodeMapping>(this);
             this._nodeMappings.CollectionChanging += this.NodeMappingsCollectionChanging;
             this._nodeMappings.CollectionChanged += this.NodeMappingsCollectionChanged;
-            this._containedEdges = new ObservableCompositionOrderedSet<IModelElement>(this);
+            this._containedEdges = new ObservableCompositionOrderedSet<NMF.Models.IModelElement>(this);
             this._containedEdges.CollectionChanging += this.ContainedEdgesCollectionChanging;
             this._containedEdges.CollectionChanged += this.ContainedEdgesCollectionChanged;
-            this._targetElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._targetElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._targetElements.CollectionChanging += this.TargetElementsCollectionChanging;
             this._targetElements.CollectionChanged += this.TargetElementsCollectionChanged;
-            this._correspondenceElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._correspondenceElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._correspondenceElements.CollectionChanging += this.CorrespondenceElementsCollectionChanging;
             this._correspondenceElements.CollectionChanged += this.CorrespondenceElementsCollectionChanged;
-            this._createdElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._createdElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._createdElements.CollectionChanging += this.CreatedElementsCollectionChanging;
             this._createdElements.CollectionChanged += this.CreatedElementsCollectionChanged;
             this._children = new ObservableAssociationOrderedSet<ITripleMatch>();
@@ -125,7 +146,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("ruleName")]
         [XmlAttributeAttribute(true)]
-        public virtual string RuleName
+        public string RuleName
         {
             get
             {
@@ -138,10 +159,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._ruleName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRuleNameChanging(e);
-                    this.OnPropertyChanging("RuleName", e);
+                    this.OnPropertyChanging("RuleName", e, _ruleNameAttribute);
                     this._ruleName = value;
                     this.OnRuleNameChanged(e);
-                    this.OnPropertyChanged("RuleName", e);
+                    this.OnPropertyChanged("RuleName", e, _ruleNameAttribute);
                 }
             }
         }
@@ -151,7 +172,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("number")]
         [XmlAttributeAttribute(true)]
-        public virtual int Number
+        public int Number
         {
             get
             {
@@ -164,10 +185,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     int old = this._number;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumberChanging(e);
-                    this.OnPropertyChanging("Number", e);
+                    this.OnPropertyChanging("Number", e, _numberAttribute);
                     this._number = value;
                     this.OnNumberChanged(e);
-                    this.OnPropertyChanged("Number", e);
+                    this.OnPropertyChanged("Number", e, _numberAttribute);
                 }
             }
         }
@@ -179,7 +200,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("sourceElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> SourceElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> SourceElements
         {
             get
             {
@@ -194,7 +215,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("contextElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> ContextElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> ContextElements
         {
             get
             {
@@ -210,7 +231,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<ITripleMatchNodeMapping> NodeMappings
+        public IOrderedSetExpression<ITripleMatchNodeMapping> NodeMappings
         {
             get
             {
@@ -226,7 +247,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> ContainedEdges
+        public IOrderedSetExpression<NMF.Models.IModelElement> ContainedEdges
         {
             get
             {
@@ -241,7 +262,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("targetElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> TargetElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> TargetElements
         {
             get
             {
@@ -256,7 +277,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("correspondenceElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> CorrespondenceElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> CorrespondenceElements
         {
             get
             {
@@ -271,7 +292,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("createdElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> CreatedElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> CreatedElements
         {
             get
             {
@@ -286,7 +307,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("children")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<ITripleMatch> Children
+        public new IOrderedSetExpression<ITripleMatch> Children
         {
             get
             {
@@ -297,7 +318,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -308,13 +329,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatch/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatch")));
                 }
                 return _classInstance;
             }
@@ -340,6 +361,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NumberChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveRuleNameAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("ruleName")));
+        }
+        
         /// <summary>
         /// Raises the RuleNameChanging event
         /// </summary>
@@ -364,6 +390,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveNumberAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("number")));
         }
         
         /// <summary>
@@ -392,14 +423,19 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             }
         }
         
+        private static NMF.Models.Meta.ITypedElement RetrieveSourceElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("sourceElements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SourceElements property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SourceElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void SourceElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SourceElements", e);
+            this.OnCollectionChanging("SourceElements", e, _sourceElementsReference);
         }
         
         /// <summary>
@@ -407,9 +443,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SourceElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void SourceElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SourceElements", e);
+            this.OnCollectionChanged("SourceElements", e, _sourceElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveContextElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("contextElements")));
         }
         
         /// <summary>
@@ -417,9 +458,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContextElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ContextElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContextElements", e);
+            this.OnCollectionChanging("ContextElements", e, _contextElementsReference);
         }
         
         /// <summary>
@@ -427,9 +468,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContextElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ContextElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContextElements", e);
+            this.OnCollectionChanged("ContextElements", e, _contextElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveNodeMappingsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("nodeMappings")));
         }
         
         /// <summary>
@@ -437,9 +483,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void NodeMappingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void NodeMappingsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NodeMappings", e);
+            this.OnCollectionChanging("NodeMappings", e, _nodeMappingsReference);
         }
         
         /// <summary>
@@ -447,9 +493,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void NodeMappingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void NodeMappingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NodeMappings", e);
+            this.OnCollectionChanged("NodeMappings", e, _nodeMappingsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveContainedEdgesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("containedEdges")));
         }
         
         /// <summary>
@@ -457,9 +508,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContainedEdgesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ContainedEdgesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContainedEdges", e);
+            this.OnCollectionChanging("ContainedEdges", e, _containedEdgesReference);
         }
         
         /// <summary>
@@ -467,9 +518,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ContainedEdgesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ContainedEdgesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContainedEdges", e);
+            this.OnCollectionChanged("ContainedEdges", e, _containedEdgesReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTargetElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("targetElements")));
         }
         
         /// <summary>
@@ -477,9 +533,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TargetElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TargetElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TargetElements", e);
+            this.OnCollectionChanging("TargetElements", e, _targetElementsReference);
         }
         
         /// <summary>
@@ -487,9 +543,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TargetElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TargetElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TargetElements", e);
+            this.OnCollectionChanged("TargetElements", e, _targetElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveCorrespondenceElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("correspondenceElements")));
         }
         
         /// <summary>
@@ -497,9 +558,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CorrespondenceElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CorrespondenceElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CorrespondenceElements", e);
+            this.OnCollectionChanging("CorrespondenceElements", e, _correspondenceElementsReference);
         }
         
         /// <summary>
@@ -507,9 +568,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CorrespondenceElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CorrespondenceElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CorrespondenceElements", e);
+            this.OnCollectionChanged("CorrespondenceElements", e, _correspondenceElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveCreatedElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("createdElements")));
         }
         
         /// <summary>
@@ -517,9 +583,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void CreatedElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CreatedElements", e);
+            this.OnCollectionChanging("CreatedElements", e, _createdElementsReference);
         }
         
         /// <summary>
@@ -527,9 +593,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void CreatedElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void CreatedElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CreatedElements", e);
+            this.OnCollectionChanged("CreatedElements", e, _createdElementsReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveChildrenReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatch.ClassInstance)).Resolve("children")));
         }
         
         /// <summary>
@@ -537,9 +608,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ChildrenCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void ChildrenCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Children", e);
+            this.OnCollectionChanging("Children", e, _childrenReference);
         }
         
         /// <summary>
@@ -547,9 +618,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ChildrenCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ChildrenCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Children", e);
+            this.OnCollectionChanged("Children", e, _childrenReference);
         }
         
         /// <summary>
@@ -557,7 +628,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <returns>A fragment of the relative URI</returns>
         /// <param name="element">The element that should be looked for</param>
-        protected override string GetRelativePathForNonIdentifiedChild(IModelElement element)
+        protected override string GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement element)
         {
             int nodeMappingsIndex = ModelHelper.IndexOfReference(this.NodeMappings, element);
             if ((nodeMappingsIndex != -1))
@@ -578,7 +649,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <returns>The model element or null if it could not be found</returns>
         /// <param name="reference">The requested reference name</param>
         /// <param name="index">The index of this reference</param>
-        protected override IModelElement GetModelElementForReference(string reference, int index)
+        protected override NMF.Models.IModelElement GetModelElementForReference(string reference, int index)
         {
             if ((reference == "NODEMAPPINGS"))
             {
@@ -687,13 +758,31 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         }
         
         /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._nodeMappings))
+            {
+                return "nodeMappings";
+            }
+            if ((container == this._containedEdges))
+            {
+                return "containedEdges";
+            }
+            return base.GetCompositionName(container);
+        }
+        
+        /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatch/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatch")));
             }
             return _classInstance;
         }
@@ -701,7 +790,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the TripleMatch class
         /// </summary>
-        public class TripleMatchChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class TripleMatchChildrenCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private TripleMatch _parent;
@@ -744,7 +833,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 ITripleMatchNodeMapping nodeMappingsCasted = item.As<ITripleMatchNodeMapping>();
                 if ((nodeMappingsCasted != null))
@@ -768,7 +857,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.NodeMappings.Contains(item))
                 {
@@ -786,9 +875,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
-                IEnumerator<IModelElement> nodeMappingsEnumerator = this._parent.NodeMappings.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> nodeMappingsEnumerator = this._parent.NodeMappings.GetEnumerator();
                 try
                 {
                     for (
@@ -812,7 +901,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 ITripleMatchNodeMapping tripleMatchNodeMappingItem = item.As<ITripleMatchNodeMapping>();
                 if (((tripleMatchNodeMappingItem != null) 
@@ -831,16 +920,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.NodeMappings).Concat(this._parent.ContainedEdges).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.NodeMappings).Concat(this._parent.ContainedEdges).GetEnumerator();
             }
         }
         
         /// <summary>
         /// The collection class to to represent the children of the TripleMatch class
         /// </summary>
-        public class TripleMatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class TripleMatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private TripleMatch _parent;
@@ -901,7 +990,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 this._parent.SourceElements.Add(item);
             }
@@ -926,7 +1015,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.SourceElements.Contains(item))
                 {
@@ -968,13 +1057,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 this._parent.SourceElements.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.SourceElements.Count);
                 this._parent.ContextElements.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.ContextElements.Count);
-                IEnumerator<IModelElement> nodeMappingsEnumerator = this._parent.NodeMappings.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> nodeMappingsEnumerator = this._parent.NodeMappings.GetEnumerator();
                 try
                 {
                     for (
@@ -997,7 +1086,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 arrayIndex = (arrayIndex + this._parent.CorrespondenceElements.Count);
                 this._parent.CreatedElements.CopyTo(array, arrayIndex);
                 arrayIndex = (arrayIndex + this._parent.CreatedElements.Count);
-                IEnumerator<IModelElement> childrenEnumerator = this._parent.Children.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> childrenEnumerator = this._parent.Children.GetEnumerator();
                 try
                 {
                     for (
@@ -1019,7 +1108,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if (this._parent.SourceElements.Remove(item))
                 {
@@ -1064,9 +1153,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.SourceElements).Concat(this._parent.ContextElements).Concat(this._parent.NodeMappings).Concat(this._parent.ContainedEdges).Concat(this._parent.TargetElements).Concat(this._parent.CorrespondenceElements).Concat(this._parent.CreatedElements).Concat(this._parent.Children).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.SourceElements).Concat(this._parent.ContextElements).Concat(this._parent.NodeMappings).Concat(this._parent.ContainedEdges).Concat(this._parent.TargetElements).Concat(this._parent.CorrespondenceElements).Concat(this._parent.CreatedElements).Concat(this._parent.Children).GetEnumerator();
             }
         }
         
@@ -1081,7 +1170,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RuleNameProxy(ITripleMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ruleName")
             {
             }
             
@@ -1099,24 +1188,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.RuleName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RuleNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RuleNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1130,7 +1201,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumberProxy(ITripleMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "number")
             {
             }
             
@@ -1147,24 +1218,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.Number = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberChanged -= handler;
             }
         }
     }

@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,28 +37,34 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
-    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//IsApplicableMatch/")]
-    public class IsApplicableMatch : TGGRuleMorphism, IIsApplicableMatch, IModelElement
+    [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//IsApplicableMatch")]
+    public partial class IsApplicableMatch : TGGRuleMorphism, IIsApplicableMatch, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _isApplicableRuleResultReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveIsApplicableRuleResultReference);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _attributeInfoReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAttributeInfoReference);
         
         /// <summary>
         /// The backing field for the AttributeInfo property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _attributeInfo;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _attributeInfo;
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _allContextElementsReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveAllContextElementsReference);
         
         /// <summary>
         /// The backing field for the AllContextElements property
         /// </summary>
-        private ObservableAssociationOrderedSet<IModelElement> _allContextElements;
+        private ObservableAssociationOrderedSet<NMF.Models.IModelElement> _allContextElements;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public IsApplicableMatch()
         {
-            this._attributeInfo = new ObservableAssociationOrderedSet<IModelElement>();
+            this._attributeInfo = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._attributeInfo.CollectionChanging += this.AttributeInfoCollectionChanging;
             this._attributeInfo.CollectionChanged += this.AttributeInfoCollectionChanged;
-            this._allContextElements = new ObservableAssociationOrderedSet<IModelElement>();
+            this._allContextElements = new ObservableAssociationOrderedSet<NMF.Models.IModelElement>();
             this._allContextElements.CollectionChanging += this.AllContextElementsCollectionChanging;
             this._allContextElements.CollectionChanged += this.AllContextElementsCollectionChanged;
         }
@@ -69,7 +76,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Hidden)]
         [XmlAttributeAttribute(true)]
         [XmlOppositeAttribute("isApplicableMatch")]
-        public virtual IIsApplicableRuleResult IsApplicableRuleResult
+        public IIsApplicableRuleResult IsApplicableRuleResult
         {
             get
             {
@@ -88,7 +95,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("attributeInfo")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> AttributeInfo
+        public IOrderedSetExpression<NMF.Models.IModelElement> AttributeInfo
         {
             get
             {
@@ -103,7 +110,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlElementNameAttribute("allContextElements")]
         [XmlAttributeAttribute(true)]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IModelElement> AllContextElements
+        public IOrderedSetExpression<NMF.Models.IModelElement> AllContextElements
         {
             get
             {
@@ -114,7 +121,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -125,13 +132,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//IsApplicableMatch/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//IsApplicableMatch")));
                 }
                 return _classInstance;
             }
@@ -146,6 +153,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// Gets fired when the IsApplicableRuleResult property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IsApplicableRuleResultChanged;
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveIsApplicableRuleResultReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.IsApplicableMatch.ClassInstance)).Resolve("isApplicableRuleResult")));
+        }
         
         /// <summary>
         /// Raises the IsApplicableRuleResultChanging event
@@ -165,13 +177,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="oldParent">The old parent model element</param>
         /// <param name="newParent">The new parent model element</param>
-        protected override void OnParentChanging(IModelElement newParent, IModelElement oldParent)
+        protected override void OnParentChanging(NMF.Models.IModelElement newParent, NMF.Models.IModelElement oldParent)
         {
             IIsApplicableRuleResult oldIsApplicableRuleResult = ModelHelper.CastAs<IIsApplicableRuleResult>(oldParent);
             IIsApplicableRuleResult newIsApplicableRuleResult = ModelHelper.CastAs<IIsApplicableRuleResult>(newParent);
             ValueChangedEventArgs e = new ValueChangedEventArgs(oldIsApplicableRuleResult, newIsApplicableRuleResult);
             this.OnIsApplicableRuleResultChanging(e);
-            this.OnPropertyChanging("IsApplicableRuleResult");
+            this.OnPropertyChanging("IsApplicableRuleResult", e, _isApplicableRuleResultReference);
         }
         
         /// <summary>
@@ -192,7 +204,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="oldParent">The old parent model element</param>
         /// <param name="newParent">The new parent model element</param>
-        protected override void OnParentChanged(IModelElement newParent, IModelElement oldParent)
+        protected override void OnParentChanged(NMF.Models.IModelElement newParent, NMF.Models.IModelElement oldParent)
         {
             IIsApplicableRuleResult oldIsApplicableRuleResult = ModelHelper.CastAs<IIsApplicableRuleResult>(oldParent);
             IIsApplicableRuleResult newIsApplicableRuleResult = ModelHelper.CastAs<IIsApplicableRuleResult>(newParent);
@@ -206,8 +218,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             }
             ValueChangedEventArgs e = new ValueChangedEventArgs(oldIsApplicableRuleResult, newIsApplicableRuleResult);
             this.OnIsApplicableRuleResultChanged(e);
-            this.OnPropertyChanged("IsApplicableRuleResult", e);
+            this.OnPropertyChanged("IsApplicableRuleResult", e, _isApplicableRuleResultReference);
             base.OnParentChanged(newParent, oldParent);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveAttributeInfoReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.IsApplicableMatch.ClassInstance)).Resolve("attributeInfo")));
         }
         
         /// <summary>
@@ -215,9 +232,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AttributeInfoCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void AttributeInfoCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AttributeInfo", e);
+            this.OnCollectionChanging("AttributeInfo", e, _attributeInfoReference);
         }
         
         /// <summary>
@@ -225,9 +242,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AttributeInfoCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void AttributeInfoCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AttributeInfo", e);
+            this.OnCollectionChanged("AttributeInfo", e, _attributeInfoReference);
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveAllContextElementsReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.IsApplicableMatch.ClassInstance)).Resolve("allContextElements")));
         }
         
         /// <summary>
@@ -235,9 +257,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AllContextElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void AllContextElementsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AllContextElements", e);
+            this.OnCollectionChanging("AllContextElements", e, _allContextElementsReference);
         }
         
         /// <summary>
@@ -245,9 +267,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AllContextElementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void AllContextElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AllContextElements", e);
+            this.OnCollectionChanged("AllContextElements", e, _allContextElementsReference);
         }
         
         /// <summary>
@@ -314,11 +336,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//IsApplicableMatch/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//IsApplicableMatch")));
             }
             return _classInstance;
         }
@@ -326,7 +348,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the IsApplicableMatch class
         /// </summary>
-        public class IsApplicableMatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class IsApplicableMatchReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private IsApplicableMatch _parent;
@@ -375,7 +397,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 if ((this._parent.IsApplicableRuleResult == null))
                 {
@@ -404,7 +426,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if ((item == this._parent.IsApplicableRuleResult))
                 {
@@ -426,7 +448,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 if ((this._parent.IsApplicableRuleResult != null))
                 {
@@ -444,7 +466,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if ((this._parent.IsApplicableRuleResult == item))
                 {
@@ -466,9 +488,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.IsApplicableRuleResult).Concat(this._parent.AttributeInfo).Concat(this._parent.AllContextElements).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.IsApplicableRuleResult).Concat(this._parent.AttributeInfo).Concat(this._parent.AllContextElements).GetEnumerator();
             }
         }
         
@@ -483,7 +505,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsApplicableRuleResultProxy(IIsApplicableMatch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isApplicableRuleResult")
             {
             }
             
@@ -500,24 +522,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.IsApplicableRuleResult = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsApplicableRuleResultChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsApplicableRuleResultChanged -= handler;
             }
         }
     }

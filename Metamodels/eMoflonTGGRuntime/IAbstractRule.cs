@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(AbstractRule))]
     [XmlDefaultImplementationTypeAttribute(typeof(AbstractRule))]
-    public interface IAbstractRule : IModelElement
+    public interface IAbstractRule : NMF.Models.IModelElement
     {
     }
 }

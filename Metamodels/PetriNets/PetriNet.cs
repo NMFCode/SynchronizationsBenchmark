@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
     [XmlIdentifierAttribute("id")]
     [XmlNamespaceAttribute("platform:/plugin/PetriNets/model/PetriNets.ecore")]
     [XmlNamespacePrefixAttribute("pn")]
-    [ModelRepresentationClassAttribute("platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet/")]
+    [ModelRepresentationClassAttribute("platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet")]
     [DebuggerDisplayAttribute("PetriNet {Id}")]
     public partial class PetriNet : ModelElement, IPetriNet, IModelElement
     {
@@ -47,10 +48,16 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         private string _id;
         
+        private static Lazy<ITypedElement> _idAttribute = new Lazy<ITypedElement>(RetrieveIdAttribute);
+        
+        private static Lazy<ITypedElement> _placesReference = new Lazy<ITypedElement>(RetrievePlacesReference);
+        
         /// <summary>
         /// The backing field for the Places property
         /// </summary>
         private ObservableCompositionOrderedSet<IPlace> _places;
+        
+        private static Lazy<ITypedElement> _transitionsReference = new Lazy<ITypedElement>(RetrieveTransitionsReference);
         
         /// <summary>
         /// The backing field for the Transitions property
@@ -75,7 +82,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         [XmlElementNameAttribute("id")]
         [IdAttribute()]
         [XmlAttributeAttribute(true)]
-        public virtual string Id
+        public string Id
         {
             get
             {
@@ -88,10 +95,10 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
                     string old = this._id;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIdChanging(e);
-                    this.OnPropertyChanging("Id", e);
+                    this.OnPropertyChanging("Id", e, _idAttribute);
                     this._id = value;
                     this.OnIdChanged(e);
-                    this.OnPropertyChanged("Id", e);
+                    this.OnPropertyChanged("Id", e, _idAttribute);
                 }
             }
         }
@@ -104,7 +111,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<IPlace> Places
+        public IOrderedSetExpression<IPlace> Places
         {
             get
             {
@@ -120,7 +127,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<ITransition> Transitions
+        public IOrderedSetExpression<ITransition> Transitions
         {
             get
             {
@@ -159,7 +166,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet/")));
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet")));
                 }
                 return _classInstance;
             }
@@ -185,6 +192,11 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// Gets fired when the Id property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IdChanged;
+        
+        private static ITypedElement RetrieveIdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.PetriNets.PetriNet.ClassInstance)).Resolve("id")));
+        }
         
         /// <summary>
         /// Raises the IdChanging event
@@ -212,14 +224,19 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
             }
         }
         
+        private static ITypedElement RetrievePlacesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.PetriNets.PetriNet.ClassInstance)).Resolve("places")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Places property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void PlacesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void PlacesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Places", e);
+            this.OnCollectionChanging("Places", e, _placesReference);
         }
         
         /// <summary>
@@ -227,9 +244,14 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void PlacesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void PlacesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Places", e);
+            this.OnCollectionChanged("Places", e, _placesReference);
+        }
+        
+        private static ITypedElement RetrieveTransitionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NMF.SynchronizationsBenchmark.PetriNets.PetriNet.ClassInstance)).Resolve("transitions")));
         }
         
         /// <summary>
@@ -237,9 +259,9 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TransitionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TransitionsCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transitions", e);
+            this.OnCollectionChanging("Transitions", e, _transitionsReference);
         }
         
         /// <summary>
@@ -247,9 +269,9 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TransitionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TransitionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transitions", e);
+            this.OnCollectionChanged("Transitions", e, _transitionsReference);
         }
         
         /// <summary>
@@ -354,13 +376,31 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
         }
         
         /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._places))
+            {
+                return "places";
+            }
+            if ((container == this._transitions))
+            {
+                return "transitions";
+            }
+            return base.GetCompositionName(container);
+        }
+        
+        /// <summary>
         /// Gets the Class for this model element
         /// </summary>
         public override IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet/")));
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/PetriNets/model/PetriNets.ecore#//PetriNet")));
             }
             return _classInstance;
         }
@@ -705,7 +745,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IdProxy(IPetriNet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "id")
             {
             }
             
@@ -722,24 +762,6 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
                 {
                     this.ModelElement.Id = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IdChanged -= handler;
             }
         }
     }

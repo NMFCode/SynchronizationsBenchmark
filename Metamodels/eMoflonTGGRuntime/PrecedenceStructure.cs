@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,16 +38,18 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
     [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PrecedenceStructure" +
-        "/")]
-    public class PrecedenceStructure : ModelElement, IPrecedenceStructure, IModelElement
+        "")]
+    public partial class PrecedenceStructure : NMF.Models.ModelElement, IPrecedenceStructure, NMF.Models.IModelElement
     {
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _tripleMatchesReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveTripleMatchesReference);
         
         /// <summary>
         /// The backing field for the TripleMatches property
         /// </summary>
         private ObservableCompositionOrderedSet<ITripleMatch> _tripleMatches;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         public PrecedenceStructure()
         {
@@ -63,7 +66,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
         [ConstantAttribute()]
-        public virtual IOrderedSetExpression<ITripleMatch> TripleMatches
+        public IOrderedSetExpression<ITripleMatch> TripleMatches
         {
             get
             {
@@ -74,7 +77,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the child model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> Children
+        public override IEnumerableExpression<NMF.Models.IModelElement> Children
         {
             get
             {
@@ -85,7 +88,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -96,17 +99,22 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PrecedenceStructure" +
-                            "/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PrecedenceStructure" +
+                            "")));
                 }
                 return _classInstance;
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveTripleMatchesReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.PrecedenceStructure.ClassInstance)).Resolve("tripleMatches")));
         }
         
         /// <summary>
@@ -114,9 +122,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TripleMatchesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        private void TripleMatchesCollectionChanging(object sender, NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TripleMatches", e);
+            this.OnCollectionChanging("TripleMatches", e, _tripleMatchesReference);
         }
         
         /// <summary>
@@ -124,9 +132,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void TripleMatchesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TripleMatchesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TripleMatches", e);
+            this.OnCollectionChanged("TripleMatches", e, _tripleMatchesReference);
         }
         
         /// <summary>
@@ -134,7 +142,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         /// <returns>A fragment of the relative URI</returns>
         /// <param name="element">The element that should be looked for</param>
-        protected override string GetRelativePathForNonIdentifiedChild(IModelElement element)
+        protected override string GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement element)
         {
             int tripleMatchesIndex = ModelHelper.IndexOfReference(this.TripleMatches, element);
             if ((tripleMatchesIndex != -1))
@@ -150,7 +158,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <returns>The model element or null if it could not be found</returns>
         /// <param name="reference">The requested reference name</param>
         /// <param name="index">The index of this reference</param>
-        protected override IModelElement GetModelElementForReference(string reference, int index)
+        protected override NMF.Models.IModelElement GetModelElementForReference(string reference, int index)
         {
             if ((reference == "TRIPLEMATCHES"))
             {
@@ -181,14 +189,28 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         }
         
         /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._tripleMatches))
+            {
+                return "tripleMatches";
+            }
+            return base.GetCompositionName(container);
+        }
+        
+        /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PrecedenceStructure" +
-                        "/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//PrecedenceStructure" +
+                        "")));
             }
             return _classInstance;
         }
@@ -196,7 +218,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the PrecedenceStructure class
         /// </summary>
-        public class PrecedenceStructureChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class PrecedenceStructureChildrenCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private PrecedenceStructure _parent;
@@ -236,7 +258,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 ITripleMatch tripleMatchesCasted = item.As<ITripleMatch>();
                 if ((tripleMatchesCasted != null))
@@ -258,7 +280,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.TripleMatches.Contains(item))
                 {
@@ -272,9 +294,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
-                IEnumerator<IModelElement> tripleMatchesEnumerator = this._parent.TripleMatches.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> tripleMatchesEnumerator = this._parent.TripleMatches.GetEnumerator();
                 try
                 {
                     for (
@@ -296,7 +318,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 ITripleMatch tripleMatchItem = item.As<ITripleMatch>();
                 if (((tripleMatchItem != null) 
@@ -311,16 +333,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.TripleMatches).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.TripleMatches).GetEnumerator();
             }
         }
         
         /// <summary>
         /// The collection class to to represent the children of the PrecedenceStructure class
         /// </summary>
-        public class PrecedenceStructureReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class PrecedenceStructureReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private PrecedenceStructure _parent;
@@ -360,7 +382,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 ITripleMatch tripleMatchesCasted = item.As<ITripleMatch>();
                 if ((tripleMatchesCasted != null))
@@ -382,7 +404,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if (this._parent.TripleMatches.Contains(item))
                 {
@@ -396,9 +418,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
-                IEnumerator<IModelElement> tripleMatchesEnumerator = this._parent.TripleMatches.GetEnumerator();
+                IEnumerator<NMF.Models.IModelElement> tripleMatchesEnumerator = this._parent.TripleMatches.GetEnumerator();
                 try
                 {
                     for (
@@ -420,7 +442,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 ITripleMatch tripleMatchItem = item.As<ITripleMatch>();
                 if (((tripleMatchItem != null) 
@@ -435,9 +457,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.TripleMatches).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.TripleMatches).GetEnumerator();
             }
         }
     }

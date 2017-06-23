@@ -20,8 +20,7 @@ namespace NMF.SynchronizationsBenchmark.PetriNets
 
             foreach (var place in Places)
             {
-                IPlace otherPlace;
-                if (!placesByName.TryGetValue(place.Id, out otherPlace) || otherPlace == null)
+                if (!placesByName.TryGetValue(place.Id, out IPlace otherPlace) || otherPlace == null)
                 {
                     return false;
                 }

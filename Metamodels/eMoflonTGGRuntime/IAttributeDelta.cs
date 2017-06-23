@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(AttributeDelta))]
     [XmlDefaultImplementationTypeAttribute(typeof(AttributeDelta))]
-    public interface IAttributeDelta : IModelElement
+    public interface IAttributeDelta : NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -69,7 +70,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The affectedAttribute property
         /// </summary>
-        IAttribute AffectedAttribute
+        NMF.Models.Meta.IAttribute AffectedAttribute
         {
             get;
             set;
@@ -78,7 +79,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The affectedNode property
         /// </summary>
-        IModelElement AffectedNode
+        NMF.Models.IModelElement AffectedNode
         {
             get;
             set;

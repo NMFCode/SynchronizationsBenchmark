@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,8 +38,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
     [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatchNodeMapp" +
-        "ing/")]
-    public class TripleMatchNodeMapping : ModelElement, ITripleMatchNodeMapping, IModelElement
+        "ing")]
+    public partial class TripleMatchNodeMapping : NMF.Models.ModelElement, ITripleMatchNodeMapping, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -46,19 +47,23 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private string _nodeName;
         
+        private static Lazy<NMF.Models.Meta.ITypedElement> _nodeNameAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveNodeNameAttribute);
+        
+        private static Lazy<NMF.Models.Meta.ITypedElement> _nodeReference = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveNodeReference);
+        
         /// <summary>
         /// The backing field for the Node property
         /// </summary>
-        private IModelElement _node;
+        private NMF.Models.IModelElement _node;
         
-        private static IClass _classInstance;
+        private static NMF.Models.Meta.IClass _classInstance;
         
         /// <summary>
         /// The nodeName property
         /// </summary>
         [XmlElementNameAttribute("nodeName")]
         [XmlAttributeAttribute(true)]
-        public virtual string NodeName
+        public string NodeName
         {
             get
             {
@@ -71,10 +76,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     string old = this._nodeName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNodeNameChanging(e);
-                    this.OnPropertyChanging("NodeName", e);
+                    this.OnPropertyChanging("NodeName", e, _nodeNameAttribute);
                     this._nodeName = value;
                     this.OnNodeNameChanged(e);
-                    this.OnPropertyChanged("NodeName", e);
+                    this.OnPropertyChanged("NodeName", e, _nodeNameAttribute);
                 }
             }
         }
@@ -84,7 +89,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         [XmlElementNameAttribute("node")]
         [XmlAttributeAttribute(true)]
-        public virtual IModelElement Node
+        public NMF.Models.IModelElement Node
         {
             get
             {
@@ -94,13 +99,21 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 if ((this._node != value))
                 {
-                    IModelElement old = this._node;
+                    NMF.Models.IModelElement old = this._node;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNodeChanging(e);
-                    this.OnPropertyChanging("Node", e);
+                    this.OnPropertyChanging("Node", e, _nodeReference);
                     this._node = value;
+                    if ((old != null))
+                    {
+                        old.Deleted -= this.OnResetNode;
+                    }
+                    if ((value != null))
+                    {
+                        value.Deleted += this.OnResetNode;
+                    }
                     this.OnNodeChanged(e);
-                    this.OnPropertyChanged("Node", e);
+                    this.OnPropertyChanged("Node", e, _nodeReference);
                 }
             }
         }
@@ -108,7 +121,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the referenced model elements of this model element
         /// </summary>
-        public override IEnumerableExpression<IModelElement> ReferencedElements
+        public override IEnumerableExpression<NMF.Models.IModelElement> ReferencedElements
         {
             get
             {
@@ -119,14 +132,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatchNodeMapp" +
-                            "ing/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatchNodeMapp" +
+                            "ing")));
                 }
                 return _classInstance;
             }
@@ -152,6 +165,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NodeChanged;
         
+        private static NMF.Models.Meta.ITypedElement RetrieveNodeNameAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatchNodeMapping.ClassInstance)).Resolve("nodeName")));
+        }
+        
         /// <summary>
         /// Raises the NodeNameChanging event
         /// </summary>
@@ -176,6 +194,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveNodeReference()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.TripleMatchNodeMapping.ClassInstance)).Resolve("node")));
         }
         
         /// <summary>
@@ -238,7 +261,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         {
             if ((feature == "NODE"))
             {
-                this.Node = ((IModelElement)(value));
+                this.Node = ((NMF.Models.IModelElement)(value));
                 return;
             }
             if ((feature == "NODENAME"))
@@ -280,12 +303,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatchNodeMapp" +
-                        "ing/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//TripleMatchNodeMapp" +
+                        "ing")));
             }
             return _classInstance;
         }
@@ -293,7 +316,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The collection class to to represent the children of the TripleMatchNodeMapping class
         /// </summary>
-        public class TripleMatchNodeMappingReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class TripleMatchNodeMappingReferencedElementsCollection : ReferenceCollection, ICollectionExpression<NMF.Models.IModelElement>, ICollection<NMF.Models.IModelElement>
         {
             
             private TripleMatchNodeMapping _parent;
@@ -336,7 +359,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Adds the given element to the collection
             /// </summary>
             /// <param name="item">The item to add</param>
-            public override void Add(IModelElement item)
+            public override void Add(NMF.Models.IModelElement item)
             {
                 if ((this._parent.Node == null))
                 {
@@ -358,7 +381,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if it is contained, otherwise False</returns>
             /// <param name="item">The item that should be looked out for</param>
-            public override bool Contains(IModelElement item)
+            public override bool Contains(NMF.Models.IModelElement item)
             {
                 if ((item == this._parent.Node))
                 {
@@ -372,7 +395,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="array">The array in which the elements should be copied</param>
             /// <param name="arrayIndex">The starting index</param>
-            public override void CopyTo(IModelElement[] array, int arrayIndex)
+            public override void CopyTo(NMF.Models.IModelElement[] array, int arrayIndex)
             {
                 if ((this._parent.Node != null))
                 {
@@ -386,7 +409,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <returns>True, if the item was removed, otherwise False</returns>
             /// <param name="item">The item that should be removed</param>
-            public override bool Remove(IModelElement item)
+            public override bool Remove(NMF.Models.IModelElement item)
             {
                 if ((this._parent.Node == item))
                 {
@@ -400,9 +423,9 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// Gets an enumerator that enumerates the collection
             /// </summary>
             /// <returns>A generic enumerator</returns>
-            public override IEnumerator<IModelElement> GetEnumerator()
+            public override IEnumerator<NMF.Models.IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.Node).GetEnumerator();
+                return Enumerable.Empty<NMF.Models.IModelElement>().Concat(this._parent.Node).GetEnumerator();
             }
         }
         
@@ -417,7 +440,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NodeNameProxy(ITripleMatchNodeMapping modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nodeName")
             {
             }
             
@@ -435,30 +458,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     this.ModelElement.NodeName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NodeNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NodeNameChanged -= handler;
-            }
         }
         
         /// <summary>
         /// Represents a proxy to represent an incremental access to the node property
         /// </summary>
-        private sealed class NodeProxy : ModelPropertyChange<ITripleMatchNodeMapping, IModelElement>
+        private sealed class NodeProxy : ModelPropertyChange<ITripleMatchNodeMapping, NMF.Models.IModelElement>
         {
             
             /// <summary>
@@ -466,14 +471,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NodeProxy(ITripleMatchNodeMapping modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "node")
             {
             }
             
             /// <summary>
             /// Gets or sets the value of this expression
             /// </summary>
-            public override IModelElement Value
+            public override NMF.Models.IModelElement Value
             {
                 get
                 {
@@ -483,24 +488,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.Node = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NodeChanged -= handler;
             }
         }
     }

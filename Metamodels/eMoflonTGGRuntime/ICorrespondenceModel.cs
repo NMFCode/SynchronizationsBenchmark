@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,13 +37,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(CorrespondenceModel))]
     [XmlDefaultImplementationTypeAttribute(typeof(CorrespondenceModel))]
-    public interface ICorrespondenceModel : IModelElement
+    public interface ICorrespondenceModel : NMF.Models.IModelElement
     {
         
         /// <summary>
         /// The correspondences property
         /// </summary>
-        IOrderedSetExpression<IModelElement> Correspondences
+        IOrderedSetExpression<NMF.Models.IModelElement> Correspondences
         {
             get;
         }
@@ -50,7 +51,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The source property
         /// </summary>
-        IModelElement Source
+        NMF.Models.IModelElement Source
         {
             get;
             set;
@@ -59,7 +60,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The target property
         /// </summary>
-        IModelElement Target
+        NMF.Models.IModelElement Target
         {
             get;
             set;

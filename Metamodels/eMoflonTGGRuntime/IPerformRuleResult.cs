@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -36,13 +37,13 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(PerformRuleResult))]
     [XmlDefaultImplementationTypeAttribute(typeof(PerformRuleResult))]
-    public interface IPerformRuleResult : IModelElement, ITGGRuleMorphism
+    public interface IPerformRuleResult : NMF.Models.IModelElement, ITGGRuleMorphism
     {
         
         /// <summary>
         /// The translatedElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> TranslatedElements
+        IOrderedSetExpression<NMF.Models.IModelElement> TranslatedElements
         {
             get;
         }
@@ -50,7 +51,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The createdElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> CreatedElements
+        IOrderedSetExpression<NMF.Models.IModelElement> CreatedElements
         {
             get;
         }
@@ -58,7 +59,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// The createdLinkElements property
         /// </summary>
-        IOrderedSetExpression<IModelElement> CreatedLinkElements
+        IOrderedSetExpression<NMF.Models.IModelElement> CreatedLinkElements
         {
             get;
         }

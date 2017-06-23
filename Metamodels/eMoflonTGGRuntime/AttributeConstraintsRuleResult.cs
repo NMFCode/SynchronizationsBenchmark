@@ -23,6 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -37,8 +38,8 @@ namespace NMF.SynchronizationsBenchmark.Runtime
     [XmlNamespaceAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore")]
     [XmlNamespacePrefixAttribute("org.moflon.tgg.runtime")]
     [ModelRepresentationClassAttribute("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeConstraint" +
-        "sRuleResult/")]
-    public class AttributeConstraintsRuleResult : RuleResult, IAttributeConstraintsRuleResult, IModelElement
+        "sRuleResult")]
+    public partial class AttributeConstraintsRuleResult : RuleResult, IAttributeConstraintsRuleResult, NMF.Models.IModelElement
     {
         
         /// <summary>
@@ -46,14 +47,16 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// </summary>
         private bool _requiredChange;
         
-        private static IClass _classInstance;
+        private static Lazy<NMF.Models.Meta.ITypedElement> _requiredChangeAttribute = new Lazy<NMF.Models.Meta.ITypedElement>(RetrieveRequiredChangeAttribute);
+        
+        private static NMF.Models.Meta.IClass _classInstance;
         
         /// <summary>
         /// The requiredChange property
         /// </summary>
         [XmlElementNameAttribute("requiredChange")]
         [XmlAttributeAttribute(true)]
-        public virtual bool RequiredChange
+        public bool RequiredChange
         {
             get
             {
@@ -66,10 +69,10 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                     bool old = this._requiredChange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRequiredChangeChanging(e);
-                    this.OnPropertyChanging("RequiredChange", e);
+                    this.OnPropertyChanging("RequiredChange", e, _requiredChangeAttribute);
                     this._requiredChange = value;
                     this.OnRequiredChangeChanged(e);
-                    this.OnPropertyChanged("RequiredChange", e);
+                    this.OnPropertyChanged("RequiredChange", e, _requiredChangeAttribute);
                 }
             }
         }
@@ -77,14 +80,14 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class model for this type
         /// </summary>
-        public new static IClass ClassInstance
+        public new static NMF.Models.Meta.IClass ClassInstance
         {
             get
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeConstraint" +
-                            "sRuleResult/")));
+                    _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeConstraint" +
+                            "sRuleResult")));
                 }
                 return _classInstance;
             }
@@ -99,6 +102,11 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// Gets fired when the RequiredChange property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RequiredChangeChanged;
+        
+        private static NMF.Models.Meta.ITypedElement RetrieveRequiredChangeAttribute()
+        {
+            return ((NMF.Models.Meta.ITypedElement)(((NMF.Models.ModelElement)(NMF.SynchronizationsBenchmark.Runtime.AttributeConstraintsRuleResult.ClassInstance)).Resolve("requiredChange")));
+        }
         
         /// <summary>
         /// Raises the RequiredChangeChanging event
@@ -159,12 +167,12 @@ namespace NMF.SynchronizationsBenchmark.Runtime
         /// <summary>
         /// Gets the Class for this model element
         /// </summary>
-        public override IClass GetClass()
+        public override NMF.Models.Meta.IClass GetClass()
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeConstraint" +
-                        "sRuleResult/")));
+                _classInstance = ((NMF.Models.Meta.IClass)(MetaRepository.Instance.Resolve("platform:/plugin/org.moflon.tgg.runtime/model/Runtime.ecore#//AttributeConstraint" +
+                        "sRuleResult")));
             }
             return _classInstance;
         }
@@ -180,7 +188,7 @@ namespace NMF.SynchronizationsBenchmark.Runtime
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RequiredChangeProxy(IAttributeConstraintsRuleResult modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "requiredChange")
             {
             }
             
@@ -197,24 +205,6 @@ namespace NMF.SynchronizationsBenchmark.Runtime
                 {
                     this.ModelElement.RequiredChange = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequiredChangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequiredChangeChanged -= handler;
             }
         }
     }

@@ -55,8 +55,7 @@ namespace NMF.SynchronizationsBenchmark.FiniteStateMachines
 
             foreach (var state in States)
             {
-                IState otherState;
-                if (!statesByName.TryGetValue(state.Name, out otherState) || otherState == null)
+                if (!statesByName.TryGetValue(state.Name, out IState otherState) || otherState == null)
                 {
                     return false;
                 }
