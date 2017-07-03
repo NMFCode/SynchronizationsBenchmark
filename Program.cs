@@ -23,8 +23,7 @@ namespace NMF.SynchronizationsBenchmark
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Stopwatch accuracy on this machine is {0}hz, i.e. 1 tick = {1}ns", Stopwatch.Frequency, (1.0e9 / Stopwatch.Frequency));
-            // Measure(sizes: new [] { 10 }, iterations: 5, workloadSize: 100);
+            Console.WriteLine("Stopwatch precision on this machine is {0}hz, i.e. 1 tick = {1}ns", Stopwatch.Frequency, (1.0e9 / Stopwatch.Frequency));
             Measure(sizes: new [] { 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000 }, iterations: 20, workloadSize: 20);
         }
 
@@ -36,7 +35,7 @@ namespace NMF.SynchronizationsBenchmark
         /// <param name="workloadSize">The workload size</param>
         private static void Measure(int[] sizes, int iterations, int workloadSize)
         {
-            var times = new long[sizes.Length, iterations, 8];
+            var times = new long[sizes.Length, iterations, 9];
 
             WriteResultHeader();
 
@@ -90,47 +89,50 @@ namespace NMF.SynchronizationsBenchmark
 
             PN.PetriNet incNet = null;
             FSM.FiniteStateMachine incMachine = fsm.Copy();
+            FSM.FiniteStateMachine changeOnlyMachine = fsm.Copy();
             watch.Restart();
             fsm2pnSynchronization.Synchronize(startRule, ref incMachine, ref incNet, SynchronizationDirection.LeftToRightForced, ChangePropagationMode.OneWay);
             watch.Stop();
             times[sizeIdx, iteration, 2] = watch.Elapsed.Ticks;
-            //if (!transformationsPN.Match(incNet))
-            //{
-            //    Console.WriteLine("Incremental synchronization result is wrong.");
-            //    Debugger.Break();
-            //}
+            if (!transformationsPN.Match(incNet))
+            {
+                Console.WriteLine("Incremental synchronization result is wrong.");
+                Debugger.Break();
+            }
 
             var ntlMachine = fsm.Copy();
             var workload = StateMachineGenerator.GenerateChangeWorkload(fsm, workloadSize);
-            transformationsPN = PlayTransformations(times, sizeIdx, iteration, ntlMachine, watch, transformationsPN, workload);
+            transformationsPN = RunTransformations(times, sizeIdx, iteration, ntlMachine, watch, transformationsPN, workload);
             sumPoll += watch.Elapsed.Ticks;
 
-            PlayBatchNet(times, sizeIdx, iteration, startRule, watch, ref batchNet, ref batchMachine, workload);
+            RunBatchNet(times, sizeIdx, iteration, startRule, watch, ref batchNet, ref batchMachine, workload);
 
-            PlayIncremental(times, sizeIdx, iteration, watch, incMachine, workload);
-            sumInc += watch.ElapsedTicks;
+            RunIncremental(times, sizeIdx, iteration, watch, incMachine, workload);
+            sumInc += watch.Elapsed.Ticks;
+
+            RunChangesOnly(times, sizeIdx, iteration, watch, changeOnlyMachine, workload);
 
             WorkloadConverter.ConvertAndSave(fsm, workload, @"..\..\..\eMoflon\FiniteStatesToPetriNets\instances\delta{0}.xmi");
-            CallEMoflon(times, sizeIdx, iteration);
+            RunEMoflon(times, sizeIdx, iteration);
 
-            //if (!transformationsPN.Match(batchNet))
-            //{
-            //    Console.WriteLine("Batch synchronization result is wrong.");
-            //    return;
-            //}
-            //if (!transformationsPN.Match(incNet))
-            //{
-            //    Console.WriteLine("Incremental synchronization result is wrong.");
-            //    return;
-            //}
+            if (!transformationsPN.Match(batchNet))
+            {
+                Console.WriteLine("Batch synchronization result is wrong.");
+                return;
+            }
+            if (!transformationsPN.Match(incNet))
+            {
+                Console.WriteLine("Incremental synchronization result is wrong.");
+                return;
+            }
         }
 
-        private static void CallEMoflon(long[,,] times, int sizeIdx, int iteration)
+        private static void RunEMoflon(long[,,] times, int sizeIdx, int iteration)
         {
             var processInfo = new ProcessStartInfo()
             {
                 FileName = "java",
-                Arguments = @"-jar ..\FiniteStatesToPetriNets.jar",
+                Arguments = @"-jar -Xmx8G ..\FiniteStatesToPetriNets.jar",
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -154,7 +156,7 @@ namespace NMF.SynchronizationsBenchmark
             }
         }
 
-        private static void PlayIncremental(long[, ,] times, int sizeIdx, int iteration, Stopwatch watch, FSM.FiniteStateMachine incMachine, List<FSMWorkloadAction> workload)
+        private static void RunIncremental(long[, ,] times, int sizeIdx, int iteration, Stopwatch watch, FSM.FiniteStateMachine incMachine, List<FSMWorkloadAction> workload)
         {
             watch.Restart();
             foreach (var item in workload)
@@ -165,7 +167,18 @@ namespace NMF.SynchronizationsBenchmark
             times[sizeIdx, iteration, 5] = watch.Elapsed.Ticks;
         }
 
-        private static void PlayBatchNet(long[, ,] times, int sizeIdx, int iteration, SynchronizationsImplementation.AutomataToNet startRule, Stopwatch watch, ref PN.PetriNet batchNet, ref FSM.FiniteStateMachine batchMachine, List<FSMWorkloadAction> workload)
+        private static void RunChangesOnly(long[,,] times, int sizeIdx, int iteration, Stopwatch watch, FSM.FiniteStateMachine incMachine, List<FSMWorkloadAction> workload)
+        {
+            watch.Restart();
+            foreach (var item in workload)
+            {
+                item.Perform(incMachine);
+            }
+            watch.Stop();
+            times[sizeIdx, iteration, 8] = watch.Elapsed.Ticks;
+        }
+
+        private static void RunBatchNet(long[, ,] times, int sizeIdx, int iteration, SynchronizationsImplementation.AutomataToNet startRule, Stopwatch watch, ref PN.PetriNet batchNet, ref FSM.FiniteStateMachine batchMachine, List<FSMWorkloadAction> workload)
         {
             watch.Restart();
             foreach (var item in workload)
@@ -177,7 +190,7 @@ namespace NMF.SynchronizationsBenchmark
             times[sizeIdx, iteration, 4] = watch.Elapsed.Ticks;
         }
 
-        private static PN.PetriNet PlayTransformations(long[, ,] times, int sizeIdx, int iteration, FSM.FiniteStateMachine fsm, Stopwatch watch, PN.PetriNet transformationsPN, List<FSMWorkloadAction> workload)
+        private static PN.PetriNet RunTransformations(long[, ,] times, int sizeIdx, int iteration, FSM.FiniteStateMachine fsm, Stopwatch watch, PN.PetriNet transformationsPN, List<FSMWorkloadAction> workload)
         {
             watch.Restart();
             foreach (var item in workload)
@@ -206,7 +219,7 @@ namespace NMF.SynchronizationsBenchmark
             using (var sw = new StreamWriter("results.csv", false))
             {
                 sw.Write("Size;Iteration;");
-                sw.WriteLine(@"""Init Transformation"";""Init Batch Synchronization"";""Init Incremental Synchronization"";""Main Transformation"";""Main Batch Synchronization"";""Main Incremental Synchronization"";""Init eMoflon"";""Main eMoflon""");
+                sw.WriteLine(@"""Init Transformation"";""Init Batch Synchronization"";""Init Incremental Synchronization"";""Main Transformation"";""Main Batch Synchronization"";""Main Incremental Synchronization"";""Init eMoflon"";""Main eMoflon"";""Changes only""");
             }
         }
 
@@ -221,7 +234,7 @@ namespace NMF.SynchronizationsBenchmark
                 for (int iteration = 0; iteration < iterations; iteration++)
                 {
                     sw.Write("{0};{1}", n, iteration);
-                    for (int i = 0; i <= 7; i++)
+                    for (int i = 0; i <= 8; i++)
                     {
                         sw.Write(";");
                         sw.Write((times[sizeIdx, iteration, i] / 10000.0).ToString("0.000", CultureInfo.InvariantCulture));
